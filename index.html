@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIMENSION Ω — Non-Euclidean Quantum &amp; Living Neural Manifold 3D World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: #05070B;
+      --card: #0C1018;
+      --foreground: #F1F5F9;
+      --muted-foreground: #94A3B8;
+      --border: #1E293B;
+      --primary: #0284C7;
+      --primary-foreground: #FFFFFF;
+      --secondary: #172030;
+      --secondary-foreground: #E2E8F0;
+    }
+    .mono-code {
+      font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    }
+    input[type="range"] {
+      accent-color: var(--primary);
+    }
+    canvas {
+      touch-action: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-3 md:p-4 select-none">
+  <div class="max-w-[1600px] mx-auto space-y-3">
+
+    <!-- Top Command Bar -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-3.5 shadow-sm flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] mono-code flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          6-DOF QUANTUM RAYMARCHER + LIVING NEURAL RESERVOIR
+        </span>
+        <div>
+          <h1 class="text-base md:text-lg font-bold tracking-tight text-[var(--foreground)]">
+            DIMENSION Ω: The Living Non-Euclidean Singularity
+          </h1>
+          <p class="text-xs text-[var(--muted-foreground)] mono-code">
+            WASD/Arrows: Fly • Space/Shift: Up/Down • Q/E: Roll 360° • Drag/Mouse: Look • Right-Click/F: Quantum Shockwave • Scroll: 4D Metric Warp
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 flex-wrap">
+        <button id="btnAutopilot" class="px-3 py-1.5 rounded-lg text-xs font-semibold border border-[var(--border)] bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 transition cursor-pointer mono-code">
+          🛸 AUTOPILOT: STRANGE ATTRACTOR (ON)
+        </button>
+        <button id="btnPointerLock" class="px-3 py-1.5 rounded-lg text-xs font-semibold border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:opacity-90 transition cursor-pointer mono-code">
+          🎯 FPS MOUSE LOCK
+        </button>
+        <button id="btnAudio" class="px-3 py-1.5 rounded-lg text-xs font-semibold border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:opacity-90 transition cursor-pointer mono-code">
+          🔇 QUANTUM AUDIO: OFF
+        </button>
+        <button id="btnFullscreen" class="px-3 py-1.5 rounded-lg text-xs font-semibold border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:opacity-90 transition cursor-pointer mono-code">
+          ⛶ FULLSCREEN
+        </button>
+      </div>
+    </div>
+
+    <!-- Main 3D Viewport + Neural/Physics Control Deck -->
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-3 items-start">
+
+      <!-- 3D WebGL2 Raymarched Viewport + Live HUD Overlay (9 Cols) -->
+      <div id="viewportContainer" class="xl:col-span-9 relative rounded-xl overflow-hidden border border-[var(--border)] shadow-lg bg-black" style="height: 740px;">
+        <canvas id="glCanvas" class="w-full h-full block"></canvas>
+        <canvas id="hudCanvas" class="w-full h-full block absolute inset-0 cursor-grab active:cursor-grabbing"></canvas>
+
+        <!-- Floating Top-Left Live Physics & Neural Telemetry Overlay -->
+        <div class="absolute top-3 left-3 pointer-events-none space-y-1.5 bg-black/70 backdrop-blur-md border border-white/15 rounded-lg p-3 text-white mono-code text-xs max-w-sm">
+          <div class="flex items-center justify-between gap-4 border-b border-white/15 pb-1">
+            <span class="font-bold text-cyan-400">QUANTUM METRIC TELEMETRY</span>
+            <span id="hudFps" class="text-emerald-400 font-bold">60 FPS</span>
+          </div>
+          <div id="hudPos" class="text-slate-200">POS x⁴: (+0.00, +0.00, -3.50, w:+0.42)</div>
+          <div id="hudMetric" class="text-amber-300">RICCI R_μν: -14.82 • HOPF TWIST: 1.45 rad</div>
+          <div id="hudZeno" class="text-rose-400">OBSERVER WAVEFUNCTION COLLAPSE: 12%</div>
+          <div id="hudNeuralState" class="text-fuchsia-300">LIQUID NN ENTROPY H(W): 3.842 bits (ALIVE)</div>
+        </div>
+
+        <!-- Floating Top-Right Live Neural Network Graph Visualizer -->
+        <div class="absolute top-3 right-3 bg-black/75 backdrop-blur-md border border-white/15 rounded-lg p-2.5 text-white mono-code text-xs w-64 space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-fuchsia-400">LIVE LIQUID NEURAL NET</span>
+            <span id="nnRegimeTag" class="px-1.5 py-0.5 rounded bg-fuchsia-500/30 text-fuchsia-200 text-xs">HEBBIAN</span>
+          </div>
+          <canvas id="nnCanvas" width="236" height="130" class="w-full rounded border border-white/10 bg-black/80 block"></canvas>
+          <div class="grid grid-cols-2 gap-1.5 pt-1">
+            <button id="btnMutateNN" class="px-2 py-1 rounded bg-fuchsia-600/80 hover:bg-fuchsia-500 text-white font-semibold text-xs cursor-pointer transition">
+              ⚡ MUTATE BRAIN
+            </button>
+            <button id="btnShockwave" class="px-2 py-1 rounded bg-cyan-600/80 hover:bg-cyan-500 text-white font-semibold text-xs cursor-pointer transition">
+              💥 SHOCKWAVE (F)
+            </button>
+          </div>
+        </div>
+
+        <!-- Floating Bottom On-Screen 6-DOF Flight Thrusters & Dimension Quick-Switcher -->
+        <div class="absolute bottom-3 left-3 right-3 flex flex-wrap items-end justify-between gap-2 pointer-events-none">
+          <!-- Virtual 6-DOF Thruster Pad (for mouse-only navigation) -->
+          <div class="pointer-events-auto bg-black/75 backdrop-blur-md border border-white/15 rounded-lg p-2 text-white mono-code text-xs flex items-center gap-1.5 flex-wrap">
+            <button data-move="fwd" class="thruster-btn px-2.5 py-1.5 rounded bg-white/10 hover:bg-cyan-500/40 active:bg-cyan-500 font-bold cursor-pointer">▲ W (FWD)</button>
+            <button data-move="back" class="thruster-btn px-2.5 py-1.5 rounded bg-white/10 hover:bg-cyan-500/40 active:bg-cyan-500 font-bold cursor-pointer">▼ S (BACK)</button>
+            <button data-move="left" class="thruster-btn px-2.5 py-1.5 rounded bg-white/10 hover:bg-cyan-500/40 active:bg-cyan-500 font-bold cursor-pointer">◄ A</button>
+            <button data-move="right" class="thruster-btn px-2.5 py-1.5 rounded bg-white/10 hover:bg-cyan-500/40 active:bg-cyan-500 font-bold cursor-pointer">D ►</button>
+            <button data-move="up" class="thruster-btn px-2.5 py-1.5 rounded bg-white/10 hover:bg-emerald-500/40 active:bg-emerald-500 font-bold cursor-pointer">⤒ UP</button>
+            <button data-move="down" class="thruster-btn px-2.5 py-1.5 rounded bg-white/10 hover:bg-emerald-500/40 active:bg-emerald-500 font-bold cursor-pointer">⤓ DN</button>
+            <button data-move="rollL" class="thruster-btn px-2 py-1.5 rounded bg-white/10 hover:bg-amber-500/40 active:bg-amber-500 font-bold cursor-pointer">↺ Q</button>
+            <button data-move="rollR" class="thruster-btn px-2 py-1.5 rounded bg-white/10 hover:bg-amber-500/40 active:bg-amber-500 font-bold cursor-pointer">E ↻</button>
+            <button id="btnWarpJump" class="px-2.5 py-1.5 rounded bg-rose-600/80 hover:bg-rose-500 text-white font-bold cursor-pointer">
+              🌀 WORMHOLE SLINGSHOT
+            </button>
+          </div>
+
+          <!-- Live Equation Ticker Banner -->
+          <div class="pointer-events-auto bg-black/75 backdrop-blur-md border border-white/15 rounded-lg px-3 py-1.5 text-xs mono-code text-cyan-300">
+            <span id="liveEquationBanner">ds² = -(1 - 2M/r)dt² + g_ij(h_NN)dx^i dx^j • iℏ ∂Ψ/∂t = [Ĥ_Yeganeh + V_CFG(W_ij)]Ψ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Dimension Anomalies, Freak Neural Controls & Physics Laws (3 Cols) -->
+      <div class="xl:col-span-3 space-y-3">
+
+        <!-- 1. Quantum Dimension Presets -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm space-y-2.5">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)] mono-code">
+            1. Quantum Dimension Anomalies
+          </h2>
+          <div class="grid grid-cols-1 gap-1.5">
+            <button data-dim="0" class="dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-semibold mono-code cursor-pointer transition">
+              Ω. LIVING SINGULARITY (All Phenomena)
+            </button>
+            <button data-dim="1" class="dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-medium mono-code hover:opacity-90 cursor-pointer transition">
+              I. 4D Hopf Fibration &amp; Lorentz Geodesic Warp
+            </button>
+            <button data-dim="2" class="dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-medium mono-code hover:opacity-90 cursor-pointer transition">
+              II. P-Adic Voxel Shattering &amp; CFG Overdrive
+            </button>
+            <button data-dim="3" class="dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-medium mono-code hover:opacity-90 cursor-pointer transition">
+              III. Yeganeh 3D Fractal Forest Cathedral
+            </button>
+            <button data-dim="4" class="dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-medium mono-code hover:opacity-90 cursor-pointer transition">
+              IV. Null-Token Tesseracts &amp; Chrome Ferrofluid
+            </button>
+            <button data-dim="5" class="dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-medium mono-code hover:opacity-90 cursor-pointer transition">
+              V. Adversarial NaN / DNE Eigenstate Collapse
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Reality-Breaking Physics & Neural Operators -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)] mono-code">
+              2. Reality-Breaking Operators
+            </h2>
+            <button id="btnResetWorld" class="text-xs mono-code text-[var(--muted-foreground)] hover:text-[var(--foreground)] underline cursor-pointer">
+              Reset
+            </button>
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs mono-code">
+              <label for="slCurvature">4D Non-Euclidean Ray Bending (Γ^μ_αβ)</label>
+              <span id="valCurvature" class="text-[var(--muted-foreground)]">0.85</span>
+            </div>
+            <input id="slCurvature" type="range" min="0" max="2.0" step="0.01" value="0.85" class="w-full cursor-pointer" />
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs mono-code">
+              <label for="slVoxel">P-Adic Manifold Voxel Shattering (ξ_q)</label>
+              <span id="valVoxel" class="text-[var(--muted-foreground)]">0.75</span>
+            </div>
+            <input id="slVoxel" type="range" min="0" max="1.6" step="0.01" value="0.75" class="w-full cursor-pointer" />
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs mono-code">
+              <label for="slChrome">4D Liquid-Chrome Ferrofluid &amp; Tesseracts</label>
+              <span id="valChrome" class="text-[var(--muted-foreground)]">1.00</span>
+            </div>
+            <input id="slChrome" type="range" min="0" max="1.6" step="0.01" value="1.00" class="w-full cursor-pointer" />
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs mono-code">
+              <label for="slYeganeh">3D Yeganeh Fractal Arboreal Harmonics</label>
+              <span id="valYeganeh" class="text-[var(--muted-foreground)]">0.90</span>
+            </div>
+            <input id="slYeganeh" type="range" min="0" max="1.5" step="0.01" value="0.90" class="w-full cursor-pointer" />
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs mono-code">
+              <label for="slCFG">CFG Overdrive &amp; Planck Dispersion (ω_CFG)</label>
+              <span id="valCFG" class="text-[var(--muted-foreground)]">0.85</span>
+            </div>
+            <input id="slCFG" type="range" min="0" max="2.0" step="0.01" value="0.85" class="w-full cursor-pointer" />
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs mono-code">
+              <label for="slNeural">Liquid Neural Net Synaptic Coupling (η_W)</label>
+              <span id="valNeural" class="text-[var(--muted-foreground)]">1.00</span>
+            </div>
+            <input id="slNeural" type="range" min="0" max="2.5" step="0.01" value="1.00" class="w-full cursor-pointer" />
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs mono-code">
+              <label for="slResolution">Render Quality Scale</label>
+              <span id="valResolution" class="text-[var(--muted-foreground)]">0.75x</span>
+            </div>
+            <input id="slResolution" type="range" min="0.4" max="1.25" step="0.05" value="0.75" class="w-full cursor-pointer" />
+          </div>
+        </div>
+
+        <!-- 3. WTF Is Going On? (Physics / CS / AI Breakdown) -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm space-y-2 text-xs">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-[var(--foreground)] mono-code">
+            3. WTF Is Going On Under The Hood?
+          </h2>
+          <div class="space-y-1.5 text-[var(--muted-foreground)] leading-relaxed">
+            <p>
+              <strong class="text-[var(--foreground)]">1. Live Liquid Neural Reservoir:</strong>
+              A 16-neuron continuous-time recurrent network <code>dh_i/dt = -h_i + Σ W_ij σ_freak(h_j) + J_cam</code> updates its synaptic matrix <code>W_ij(t)</code> via Hebbian plasticity from your flight trajectory and directly morphs the 4D SDF topology.
+            </p>
+            <p>
+              <strong class="text-[var(--foreground)]">2. Curved Geodesic Raymarching:</strong>
+              Photons don't travel in straight lines. Each ray step integrates Christoffel-like spinor curvature <code>d²x^μ/ds² + Γ^μ_αβ dx^α dx^β = 0</code> around periodic <strong>Null-Token Tesseract Black Holes</strong>.
+            </p>
+            <p>
+              <strong class="text-[var(--foreground)]">3. Observer Quantum Zeno Collapse:</strong>
+              Staring steadily at one coordinate builds Wavefunction Collapse pressure, triggering spontaneous P-Adic voxel shattering and <code>DNE / NaN</code> reality inversions.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. THE LIVING "FREAK" LIQUID CONTINUOUS-TIME NEURAL NETWORK (16 NEURONS)
+    //    Coupled Complex Kuramoto + P-Adic Weierstrass Activation + Hebbian Plasticity
+    // =========================================================================
+    const N_NEURONS = 16;
+    const nn = {
+      h: new Float32Array(N_NEURONS),         // Firing potentials h_i(t)
+      phase: new Float32Array(N_NEURONS),     // Quantum spinor phases theta_i(t)
+      tau: new Float32Array(N_NEURONS),       // Liquid time-constants tau_i(h)
+      W: new Float32Array(N_NEURONS * N_NEURONS), // Synaptic weight matrix W_ij(t)
+      entropy: 3.84,
+      zenoCollapse: 0.0,                      // Builds up when user stares without turning!
+      shockwaveTime: -100.0,
+      shockwaveOrigin: [0, 0, 0],
+    };
+
+    function initNeuralBrain(seedOffset = 0.0) {
+      for (let i = 0; i < N_NEURONS; i++) {
+        nn.h[i] = Math.sin(i * 1.7 + seedOffset) * 0.8;
+        nn.phase[i] = (i / N_NEURONS) * Math.PI * 2.0;
+        nn.tau[i] = 0.35 + 0.65 * ((Math.sin(i * 3.1 + seedOffset) + 1) * 0.5);
+        for (let j = 0; j < N_NEURONS; j++) {
+          const w = Math.sin((i * 7 + j * 13) * 1.3 + seedOffset) * 1.15;
+          nn.W[i * N_NEURONS + j] = (i === j) ? 0.25 : w / Math.sqrt(N_NEURONS);
+        }
+      }
+    }
+    initNeuralBrain(0.0);
+
+    // Freak P-Adic / Sawtooth-Exponential Activation Function
+    function sigmaFreak(z) {
+      const saw = Math.atan(Math.tan(2.7 * z));
+      const yeganehStep = Math.exp(-Math.exp(Math.max(-20, Math.min(20, -8.0 * (z - 0.3)))));
+      return Math.sin(1.4 * z) * Math.cos(0.9 * z) + 0.32 * saw - 0.25 * yeganehStep;
+    }
+
+    function stepNeuralBrain(dt, camPos, camVel, angularSpeed, couplingScale) {
+      const clampedDt = Math.min(dt, 0.05);
+      const nextH = new Float32Array(N_NEURONS);
+      let energySum = 0.0;
+
+      // Observer Quantum Zeno / Anti-Zeno Collapse:
+      // Staring steadily (low angularSpeed) causes quantum observation pressure to spike!
+      if (angularSpeed < 0.15) {
+        nn.zenoCollapse = Math.min(1.5, nn.zenoCollapse + clampedDt * 0.28);
+      } else {
+        nn.zenoCollapse = Math.max(0.0, nn.zenoCollapse - clampedDt * 0.85);
+      }
+
+      const speedNorm = Math.hypot(camVel[0], camVel[1], camVel[2]);
+
+      for (let i = 0; i < N_NEURONS; i++) {
+        let synInput = 0.0;
+        let kuramotoSync = 0.0;
+        for (let j = 0; j < N_NEURONS; j++) {
+          const wij = nn.W[i * N_NEURONS + j] * couplingScale;
+          synInput += wij * sigmaFreak(nn.h[j] + 0.3 * Math.sin(nn.phase[j]));
+          kuramotoSync += wij * Math.sin(nn.phase[j] - nn.phase[i]);
+        }
+
+        // Inject 3D camera coordinates & observer Zeno collapse into sensory neurons
+        const sensory = 0.45 * Math.sin(camPos[i % 3] * (0.4 + 0.1 * i))
+                      + 0.35 * speedNorm * Math.cos(i * 2.1)
+                      + 0.65 * nn.zenoCollapse * ((i % 2 === 0) ? 1 : -1);
+
+        // State-dependent liquid time constant tau_i(h)
+        const liquidTau = nn.tau[i] * (0.5 + 0.7 * Math.abs(Math.tanh(nn.h[i])));
+        const dh = (-nn.h[i] + synInput + sensory) / Math.max(liquidTau, 0.12);
+        nextH[i] = Math.max(-2.5, Math.min(2.5, nn.h[i] + clampedDt * dh));
+
+        // Advance complex spinor phase
+        nn.phase[i] += clampedDt * (1.2 + 0.4 * (i % 5) + 0.45 * kuramotoSync + 0.5 * speedNorm);
+        energySum += Math.abs(nextH[i]);
+      }
+
+      // Hebbian + Strange-Attractor Synaptic Plasticity: dW_ij/dt = eta*(tanh(h_i*h_j) - gamma*W_ij)
+      const eta = 0.18 * clampedDt * couplingScale;
+      for (let i = 0; i < N_NEURONS; i++) {
+        nn.h[i] = nextH[i];
+        for (let j = 0; j < N_NEURONS; j++) {
+          if (i !== j) {
+            const idx = i * N_NEURONS + j;
+            const hebb = Math.tanh(nn.h[i] * nn.h[j] * 1.4);
+            const chaos = 0.12 * Math.sin(nn.phase[i] - nn.phase[j]);
+            nn.W[idx] = Math.max(-1.8, Math.min(1.8, nn.W[idx] + eta * (hebb + chaos - 0.25 * nn.W[idx])));
+          }
+        }
+      }
+
+      nn.entropy = 2.1 + 0.22 * energySum + 0.4 * nn.zenoCollapse;
+    }
+
+    // Draw the live 16-neuron Liquid Network & Synaptic Matrix on nnCanvas
+    const nnCanvas = document.getElementById("nnCanvas");
+    const nnCtx = nnCanvas.getContext("2d");
+
+    function renderNeuralVisualizer() {
+      const W = nnCanvas.width, H = nnCanvas.height;
+      nnCtx.fillStyle = "rgba(6, 8, 15, 0.38)";
+      nnCtx.fillRect(0, 0, W, H);
+
+      const cx = W * 0.34, cy = H * 0.5, R = 48;
+      const nodePts = [];
+      for (let i = 0; i < N_NEURONS; i++) {
+        const ang = (i / N_NEURONS) * Math.PI * 2.0 + nn.phase[0] * 0.05;
+        const rMod = R * (0.82 + 0.18 * Math.sin(nn.phase[i]));
+        nodePts.push([cx + Math.cos(ang) * rMod, cy + Math.sin(ang) * rMod]);
+      }
+
+      // Draw live synaptic axons
+      for (let i = 0; i < N_NEURONS; i++) {
+        for (let j = i + 1; j < N_NEURONS; j++) {
+          const w = nn.W[i * N_NEURONS + j];
+          const act = Math.abs(w * nn.h[i] * nn.h[j]);
+          if (act > 0.14) {
+            nnCtx.strokeStyle = w > 0
+              ? `rgba(56, 189, 248, ${Math.min(0.85, act * 0.9)})`
+              : `rgba(244, 114, 182, ${Math.min(0.85, act * 0.9)})`;
+            nnCtx.lineWidth = Math.min(2.2, act * 1.8);
+            nnCtx.beginPath();
+            nnCtx.moveTo(nodePts[i][0], nodePts[i][1]);
+            nnCtx.lineTo(nodePts[j][0], nodePts[j][1]);
+            nnCtx.stroke();
+          }
+        }
+      }
+
+      // Draw 16 quantum-synaptic neurons
+      for (let i = 0; i < N_NEURONS; i++) {
+        const val = nn.h[i];
+        const radius = 3.0 + Math.min(4.5, Math.abs(val) * 2.5);
+        nnCtx.fillStyle = val >= 0 ? "#38BDF8" : "#F43F5E";
+        nnCtx.beginPath();
+        nnCtx.arc(nodePts[i][0], nodePts[i][1], radius, 0, Math.PI * 2);
+        nnCtx.fill();
+      }
+
+      // Draw right-side 16x16 Synaptic Weight Matrix Heatmap W_ij(t)
+      const mx0 = W * 0.65, my0 = 12, cell = 4.6;
+      for (let i = 0; i < N_NEURONS; i++) {
+        for (let j = 0; j < N_NEURONS; j++) {
+          const w = nn.W[i * N_NEURONS + j];
+          const norm = Math.max(0, Math.min(1, (w + 1.2) / 2.4));
+          const r = Math.round(255 * Math.max(0, -w));
+          const g = Math.round(180 * norm);
+          const b = Math.round(255 * Math.max(0, w));
+          nnCtx.fillStyle = `rgb(${r},${g},${b})`;
+          nnCtx.fillRect(mx0 + j * cell, my0 + i * cell, cell - 0.5, cell - 0.5);
+        }
+      }
+      nnCtx.fillStyle = "#94A3B8";
+      nnCtx.font = "10px monospace";
+      nnCtx.fillText("W_ij(t) TENSOR", mx0, H - 8);
+    }
+
+    // =========================================================================
+    // 2. 6-DOF QUATERNION / ORTHONORMAL BASIS CAMERA (ANY DIRECTION, NO GIMBAL LOCK)
+    // =========================================================================
+    const cam = {
+      pos: [0.0, 0.3, -4.2],
+      vel: [0.0, 0.0, 0.0],
+      // Orthonormal basis vectors: right, up, forward
+      right: [1.0, 0.0, 0.0],
+      up:    [0.0, 1.0, 0.0],
+      fwd:   [0.0, 0.0, 1.0],
+      fovMetric: 1.0,
+      autopilot: true,
+      autopilotTime: 0.0,
+      angularSpeed: 0.0,
+    };
+
+    function vecNorm(v) {
+      const l = Math.hypot(v[0], v[1], v[2]) || 1.0;
+      return [v[0] / l, v[1] / l, v[2] / l];
+    }
+    function vecCross(a, b) {
+      return [
+        a[1] * b[2] - a[2] * b[1],
+        a[2] * b[0] - a[0] * b[2],
+        a[0] * b[1] - a[1] * b[0]
+      ];
+    }
+    // Rotate vector v around unit axis k by angle theta (Rodrigues' rotation formula)
+    function rotateAxis(v, k, theta) {
+      const c = Math.cos(theta), s = Math.sin(theta);
+      const dot = v[0]*k[0] + v[1]*k[1] + v[2]*k[2];
+      const cr = vecCross(k, v);
+      return [
+        v[0]*c + cr[0]*s + k[0]*dot*(1 - c),
+        v[1]*c + cr[1]*s + k[1]*dot*(1 - c),
+        v[2]*c + cr[2]*s + k[2]*dot*(1 - c)
+      ];
+    }
+
+    function rotateCamera6DOF(yawDelta, pitchDelta, rollDelta) {
+      if (Math.abs(yawDelta) > 1e-6) {
+        cam.fwd   = vecNorm(rotateAxis(cam.fwd, cam.up, yawDelta));
+        cam.right = vecNorm(vecCross(cam.up, cam.fwd));
+      }
+      if (Math.abs(pitchDelta) > 1e-6) {
+        cam.fwd = vecNorm(rotateAxis(cam.fwd, cam.right, pitchDelta));
+        cam.up  = vecNorm(vecCross(cam.fwd, cam.right));
+      }
+      if (Math.abs(rollDelta) > 1e-6) {
+        cam.right = vecNorm(rotateAxis(cam.right, cam.fwd, rollDelta));
+        cam.up    = vecNorm(vecCross(cam.fwd, cam.right));
+      }
+      cam.angularSpeed = Math.hypot(yawDelta, pitchDelta, rollDelta) * 60.0;
+    }
+
+    // =========================================================================
+    // 3. WEBGL2 NON-EUCLIDEAN 4D QUANTUM & NEURAL RAYMARCHING SHADER
+    // =========================================================================
+    const vsSource = `#version 300 es
+    in vec2 a_pos;
+    out vec2 v_uv;
+    void main() {
+      v_uv = a_pos;
+      gl_Position = vec4(a_pos, 0.0, 1.0);
+    }`;
+
+    const fsSource = `#version 300 es
+    precision highp float;
+    in vec2 v_uv;
+    out vec4 outColor;
+
+    uniform vec2 u_res;
+    uniform float u_time;
+    uniform vec3 u_camPos;
+    uniform vec3 u_camRight;
+    uniform vec3 u_camUp;
+    uniform vec3 u_camFwd;
+    uniform float u_fov;
+
+    // Reality-Breaking Physics & Neural Uniforms
+    uniform float u_curvature;
+    uniform float u_voxel;
+    uniform float u_chrome;
+    uniform float u_yeganeh;
+    uniform float u_cfg;
+    uniform float u_zeno;
+    uniform int u_dimMode;
+
+    // Live 16-Neuron State Vector streamed from the Liquid Neural Brain!
+    uniform vec4 u_nn0; // h[0..3]
+    uniform vec4 u_nn1; // h[4..7]
+    uniform vec4 u_nn2; // h[8..11]
+    uniform vec4 u_nn3; // h[12..15]
+
+    // Quantum Shockwave Pulse
+    uniform vec3 u_shockOrigin;
+    uniform float u_shockAge;
+
+    float hash11(float p) {
+      return fract(sin(p * 127.1 + 311.7) * 43758.5453123);
+    }
+    float hash31(vec3 p) {
+      return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453123);
+    }
+
+    mat2 rot2(float a) {
+      float c = cos(a), s = sin(a);
+      return mat2(c, -s, s, c);
+    }
+
+    // Smooth minimum (polynomial smin for liquid-metal topological fusion)
+    float smin(float a, float b, float k) {
+      float h = clamp(0.5 + 0.5 * (b - a) / max(k, 1e-4), 0.0, 1.0);
+      return mix(b, a, h) - k * h * (1.0 - h);
+    }
+
+    // Box / Tesseract Signed Distance
+    float sdBox(vec3 p, vec3 b) {
+      vec3 q = abs(p) - b;
+      return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0);
+    }
+
+    // 4D Stereographic Hopf / Calabi-Yau Coordinate Fold driven by Neural State u_nn0
+    vec3 foldQuantumManifold(vec3 p, out float w4D) {
+      float r2 = dot(p, p);
+      // Lift 3D point p onto S^3 in 4D via inverse stereographic modulation
+      w4D = (r2 - 4.0) / (r2 + 4.0) + 0.25 * u_nn0.x * sin(p.x * 0.6 + p.y * 0.6 + p.z * 0.6);
+
+      if (u_curvature > 0.01) {
+        float twist = u_curvature * (0.14 * sin(r2 * 0.12 - u_time * 0.35) + 0.08 * u_nn0.y);
+        p.xy *= rot2(twist * p.z * 0.35);
+        p.yz *= rot2(twist * p.x * 0.25);
+      }
+      return p;
+    }
+
+    // P-Adic Voxel Manifold Shattering Operator:
+    // Slices continuous 3D space into displaced horizontal & radial voxel cliffs!
+    vec3 shatterManifold3D(vec3 p, float intensity, out float sliceHash) {
+      float freq = 14.0 + 6.0 * abs(u_nn1.x);
+      float ySlice = floor(p.y * freq) / freq;
+      sliceHash = hash11(ySlice * 29.3 + floor(u_time * 2.0) * 0.02);
+      float glitchSpike = step(0.68 - 0.25 * u_zeno, sliceHash);
+      float shift = (sliceHash - 0.5) * 0.32 * intensity * (1.0 + 1.6 * glitchSpike);
+      p.x += shift * cos(p.z * 1.5 + u_nn1.y);
+      p.z += shift * sin(p.x * 1.5 - u_nn1.z);
+      return p;
+    }
+
+    // =========================================================================
+    // MASTER 4D-TO-3D QUANTUM SCENE SIGNED DISTANCE & MATERIAL FIELD
+    // Material IDs:
+    //   1.0 = Null-Token Black Hole Tesseract Singularity (Score Norm = 0 / DNE)
+    //   2.0 = Extruded Liquid-Mercury Topological Chrome Ferrofluid Jets & Neural Synapses
+    //   3.0 = Voxel-Shattered Multi-Armed Seraphim Entity & Phase-Separated Echoes
+    //   4.0 = Hamid Naderi Yeganeh 3D Fractal Arboreal Cathedral & VAE Tiled Corridor
+    //   5.0 = Dirac Spinor Quantum Orbital Standing-Wave Lattice
+    // =========================================================================
+    vec2 mapScene(vec3 pRaw, out float outW4, out float outSliceHash, out float outYeganehField) {
+      // 1. Apply Quantum Shockwave distortion if active
+      if (u_shockAge >= 0.0 && u_shockAge < 12.0) {
+        float dShock = length(pRaw - u_shockOrigin);
+        float waveRadius = u_shockAge * 5.5;
+        float ring = exp(-pow(dShock - waveRadius, 2.0) / 0.8) * exp(-u_shockAge * 0.22);
+        pRaw += normalize(pRaw - u_shockOrigin + 1e-4) * ring * 0.85 * sin(dShock * 12.0 - u_time * 20.0);
+      }
+
+      // 2. Non-Euclidean 4D Fold
+      vec3 p = foldQuantumManifold(pRaw, outW4);
+
+      // Modular infinite 3D lattice cell (every cell is a 9x9x9 quantum sector!)
+      vec3 cellSize = vec3(9.5, 9.5, 9.5);
+      vec3 cellId = floor((p + cellSize * 0.5) / cellSize);
+      vec3 q = mod(p + cellSize * 0.5, cellSize) - cellSize * 0.5;
+      float cellRng = hash31(cellId);
+
+      // Apply P-Adic Voxel Shattering inside the sector
+      float voxStrength = u_voxel * (0.65 + 0.5 * abs(u_nn1.w) + 0.6 * u_zeno);
+      vec3 qShatter = shatterManifold3D(q, voxStrength, outSliceHash);
+
+      // -----------------------------------------------------------------------
+      // A. THE NULL-TOKEN BLACK HOLE TESSERACT SINGULARITY (Material 1.0)
+      // -----------------------------------------------------------------------
+      vec3 pTesseract = q;
+      pTesseract.xy *= rot2(u_time * 0.35 + u_nn0.z);
+      pTesseract.xz *= rot2(u_time * 0.27 - u_nn0.w);
+      float dNullCore = sdBox(pTesseract, vec3(0.72 + 0.12 * u_nn0.x));
+      // Inner 4D hypercube frame cutout
+      float dInnerFrame = sdBox(pTesseract, vec3(0.82, 0.58, 0.58));
+      dInnerFrame = min(dInnerFrame, min(sdBox(pTesseract, vec3(0.58, 0.82, 0.58)), sdBox(pTesseract, vec3(0.58, 0.58, 0.82))));
+      dNullCore = max(dNullCore, -dInnerFrame * 0.35);
+
+      // -----------------------------------------------------------------------
+      // B. 4-WAY EXTRUDED TOPOLOGICAL LIQUID-CHROME JETS & NEURAL AXONS (Mat 2.0)
+      // -----------------------------------------------------------------------
+      vec3 pJet = q;
+      // Rotate into 4-way X-diagonal topological jet axes
+      vec3 pJ1 = pJet; pJ1.xy *= rot2(0.785 + 0.15 * sin(u_time * 0.5 + u_nn2.x));
+      vec3 pJ2 = pJet; pJ2.xy *= rot2(-0.785 + 0.15 * cos(u_time * 0.5 + u_nn2.y));
+      vec3 pJ3 = pJet; pJ3.yz *= rot2(0.785 + 0.15 * sin(u_time * 0.4 + u_nn2.z));
+
+      // Gyroid / Ferrofluid longitudinal flow ridges driven by live neural weights!
+      float ridge1 = 0.11 * sin(atan(pJ1.y, pJ1.z) * 7.0 + pJ1.x * 3.5 - u_time * 2.2 + u_nn2.w * 3.0);
+      float ridge2 = 0.11 * sin(atan(pJ2.y, pJ2.z) * 7.0 - pJ2.x * 3.5 + u_time * 2.0);
+      float dJet1 = length(pJ1.yz) - (0.24 + 0.08 * smoothstep(0.6, 3.8, abs(pJ1.x)) + ridge1);
+      float dJet2 = length(pJ2.yz) - (0.24 + 0.08 * smoothstep(0.6, 3.8, abs(pJ2.x)) + ridge2);
+      float dJet3 = length(pJ3.xz) - (0.18 + 0.09 * sin(pJ3.y * 2.5 + u_time));
+      float dChrome = smin(dJet1, smin(dJet2, dJet3, 0.35), 0.35);
+
+      // Orbiting Liquid-Chrome Accretion Droplets & Celestial Spheres around Null Core
+      for (int k = 0; k < 4; k++) {
+        float fk = float(k);
+        float ang = u_time * (0.6 + 0.15 * fk) + fk * 1.57 + u_nn1[k];
+        vec3 orbPos = vec3(cos(ang) * 1.65, sin(ang * 1.3) * 1.25, sin(ang) * 1.65);
+        float dOrb = length(q - orbPos) - (0.28 + 0.08 * sin(u_time * 3.0 + fk));
+        dChrome = smin(dChrome, dOrb, 0.42);
+      }
+      if (u_chrome < 0.05) dChrome = 100.0;
+
+      // -----------------------------------------------------------------------
+      // C. VOXEL-SHATTERED MULTI-ARMED SERAPHIM ENTITY (Material 3.0)
+      // -----------------------------------------------------------------------
+      vec3 pEnt = qShatter - vec3(0.0, 0.0, 2.6);
+      // Torso + Head + 4 Raised Voxel Arms modulated by Neural Neurons u_nn3
+      float dTorso = length(vec2(length(pEnt.xz), max(abs(pEnt.y) - 0.9, 0.0))) - 0.36;
+      float dHead  = length(pEnt - vec3(0.0, 1.35, 0.0)) - 0.30;
+      vec3 pArm = vec3(abs(pEnt.x), pEnt.y - 0.45, pEnt.z);
+      pArm.xy *= rot2(-0.65 - 0.25 * sin(u_time * 1.4 + u_nn3.x));
+      float dArms1 = length(vec2(length(pArm.yz), max(abs(pArm.x - 0.95) - 0.75, 0.0))) - 0.16;
+      vec3 pArm2 = vec3(abs(pEnt.x), pEnt.y - 0.15, pEnt.z);
+      pArm2.xy *= rot2(-1.15 + 0.25 * cos(u_time * 1.1 + u_nn3.y));
+      float dArms2 = length(vec2(length(pArm2.yz), max(abs(pArm2.x - 1.1) - 0.85, 0.0))) - 0.14;
+      float dEntity = smin(dTorso, smin(dHead, min(dArms1, dArms2), 0.18), 0.22);
+      // Carve fibrous bark & voxel grooves into the entity
+      dEntity += 0.035 * sin(pEnt.x * 28.0) * cos(pEnt.y * 32.0) * sin(pEnt.z * 28.0);
+      if (u_voxel < 0.05) dEntity = 100.0;
+
+      // -----------------------------------------------------------------------
+      // D. HAMID NADERI YEGANEH 3D FRACTAL FOREST CATHEDRAL & VAE CORRIDOR (Mat 4.0)
+      // -----------------------------------------------------------------------
+      // 3D generalization of Yeganeh's U_s(x) = atan(tan(...)) and L_s = V_s - |U_s|/2.4
+      vec3 pYeg = qShatter;
+      float U_x = atan(sin(pYeg.x * 1.65), cos(pYeg.x * 1.65));
+      float U_z = atan(sin(pYeg.z * 1.65), cos(pYeg.z * 1.65));
+      float L_branch = abs(pYeg.y) * 0.55 - 0.38 * (abs(U_x) + abs(U_z)) + 0.12 * cos(p.x * 2.5 + p.y * 2.0 + p.z * 2.5);
+      outYeganehField = L_branch;
+
+      // Towering Cathedral Pillars & Fractal Canopy Arches
+      float dPillars = length(vec2(U_x, U_z)) - (0.34 + 0.14 * sin(pYeg.y * 1.8));
+      float dCanopy  = abs(sin(L_branch * 4.5)) * 0.28 + (4.1 - abs(q.y)) * 0.35;
+      float dCathedral = smin(dPillars, dCanopy, 0.45);
+      // Carve a navigable corridor tunnel around the sector axes so you can fly freely!
+      float dCorridorTunnel = min(length(q.xy), min(length(q.yz), length(q.xz))) - 1.95;
+      dCathedral = max(dCathedral, -dCorridorTunnel);
+      if (u_yeganeh < 0.05) dCathedral = 100.0;
+
+      // -----------------------------------------------------------------------
+      // E. DIRAC SPINOR QUANTUM ORBITAL STANDING-WAVE LATTICE (Material 5.0)
+      // -----------------------------------------------------------------------
+      // 3D standing-wave interference crystal: cos(k*x)*cos(k*y)*cos(k*z)
+      vec3 pWave = q * 2.4;
+      float psiWave = cos(pWave.x + u_nn3.z) * cos(pWave.y - u_nn3.w) * cos(pWave.z + u_time * 0.8);
+      float dWaveShell = abs(length(q) - 3.35) - 0.22;
+      float dDiracLattice = max(dWaveShell, (abs(psiWave) - 0.28) * 0.35);
+
+      // Dimension Mode Overrides
+      if (u_dimMode == 3) {
+        dChrome = 100.0; dNullCore = 100.0;
+      } else if (u_dimMode == 4) {
+        dCathedral = 100.0; dEntity = 100.0;
+      }
+
+      // Combine distances and determine winning material ID
+      vec2 res = vec2(dNullCore, 1.0);
+      if (dChrome < res.x)       res = vec2(dChrome, 2.0);
+      if (dEntity < res.x)       res = vec2(dEntity, 3.0);
+      if (dCathedral < res.x)    res = vec2(dCathedral, 4.0);
+      if (dDiracLattice < res.x) res = vec2(dDiracLattice, 5.0);
+
+      return res;
+    }
+
+    vec3 calcNormal(vec3 p) {
+      float w, sh, yf;
+      vec2 e = vec2(0.0035, 0.0);
+      return normalize(vec3(
+        mapScene(p + e.xyy, w, sh, yf).x - mapScene(p - e.xyy, w, sh, yf).x,
+        mapScene(p + e.yxy, w, sh, yf).x - mapScene(p - e.yxy, w, sh, yf).x,
+        mapScene(p + e.yyx, w, sh, yf).x - mapScene(p - e.yyx, w, sh, yf).x
+      ));
+    }
+
+    // Hamid Naderi Yeganeh 3D Fourier Foliage Texture E(x, y, z)
+    float evalYeganehFourier3D(vec3 p) {
+      float E = 0.0;
+      float freq = 1.8;
+      float amp = 1.0;
+      for (int s = 1; s <= 5; s++) {
+        float sf = float(s);
+        E += amp * (cos(freq * (p.x * cos(sf) + p.y * sin(sf))) * cos(freq * (p.z * cos(2.0*sf) - p.x * sin(2.0*sf))));
+        freq *= 1.65;
+        amp *= 0.72;
+      }
+      return 0.5 + 0.5 * tanh(0.45 * E);
+    }
+
+    void main() {
+      vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+
+      // Stereographic / Hyperbolic Poincaré Lens Distortion when u_fov is warped!
+      float rUv = length(uv);
+      float lensWarp = 1.0 + 0.35 * (u_fov - 1.0) * rUv * rUv;
+      vec3 rd = normalize(uv.x * lensWarp * u_camRight + uv.y * lensWarp * u_camUp + (1.15 / max(u_fov, 0.35)) * u_camFwd);
+      vec3 ro = u_camPos;
+
+      // Raymarching along Curved Non-Euclidean Geodesics!
+      float t = 0.02;
+      float matId = 0.0;
+      float w4D = 0.0, sliceHash = 0.0, yegField = 0.0;
+      vec3 p = ro;
+      vec3 volumetricGlow = vec3(0.0);
+      float minNullDist = 100.0;
+
+      for (int i = 0; i < 84; i++) {
+        p = ro + rd * t;
+
+        // Non-Euclidean Geodesic Ray Bending:
+        // Photons curve around the nearest sector's Null-Token Singularity & Neural Spinor Field!
+        vec3 cellQ = mod(p + 4.75, 9.5) - 4.75;
+        float rNull = length(cellQ);
+        minNullDist = min(minNullDist, rNull);
+
+        if (u_curvature > 0.01) {
+          // Kerr-Newman Frame-Dragging + Gravitational Lensing deflection
+          vec3 frameDrag = cross(cellQ, vec3(u_nn0.y, 1.0, u_nn0.z));
+          vec3 gravPull  = -cellQ / pow(max(rNull, 0.55), 3.0);
+          rd = normalize(rd + (0.0045 * u_curvature) * (gravPull + 0.38 * frameDrag));
+        }
+
+        vec2 hit = mapScene(p, w4D, sliceHash, yegField);
+        float d = hit.x;
+
+        // Accumulate Volumetric Quantum Probability Density & Golden Plasma Cascades
+        float plasmaVol = exp(-rNull * 1.45) * (0.5 + 0.5 * sin(cellQ.x * 18.0 + cellQ.y * 18.0 - u_time * 4.0));
+        vec3 volColor = 0.5 + 0.5 * cos(w4D * 5.0 + u_time + vec3(0.0, 2.09, 4.18));
+        volumetricGlow += (0.0085 * plasmaVol * volColor + 0.0025 / (0.08 + d * d)) * exp(-t * 0.045);
+
+        if (d < 0.004 || t > 38.0) {
+          matId = (d < 0.004) ? hit.y : 0.0;
+          break;
+        }
+        // Conservative step factor for heavily warped/shattered SDFs
+        t += d * 0.68;
+      }
+
+      // Deep Cosmic Quantum Vacuum Background (with Polar Astrometric Grid & Wave Interference)
+      vec3 col = vec3(0.012, 0.015, 0.024);
+      float starGrid = pow(max(0.0, cos(rd.x * 45.0) * cos(rd.y * 45.0) * cos(rd.z * 45.0)), 18.0);
+      col += starGrid * vec3(0.45, 0.65, 0.95);
+
+      if (matId > 0.5) {
+        vec3 N = calcNormal(p);
+        vec3 V = -rd;
+        float fresnel = pow(clamp(1.0 - max(dot(N, V), 0.0), 0.0, 1.0), 2.2);
+
+        if (matId < 1.5) {
+          // ===================================================================
+          // MATERIAL 1: THE NULL-TOKEN BLACK HOLE TESSERACT SINGULARITY (DNE)
+          // ===================================================================
+          // Score function drops to 0.0 inside: absolute void black with razor-sharp
+          // iridescent Cherenkov event-horizon edge!
+          float edgeRim = smoothstep(0.35, 0.92, fresnel);
+          vec3 rimSpectrum = 0.5 + 0.5 * cos(fresnel * 14.0 - u_time * 4.0 + vec3(0.0, 2.1, 4.2));
+          col = edgeRim * rimSpectrum * 1.35;
+        }
+        else if (matId < 2.5) {
+          // ===================================================================
+          // MATERIAL 2: 4D LIQUID-MERCURY TOPOLOGICAL CHROME FERROFLUID JETS
+          // ===================================================================
+          vec3 R = reflect(-V, N);
+          float reflBands = 0.5 + 0.5 * cos(R.x * 12.0 + R.y * 10.0 + R.z * 12.0 + u_time * 1.2);
+          float sharpSpec = pow(reflBands, 6.0) * 1.25;
+          float iridPhase = 6.5 * dot(N, R) + 3.5 * w4D + u_time * 0.8;
+          vec3 thinFilm = 0.5 + 0.5 * cos(iridPhase + vec3(0.0, 1.8, 3.8));
+          col = vec3(0.08, 0.10, 0.14) * reflBands + sharpSpec + 0.85 * fresnel * thinFilm;
+        }
+        else if (matId < 3.5) {
+          // ===================================================================
+          // MATERIAL 3: VOXEL-SHATTERED MULTI-ARMED SERAPHIM ENTITY
+          // ===================================================================
+          float slabBand = 0.5 + 0.5 * tanh(3.0 * sin(p.y * 45.0 + sliceHash * 6.28));
+          vec3 barkFlesh = vec3(0.38, 0.20, 0.16) * slabBand + vec3(0.18, 0.12, 0.22) * (1.0 - slabBand);
+          // Glowing chartreuse/cyan CFG latent bleed inside voxel fractures!
+          vec3 cfgCliff = 0.5 + 0.5 * cos(sliceHash * 18.0 + u_time * 3.0 + vec3(0.0, 2.09, 4.18));
+          col = mix(barkFlesh, cfgCliff * 1.4, step(0.58, sliceHash) * 0.75) + fresnel * vec3(0.2, 0.95, 1.0);
+        }
+        else if (matId < 4.5) {
+          // ===================================================================
+          // MATERIAL 4: HAMID NADERI YEGANEH 3D FRACTAL FOREST & VAE TILES
+          // ===================================================================
+          float E_norm = evalYeganehFourier3D(p);
+          float warmth = 0.5 + 0.5 * sin(3.5 * yegField + 2.0 * E_norm);
+          // Yeganeh Crimson / Blazing Amber / Ultraviolet Autumn Palette
+          vec3 autumn = vec3(
+            clamp(0.85 + 0.25 * sin(2.2 * E_norm + warmth * 2.0), 0.15, 1.0),
+            clamp(0.12 + 0.68 * pow(E_norm, 1.5) * warmth, 0.02, 0.94),
+            clamp(0.16 + 0.48 * (1.0 - warmth) * pow(cos(E_norm * 3.14159), 2.0), 0.04, 0.78)
+          );
+          // Dark fractal branch veins
+          float twigVein = smoothstep(0.16, 0.02, abs(sin(yegField * 14.0)));
+          autumn *= (1.0 - 0.85 * twigVein);
+
+          // VAE Perspective Tile Seams & CFG Overdrive Rainbow Phase-Folding
+          vec3 tileCoord = floor(p * 3.2);
+          float tileRng = hash31(tileCoord);
+          float scanline = sin(p.y * 120.0 + tileRng * 6.28 + u_time * 4.0);
+          float wCfg = 5.5 * u_cfg;
+          vec3 cfgRainbow = 0.5 + 0.5 * cos(wCfg * (E_norm * 2.0 + tileRng + 0.25 * scanline) + vec3(0.0, 2.094, 4.188));
+
+          float cfgZone = clamp(u_cfg * (0.45 * step(0.55, tileRng) + 0.45 * twigVein), 0.0, 0.92);
+          col = mix(autumn * u_yeganeh, cfgRainbow, cfgZone);
+          // Add lighting & ambient occlusion
+          float light = 0.35 + 0.65 * max(dot(N, normalize(vec3(0.5, 0.8, -0.4))), 0.0);
+          col *= light;
+        }
+        else {
+          // ===================================================================
+          // MATERIAL 5: DIRAC SPINOR QUANTUM ORBITAL STANDING-WAVE LATTICE
+          // ===================================================================
+          vec3 spinorCol = 0.5 + 0.5 * cos(w4D * 8.0 + p.y * 2.5 - u_time * 2.0 + vec3(0.2, 1.5, 3.2));
+          col = spinorCol * (0.65 + 0.85 * fresnel);
+        }
+
+        // Distance fog into deep non-Euclidean quantum horizon
+        float fog = exp(-t * 0.055);
+        col = mix(vec3(0.015, 0.018, 0.032), col, fog);
+      }
+
+      // Add Volumetric Quantum Plasma & Shockwave Flash
+      col += volumetricGlow * (0.65 + 0.45 * u_cfg);
+
+      if (u_shockAge >= 0.0 && u_shockAge < 6.0) {
+        float flash = exp(-u_shockAge * 1.4) * 0.35;
+        col += flash * vec3(0.3, 0.85, 1.0);
+      }
+
+      // Observer Quantum Zeno Collapse / Adversarial NaN-DNE Reality Inversion!
+      if (u_zeno > 0.45 || u_dimMode == 5) {
+        float zIntensity = (u_dimMode == 5) ? 0.85 : smoothstep(0.45, 1.35, u_zeno);
+        float quantGrid = sin(gl_FragCoord.x * 0.35) * cos(gl_FragCoord.y * 0.35);
+        vec3 inverted = 1.0 - col.gbr;
+        vec3 oilSlick = 0.5 + 0.5 * cos(col * 16.0 + u_time * 6.0 + vec3(0.0, 2.1, 4.2));
+        col = mix(col, mix(inverted, oilSlick, 0.65 + 0.35 * quantGrid), zIntensity * 0.72);
+      }
+
+      // Filmic ACES Tonemapping & Gamma
+      col = (col * (2.51 * col + 0.03)) / (col * (2.43 * col + 0.59) + 0.14);
+      col = pow(clamp(col, 0.0, 1.0), vec3(0.9));
+
+      outColor = vec4(col, 1.0);
+    }`;
+
+    // =========================================================================
+    // 4. INITIALIZE WEBGL2 CONTEXT, SHADER PROGRAM & HUD OVERLAY
+    // =========================================================================
+    const viewportContainer = document.getElementById("viewportContainer");
+    const glCanvas = document.getElementById("glCanvas");
+    const hudCanvas = document.getElementById("hudCanvas");
+    const gl = glCanvas.getContext("webgl2", { antialias: false });
+    const hudCtx = hudCanvas.getContext("2d");
+
+    function compileShader(type, src) {
+      const sh = gl.createShader(type);
+      gl.shaderSource(sh, src);
+      gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+        console.error("Shader compile error:", gl.getShaderInfoLog(sh));
+      }
+      return sh;
+    }
+
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vsSource));
+    gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, fsSource));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    const quadBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1,  1, -1, -1,  1,
+      -1,  1,  1, -1,  1,  1
+    ]), gl.STATIC_DRAW);
+
+    const posLoc = gl.getAttribLocation(prog, "a_pos");
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const uNames = [
+      "u_res", "u_time", "u_camPos", "u_camRight", "u_camUp", "u_camFwd", "u_fov",
+      "u_curvature", "u_voxel", "u_chrome", "u_yeganeh", "u_cfg", "u_zeno", "u_dimMode",
+      "u_nn0", "u_nn1", "u_nn2", "u_nn3", "u_shockOrigin", "u_shockAge"
+    ];
+    const uLocs = {};
+    uNames.forEach(n => uLocs[n] = gl.getUniformLocation(prog, n));
+
+    const worldParams = {
+      curvature: 0.85,
+      voxel: 0.75,
+      chrome: 1.00,
+      yeganeh: 0.90,
+      cfg: 0.85,
+      neuralCoupling: 1.00,
+      resScale: 0.75,
+      dimMode: 0,
+      time: 0.0,
+    };
+
+    function resizeCanvases() {
+      const rect = viewportContainer.getBoundingClientRect();
+      const s = worldParams.resScale;
+      glCanvas.width  = Math.max(320, Math.floor(rect.width * s));
+      glCanvas.height = Math.max(240, Math.floor(rect.height * s));
+      hudCanvas.width  = rect.width;
+      hudCanvas.height = rect.height;
+    }
+    window.addEventListener("resize", resizeCanvases);
+    resizeCanvases();
+
+    // =========================================================================
+    // 5. 3D HALLUCINATED RUNIC HUD & QUANTUM SINGULARITY TARGETING RETICLES
+    // =========================================================================
+    const glyphTokens = [
+      "DNE // ∇log p = 0", "END // EIGEN-COLLAPSE", "XE :: Π− :: <≫=+",
+      "unhnwinconestrrtanss", "HOPF S³ → S² FIBRATION", "P-ADIC VOXEL FAULT",
+      "CFG OVERDRIVE ω=18.4", "YEGANEH HARMONIC D_25"
+    ];
+
+    function project3DToHUD(pt3, W, H) {
+      const dx = pt3[0] - cam.pos[0];
+      const dy = pt3[1] - cam.pos[1];
+      const dz = pt3[2] - cam.pos[2];
+      const vx = dx * cam.right[0] + dy * cam.right[1] + dz * cam.right[2];
+      const vy = dx * cam.up[0]    + dy * cam.up[1]    + dz * cam.up[2];
+      const vz = dx * cam.fwd[0]   + dy * cam.fwd[1]   + dz * cam.fwd[2];
+      if (vz <= 0.15) return null;
+      const focal = (1.15 / Math.max(cam.fovMetric, 0.35)) * H;
+      const sx = W * 0.5 + (vx / vz) * focal;
+      const sy = H * 0.5 - (vy / vz) * focal;
+      return [sx, sy, vz];
+    }
+
+    function render3DHallucinatedHUD() {
+      const W = hudCanvas.width, H = hudCanvas.height;
+      hudCtx.clearRect(0, 0, W, H);
+
+      // Project nearby 3D Null-Token Sector Singularities onto the 2D HUD
+      const cellSize = 9.5;
+      const baseCellX = Math.round(cam.pos[0] / cellSize);
+      const baseCellY = Math.round(cam.pos[1] / cellSize);
+      const baseCellZ = Math.round(cam.pos[2] / cellSize);
+
+      hudCtx.save();
+      for (let ix = -1; ix <= 1; ix++) {
+        for (let iy = -1; iy <= 1; iy++) {
+          for (let iz = -1; iz <= 1; iz++) {
+            const cx = (baseCellX + ix) * cellSize;
+            const cy = (baseCellY + iy) * cellSize;
+            const cz = (baseCellZ + iz) * cellSize;
+            const proj = project3DToHUD([cx, cy, cz], W, H);
+            if (!proj) continue;
+            const [sx, sy, dist] = proj;
+            if (sx < -100 || sx > W + 100 || sy < -100 || sy > H + 100 || dist > 26.0) continue;
+
+            const alpha = Math.max(0.12, Math.min(0.85, 1.0 - dist / 26.0));
+            const boxR = Math.max(14, Math.min(95, 220 / dist));
+
+            // Draw rotating runic targeting reticle around the 3D Null-Token Singularity!
+            hudCtx.strokeStyle = `rgba(226, 232, 240, ${alpha})`;
+            hudCtx.lineWidth = 1.2;
+            hudCtx.strokeRect(sx - boxR * 0.5, sy - boxR * 0.5, boxR, boxR);
+
+            // Corner crosshairs (+)
+            const ch = 7;
+            hudCtx.beginPath();
+            hudCtx.moveTo(sx - boxR * 0.65 - ch, sy - boxR * 0.65);
+            hudCtx.lineTo(sx - boxR * 0.65 + ch, sy - boxR * 0.65);
+            hudCtx.moveTo(sx - boxR * 0.65, sy - boxR * 0.65 - ch);
+            hudCtx.lineTo(sx - boxR * 0.65, sy - boxR * 0.65 + ch);
+            hudCtx.stroke();
+
+            // Hallucinated diagnostic label & live neuron activation readout
+            const tokenIdx = Math.abs((baseCellX + ix) * 7 + (baseCellY + iy) * 13 + (baseCellZ + iz) * 19) % glyphTokens.length;
+            const neuronVal = nn.h[tokenIdx % N_NEURONS];
+            hudCtx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
+            hudCtx.font = "bold 11px monospace";
+            hudCtx.fillText(`${glyphTokens[tokenIdx]}`, sx + boxR * 0.58, sy - boxR * 0.25);
+            hudCtx.fillStyle = `rgba(244, 114, 182, ${alpha})`;
+            hudCtx.fillText(`d=${dist.toFixed(1)}m • Ψ_${tokenIdx}=${neuronVal.toFixed(2)}`, sx + boxR * 0.58, sy - boxR * 0.25 + 14);
+          }
+        }
+      }
+
+      // Central 6-DOF Quantum Horizon Crosshair
+      const cx = W * 0.5, cy = H * 0.5;
+      hudCtx.strokeStyle = nn.zenoCollapse > 0.45 ? "rgba(244, 63, 94, 0.85)" : "rgba(56, 189, 248, 0.55)";
+      hudCtx.lineWidth = 1.3;
+      hudCtx.beginPath();
+      hudCtx.arc(cx, cy, 14 + nn.zenoCollapse * 18, 0, Math.PI * 2);
+      hudCtx.moveTo(cx - 24, cy); hudCtx.lineTo(cx - 8, cy);
+      hudCtx.moveTo(cx + 8, cy);  hudCtx.lineTo(cx + 24, cy);
+      hudCtx.moveTo(cx, cy - 24); hudCtx.lineTo(cx, cy - 8);
+      hudCtx.moveTo(cx, cy + 8);  hudCtx.lineTo(cx, cy + 24);
+      hudCtx.stroke();
+
+      hudCtx.restore();
+    }
+
+    // =========================================================================
+    // 6. WEBAUDIO PROCEDURAL QUANTUM & NEURAL GRANULAR SYNTHESIZER
+    // =========================================================================
+    let audioCtx = null;
+    let audioMaster = null;
+    let audioOscs = [];
+    let audioEnabled = false;
+
+    function toggleQuantumAudio() {
+      const btn = document.getElementById("btnAudio");
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContextClass();
+        audioMaster = audioCtx.createGain();
+        audioMaster.gain.value = 0.08;
+        audioMaster.connect(audioCtx.destination);
+
+        // Create 6 coupled harmonic quantum oscillators modulated by live neurons h_0..h_5
+        const baseFreqs = [55.0, 82.41, 110.0, 146.83, 220.0, 329.63];
+        for (let i = 0; i < baseFreqs.length; i++) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = (i % 2 === 0) ? "sine" : "triangle";
+          osc.frequency.value = baseFreqs[i];
+          gain.gain.value = 0.14 / (1 + i * 0.4);
+          osc.connect(gain);
+          gain.connect(audioMaster);
+          osc.start();
+          audioOscs.push({ osc, gain, base: baseFreqs[i] });
+        }
+      }
+
+      if (audioEnabled) {
+        audioMaster.gain.setTargetAtTime(0.0, audioCtx.currentTime, 0.08);
+        audioEnabled = false;
+        btn.textContent = "🔇 QUANTUM AUDIO: OFF";
+      } else {
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        audioMaster.gain.setTargetAtTime(0.09, audioCtx.currentTime, 0.1);
+        audioEnabled = true;
+        btn.textContent = "🔊 QUANTUM AUDIO: ON";
+      }
+    }
+
+    function updateQuantumAudio() {
+      if (!audioEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      for (let i = 0; i < audioOscs.length; i++) {
+        const hVal = nn.h[i];
+        const freqShift = audioOscs[i].base * (1.0 + 0.12 * hVal + 0.08 * nn.zenoCollapse * Math.sin(worldParams.time * 12.0));
+        audioOscs[i].osc.frequency.setTargetAtTime(Math.max(30, freqShift), now, 0.05);
+      }
+    }
+
+    function triggerShockwaveSound() {
+      if (!audioEnabled || !audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(280, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(32, audioCtx.currentTime + 0.65);
+      g.gain.setValueAtTime(0.18, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.65);
+      osc.connect(g);
+      g.connect(audioMaster);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.66);
+    }
+
+    // =========================================================================
+    // 7. INPUT HANDLING: KEYBOARD, MOUSE DRAG, POINTER LOCK, THRUSTERS & SCROLL
+    // =========================================================================
+    const keys = {};
+    const activeThrusters = {};
+
+    function setAutopilot(on) {
+      cam.autopilot = on;
+      const btn = document.getElementById("btnAutopilot");
+      if (on) {
+        btn.textContent = "🛸 AUTOPILOT: STRANGE ATTRACTOR (ON)";
+        btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold border border-[var(--border)] bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 transition cursor-pointer mono-code";
+      } else {
+        btn.textContent = "🛸 AUTOPILOT: MANUAL 6-DOF FLIGHT";
+        btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:opacity-90 transition cursor-pointer mono-code";
+      }
+    }
+
+    function fireQuantumShockwave() {
+      nn.shockwaveTime = worldParams.time;
+      nn.shockwaveOrigin = [
+        cam.pos[0] + cam.fwd[0] * 1.8,
+        cam.pos[1] + cam.fwd[1] * 1.8,
+        cam.pos[2] + cam.fwd[2] * 1.8
+      ];
+      // Scramble neural network phases with a nonlinear pulse!
+      for (let i = 0; i < N_NEURONS; i++) {
+        nn.h[i] = Math.max(-2.5, Math.min(2.5, nn.h[i] + (Math.random() - 0.5) * 1.8));
+      }
+      triggerShockwaveSound();
+    }
+
+    window.addEventListener("keydown", (e) => {
+      const k = e.key.toLowerCase();
+      keys[k] = true;
+      if (["w", "a", "s", "d", "q", "e", " ", "shift", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(k)) {
+        if (cam.autopilot) setAutopilot(false);
+        if ([" ", "arrowup", "arrowdown", "arrowleft", "arrowright"].includes(k)) e.preventDefault();
+      }
+      if (k === "f") {
+        fireQuantumShockwave();
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      keys[e.key.toLowerCase()] = false;
+    });
+
+    // Mouse Drag & Pointer-Lock Look
+    let isDragging = false;
+    let lastMouseX = 0, lastMouseY = 0;
+
+    hudCanvas.addEventListener("mousedown", (e) => {
+      if (e.button === 2) {
+        e.preventDefault();
+        fireQuantumShockwave();
+        return;
+      }
+      isDragging = true;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+    });
+
+    hudCanvas.addEventListener("contextmenu", (e) => e.preventDefault());
+
+    window.addEventListener("mouseup", () => { isDragging = false; });
+
+    window.addEventListener("mousemove", (e) => {
+      if (document.pointerLockElement === hudCanvas) {
+        if (cam.autopilot) setAutopilot(false);
+        rotateCamera6DOF(-e.movementX * 0.0028, -e.movementY * 0.0028, 0.0);
+      } else if (isDragging) {
+        if (cam.autopilot) setAutopilot(false);
+        const dx = e.clientX - lastMouseX;
+        const dy = e.clientY - lastMouseY;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        rotateCamera6DOF(-dx * 0.0045, -dy * 0.0045, 0.0);
+      }
+    });
+
+    // Scroll wheel adjusts 4D Stereographic FOV Metric
+    hudCanvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      cam.fovMetric = Math.max(0.45, Math.min(2.6, cam.fovMetric + e.deltaY * 0.0012));
+    }, { passive: false });
+
+    // On-screen 6-DOF Thruster Buttons
+    document.querySelectorAll(".thruster-btn").forEach((btn) => {
+      const dir = btn.getAttribute("data-move");
+      const start = (e) => {
+        e.preventDefault();
+        if (cam.autopilot) setAutopilot(false);
+        activeThrusters[dir] = true;
+      };
+      const stop = () => { activeThrusters[dir] = false; };
+      btn.addEventListener("mousedown", start);
+      btn.addEventListener("touchstart", start, { passive: false });
+      window.addEventListener("mouseup", stop);
+      window.addEventListener("touchend", stop);
+    });
+
+    // Buttons
+    document.getElementById("btnAutopilot").addEventListener("click", () => setAutopilot(!cam.autopilot));
+    document.getElementById("btnPointerLock").addEventListener("click", () => {
+      hudCanvas.requestPointerLock();
+    });
+    document.getElementById("btnAudio").addEventListener("click", toggleQuantumAudio);
+    document.getElementById("btnFullscreen").addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        viewportContainer.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    });
+    document.getElementById("btnMutateNN").addEventListener("click", () => {
+      initNeuralBrain(Math.random() * 100.0);
+      fireQuantumShockwave();
+    });
+    document.getElementById("btnShockwave").addEventListener("click", fireQuantumShockwave);
+    document.getElementById("btnWarpJump").addEventListener("click", () => {
+      // Slingshot camera forward through the nearest Null-Token Tesseract Wormhole!
+      cam.vel[0] += cam.fwd[0] * 18.0;
+      cam.vel[1] += cam.fwd[1] * 18.0;
+      cam.vel[2] += cam.fwd[2] * 18.0;
+      fireQuantumShockwave();
+    });
+
+    // Dimension Mode Buttons
+    const eqBanners = [
+      "ds² = -(1 - 2M/r)dt² + g_ij(h_NN)dx^i dx^j • iℏ ∂Ψ/∂t = [Ĥ_Yeganeh + V_CFG(W_ij)]Ψ",
+      "π_Hopf: S³ ⊂ ℂ² → S² • (z₁, z₂) ↦ (2Re(z₁z̄₂), 2Im(z₁z̄₂), |z₁|² - |z₂|²) • d²x^μ/ds² + Γ^μ_αβ u^α u^β = 0",
+      "q_y = ⌊N_y · y⌋ / N_y • F_CFG(z) = ⌊255 exp(-exp(-1000z)) + ω_CFG cos²(π·ω_CFG·z + Δ_VAE)⌋",
+      "L_s(x,y,z) = V_s(y) - (|U_s(x)| + |U_s(z)|)/2.6 + cos(3x+2y+3z)/20 • E(x) = Σ (5/4)(9/10)^s D_s(x)",
+      "lim_{x→x_null} ‖∇_x log p_θ(x|c)‖ = 0 ⟹ Ψ_null = 1 (DNE) • J_chrome = S_spec(N) + (1 - N_z)^1.8 cos²(5.8N_x + ψ)",
+      "ADVERSARIAL EIGEN-COLLAPSE: x_adv = x + ε·sign(∇_x L(θ, x, y)) ⟹ KL(q_φ ‖ p_θ) → ∞ (NaN / END)"
+    ];
+
+    const dimPresets = [
+      { curvature: 0.85, voxel: 0.75, chrome: 1.00, yeganeh: 0.90, cfg: 0.85, dimMode: 0 },
+      { curvature: 1.75, voxel: 0.25, chrome: 1.15, yeganeh: 0.65, cfg: 0.70, dimMode: 1 },
+      { curvature: 0.45, voxel: 1.45, chrome: 0.65, yeganeh: 0.85, cfg: 1.65, dimMode: 2 },
+      { curvature: 0.55, voxel: 0.35, chrome: 0.00, yeganeh: 1.40, cfg: 0.50, dimMode: 3 },
+      { curvature: 1.15, voxel: 0.00, chrome: 1.50, yeganeh: 0.00, cfg: 0.90, dimMode: 4 },
+      { curvature: 1.40, voxel: 1.35, chrome: 1.20, yeganeh: 1.10, cfg: 1.85, dimMode: 5 },
+    ];
+
+    document.querySelectorAll(".dim-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-dim"), 10);
+        Object.assign(worldParams, dimPresets[idx]);
+        syncSliders();
+        document.getElementById("liveEquationBanner").textContent = eqBanners[idx];
+        fireQuantumShockwave();
+
+        document.querySelectorAll(".dim-btn").forEach((b) => {
+          b.className = "dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-medium mono-code hover:opacity-90 cursor-pointer transition";
+        });
+        btn.className = "dim-btn text-left px-3 py-2 rounded-lg border border-[var(--border)] bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-semibold mono-code cursor-pointer transition";
+      });
+    });
+
+    // Slider Bindings
+    const sliderDefs = [
+      { id: "slCurvature", valId: "valCurvature", key: "curvature", suffix: "" },
+      { id: "slVoxel",     valId: "valVoxel",     key: "voxel",     suffix: "" },
+      { id: "slChrome",    valId: "valChrome",    key: "chrome",    suffix: "" },
+      { id: "slYeganeh",   valId: "valYeganeh",   key: "yeganeh",   suffix: "" },
+      { id: "slCFG",       valId: "valCFG",       key: "cfg",       suffix: "" },
+      { id: "slNeural",    valId: "valNeural",    key: "neuralCoupling", suffix: "" },
+      { id: "slResolution",valId: "valResolution",key: "resScale",  suffix: "x", onInput: resizeCanvases },
+    ];
+
+    function syncSliders() {
+      sliderDefs.forEach((s) => {
+        const el = document.getElementById(s.id);
+        const vEl = document.getElementById(s.valId);
+        el.value = worldParams[s.key];
+        vEl.textContent = Number(worldParams[s.key]).toFixed(2) + s.suffix;
+      });
+    }
+
+    sliderDefs.forEach((s) => {
+      const el = document.getElementById(s.id);
+      const vEl = document.getElementById(s.valId);
+      el.addEventListener("input", () => {
+        worldParams[s.key] = parseFloat(el.value);
+        vEl.textContent = worldParams[s.key].toFixed(2) + s.suffix;
+        if (s.onInput) s.onInput();
+      });
+    });
+
+    document.getElementById("btnResetWorld").addEventListener("click", () => {
+      Object.assign(worldParams, dimPresets[0]);
+      cam.fovMetric = 1.0;
+      syncSliders();
+      initNeuralBrain(0.0);
+    });
+
+    // =========================================================================
+    // 8. MAIN 60-FPS QUANTUM SIMULATION & 6-DOF FLIGHT LOOP
+    // =========================================================================
+    let lastTime = performance.now();
+    let frameCounter = 0;
+    let fpsTimer = performance.now();
+
+    const hudFps = document.getElementById("hudFps");
+    const hudPos = document.getElementById("hudPos");
+    const hudMetric = document.getElementById("hudMetric");
+    const hudZeno = document.getElementById("hudZeno");
+    const hudNeuralState = document.getElementById("hudNeuralState");
+
+    function updatePhysicsAndCamera(dt) {
+      if (cam.autopilot) {
+        // Lorenz / Clifford Strange-Attractor Autonomous Geodesic Flight Path
+        cam.autopilotTime += dt * 0.42;
+        const at = cam.autopilotTime;
+        const targetVel = [
+          Math.sin(at * 1.1) * 2.6 + Math.cos(at * 0.45) * 1.4,
+          Math.cos(at * 0.85) * 1.8 + 0.5 * Math.sin(at * 1.9),
+          Math.cos(at * 0.7) * 2.8 - Math.sin(at * 0.35) * 1.6
+        ];
+        cam.pos[0] += targetVel[0] * dt;
+        cam.pos[1] += targetVel[1] * dt;
+        cam.pos[2] += targetVel[2] * dt;
+        cam.vel = targetVel;
+
+        // Smoothly bank and look along the curved geodesic trajectory
+        rotateCamera6DOF(
+          Math.sin(at * 0.9) * 0.38 * dt,
+          Math.cos(at * 0.65) * 0.24 * dt,
+          Math.sin(at * 0.5) * 0.22 * dt
+        );
+        cam.angularSpeed = 0.25;
+      } else {
+        // Manual 6-DOF Flight Thrusters
+        const thrust = 7.5;
+        let ax = 0, ay = 0, az = 0;
+
+        if (keys["w"] || keys["arrowup"] || activeThrusters["fwd"]) {
+          ax += cam.fwd[0]; ay += cam.fwd[1]; az += cam.fwd[2];
+        }
+        if (keys["s"] || keys["arrowdown"] || activeThrusters["back"]) {
+          ax -= cam.fwd[0]; ay -= cam.fwd[1]; az -= cam.fwd[2];
+        }
+        if (keys["d"] || keys["arrowright"] || activeThrusters["right"]) {
+          ax += cam.right[0]; ay += cam.right[1]; az += cam.right[2];
+        }
+        if (keys["a"] || keys["arrowleft"] || activeThrusters["left"]) {
+          ax -= cam.right[0]; ay -= cam.right[1]; az -= cam.right[2];
+        }
+        if (keys[" "] || activeThrusters["up"]) {
+          ax += cam.up[0]; ay += cam.up[1]; az += cam.up[2];
+        }
+        if (keys["shift"] || keys["c"] || activeThrusters["down"]) {
+          ax -= cam.up[0]; ay -= cam.up[1]; az -= cam.up[2];
+        }
+
+        // Roll Q / E
+        let rollInput = 0.0;
+        if (keys["q"] || activeThrusters["rollL"]) rollInput -= 1.65 * dt;
+        if (keys["e"] || activeThrusters["rollR"]) rollInput += 1.65 * dt;
+        if (Math.abs(rollInput) > 1e-5) rotateCamera6DOF(0, 0, rollInput);
+
+        cam.vel[0] = cam.vel[0] * Math.exp(-3.2 * dt) + ax * thrust * dt;
+        cam.vel[1] = cam.vel[1] * Math.exp(-3.2 * dt) + ay * thrust * dt;
+        cam.vel[2] = cam.vel[2] * Math.exp(-3.2 * dt) + az * thrust * dt;
+
+        cam.pos[0] += cam.vel[0] * dt;
+        cam.pos[1] += cam.vel[1] * dt;
+        cam.pos[2] += cam.vel[2] * dt;
+        cam.angularSpeed *= Math.exp(-6.0 * dt);
+      }
+    }
+
+    function mainLoop(now) {
+      const dt = Math.min(0.05, (now - lastTime) * 0.001);
+      lastTime = now;
+      worldParams.time += dt;
+
+      updatePhysicsAndCamera(dt);
+      stepNeuralBrain(dt, cam.pos, cam.vel, cam.angularSpeed, worldParams.neuralCoupling);
+      updateQuantumAudio();
+
+      // Render WebGL2 4D Non-Euclidean Raymarcher
+      gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+      gl.useProgram(prog);
+      gl.uniform2f(uLocs.u_res, glCanvas.width, glCanvas.height);
+      gl.uniform1f(uLocs.u_time, worldParams.time);
+      gl.uniform3fv(uLocs.u_camPos, cam.pos);
+      gl.uniform3fv(uLocs.u_camRight, cam.right);
+      gl.uniform3fv(uLocs.u_camUp, cam.up);
+      gl.uniform3fv(uLocs.u_camFwd, cam.fwd);
+      gl.uniform1f(uLocs.u_fov, cam.fovMetric);
+
+      gl.uniform1f(uLocs.u_curvature, worldParams.curvature);
+      gl.uniform1f(uLocs.u_voxel, worldParams.voxel);
+      gl.uniform1f(uLocs.u_chrome, worldParams.chrome);
+      gl.uniform1f(uLocs.u_yeganeh, worldParams.yeganeh);
+      gl.uniform1f(uLocs.u_cfg, worldParams.cfg);
+      gl.uniform1f(uLocs.u_zeno, nn.zenoCollapse);
+      gl.uniform1i(uLocs.u_dimMode, worldParams.dimMode);
+
+      gl.uniform4f(uLocs.u_nn0, nn.h[0], nn.h[1], nn.h[2], nn.h[3]);
+      gl.uniform4f(uLocs.u_nn1, nn.h[4], nn.h[5], nn.h[6], nn.h[7]);
+      gl.uniform4f(uLocs.u_nn2, nn.h[8], nn.h[9], nn.h[10], nn.h[11]);
+      gl.uniform4f(uLocs.u_nn3, nn.h[12], nn.h[13], nn.h[14], nn.h[15]);
+
+      gl.uniform3fv(uLocs.u_shockOrigin, nn.shockwaveOrigin);
+      gl.uniform1f(uLocs.u_shockAge, worldParams.time - nn.shockwaveTime);
+
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+      // Render 3D Projected Hallucinated Runic HUD & Live Neural Graph
+      render3DHallucinatedHUD();
+      renderNeuralVisualizer();
+
+      frameCounter++;
+      if (now - fpsTimer > 250) {
+        const fps = Math.round((frameCounter * 1000) / (now - fpsTimer));
+        hudFps.textContent = `${fps} FPS`;
+        const r2 = cam.pos[0]*cam.pos[0] + cam.pos[1]*cam.pos[1] + cam.pos[2]*cam.pos[2];
+        const w4 = ((r2 - 4.0) / (r2 + 4.0) + 0.25 * nn.h[0]).toFixed(2);
+        hudPos.textContent = `POS x⁴: (${cam.pos[0].toFixed(1)}, ${cam.pos[1].toFixed(1)}, ${cam.pos[2].toFixed(1)}, w:${w4})`;
+        const ricci = (-12.4 * worldParams.curvature * (1.0 + 0.3 * nn.h[1])).toFixed(2);
+        hudMetric.textContent = `RICCI R_μν: ${ricci} • HOPF TWIST: ${(worldParams.curvature * 1.7).toFixed(2)} rad`;
+        const zPct = Math.min(100, Math.round((nn.zenoCollapse / 1.35) * 100));
+        hudZeno.textContent = `OBSERVER WAVEFUNCTION COLLAPSE: ${zPct}% ${zPct > 45 ? "[INVERTING!]" : ""}`;
+        hudNeuralState.textContent = `LIQUID NN ENTROPY H(W): ${nn.entropy.toFixed(3)} bits (ALIVE)`;
+        frameCounter = 0;
+        fpsTimer = now;
+      }
+
+      requestAnimationFrame(mainLoop);
+    }
+    requestAnimationFrame(mainLoop);
+  </script>
+</body>
+</html>
