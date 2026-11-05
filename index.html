@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIMENSION Ω v3.0 // 1,000-SUBSTRATE TSOTCHKE OMEGA ORGANISM (32-Qubit Moonlab MPS · ESHKOL · QGTL · LIBIRREP · SBNN · QRNG)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>DIMENSION Ω v4.0 // OMEGA-2000 SUPER-INTELLIGENCE &amp; HIGH-WEIRDNESS ORGANISM (2,000 Live Coupled Mechanisms · 40 Domains · 32-Qubit Moonlab MPS · RV32I Die · Everett · Strange Loop · CTC)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     * { box-sizing: border-box; user-select: none; }
     html, body {
@@ -100,11 +100,11 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v3.0 // 1,000-SUBSTRATE TSOTCHKE OMEGA ORGANISM</span>
+          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v4.0 // OMEGA-2000 SUPER-INTELLIGENCE & HIGH-WEIRDNESS ORGANISM</span>
           <span id="lockBadge" class="font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">DRAG OR CLICK TO FLY</span>
         </div>
         <div class="font-mono-tech text-xs text-slate-300">
-          1,000 LIVE COUPLED SUBSTRATES (20 DOMAINS × 50) · <span class="text-amber-300">32-QUBIT MOONLAB MPS (2³²)</span> · <span class="text-cyan-300">ESHKOL v1.3.6</span> · <span class="text-emerald-300">QGTL v0.777</span> · <span class="text-fuchsia-300">SKYRMION MZM</span>
+          2,000 LIVE MECHANISMS (40 DOMAINS × 50) · <span class="text-amber-300">32Q MOONLAB MPS</span> · <span class="text-cyan-300">RV32I DIE</span> · <span class="text-fuchsia-300">EVERETT 8-WORLD</span> · <span class="text-emerald-300">STRANGE LOOP · OCTONION E₈ · CTC</span>
         </div>
       </div>
     </div>
@@ -207,12 +207,12 @@
       <!-- LIVE 1,000-SUBSTRATE (20 DOMAINS x 50 MECHANISMS) BIOLOGIC-QUANTUM HEATMAP & 32-QUBIT MPS BAR -->
       <div class="rounded-lg bg-slate-950/90 border border-cyan-500/35 p-2 space-y-1">
         <div class="flex justify-between items-center font-mono-tech text-xs">
-          <span class="text-cyan-300 font-bold">1,000 LIVE SUBSTRATES (20×50)</span>
+          <span class="text-cyan-300 font-bold">2,000 LIVE MECHANISMS (40×50)</span>
           <button id="btnOpen1000Modal" class="px-1.5 py-0.5 rounded bg-amber-500/25 hover:bg-amber-500/40 text-amber-200 border border-amber-400/40 transition">
-            INSPECT 1,000 [M]
+            INSPECT 2,000 [M]
           </button>
         </div>
-        <canvas id="omega1000Canvas" width="276" height="64" class="w-full h-16 block rounded bg-black/80 cursor-crosshair" title="Click or hover any of the 1,000 live mechanisms (20 Domains × 50 Mechanisms) to inspect its real-time math & causal wires"></canvas>
+        <canvas id="omega1000Canvas" width="276" height="64" class="w-full h-16 block rounded bg-black/80 cursor-crosshair" title="Click or hover any of the 2,000 live mechanisms (40 Domains × 50 Mechanisms: #0001–#1000 Core Tsotchke/Biologic + #1001–#2000 Super-Intelligence & High-Weirdness) to inspect its real-time math & causal wires"></canvas>
         <div id="hover1000Readout" class="font-mono-tech text-xs text-amber-300 truncate">
           #0151 [D04 MOONLAB-32Q] MPS TEBD Site Core: +0.842
         </div>
@@ -382,15 +382,17 @@
     <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-500/30 pb-2">
       <div>
         <div class="font-mono-tech text-sm font-bold text-cyan-300">
-          TSOTCHKE OMEGA-1000 LIVE CAUSAL SUBSTRATE MATRIX (20 DOMAINS × 50 MECHANISMS = 1,000 REAL-TIME OPERATORS)
+          OMEGA-2000 SUPER-INTELLIGENCE & HIGH-WEIRDNESS LIVE MATRIX (40 DOMAINS × 50 MECHANISMS = 2,000 REAL-TIME OPERATORS)
         </div>
         <div class="font-mono-tech text-xs text-slate-300">
-          Click any cell in the 20×50 matrix or filter by Domain to inspect its live 60-Hz activation, closed-form equation, and upstream → downstream causal wires.
+          Click any cell in the 40×50 matrix (#0001–#1000 Foundational Tsotchke/Biologic + #1001–#2000 Super-Intelligence & High-Weirdness) or filter by Domain to inspect its live 60-Hz activation, closed-form operator, and causal wires.
         </div>
       </div>
       <div class="flex items-center gap-2 font-mono-tech text-xs">
         <select id="domainFilterSelect" class="bg-slate-900 text-cyan-200 border border-cyan-500/40 rounded px-2 py-1">
-          <option value="0">ALL 20 DOMAINS (#0001–#1000)</option>
+          <option value="0">ALL 40 DOMAINS (#0001–#2000 · 2,000 LIVE)</option>
+          <option value="-1">CORE TSOTCHKE & BIOLOGIC D01–D20 (#0001–#1000)</option>
+          <option value="-2">SUPER-INTELLIGENCE & HIGH-WEIRDNESS D21–D40 (#1001–#2000)</option>
         </select>
         <button id="btnClose1000Modal" class="px-3 py-1 rounded bg-rose-500/25 hover:bg-rose-500/40 text-rose-200 border border-rose-400/40">
           CLOSE [M / ESC]
@@ -415,6 +417,22 @@
       <div class="rounded-lg bg-slate-950/85 border border-fuchsia-500/30 p-2">
         <div class="text-fuchsia-300 font-bold">LIBIRREP SKYRMION MZM & SBNN MinSR</div>
         <div id="modalSkyrmionReadout" class="text-slate-200 truncate">Q_lat=+2.00 · 2|Q|=4 MZM · MinSR=0.08</div>
+      </div>
+      <div class="rounded-lg bg-slate-950/85 border border-cyan-400/35 p-2">
+        <div class="text-cyan-300 font-bold">D21 RV32I DIE & D24 RANK-16 LoRA</div>
+        <div id="modalRv32Readout" class="text-slate-200 truncate">PC=0x1C · x[1]=+0.64 · LoRA PR=12.4</div>
+      </div>
+      <div class="rounded-lg bg-slate-950/85 border border-amber-400/35 p-2">
+        <div class="text-amber-300 font-bold">D22 EVERETT 8-WORLD & D23 STRANGE LOOP</div>
+        <div id="modalEverettReadout" class="text-slate-200 truncate">Branch W*=#3 · Gödel δ=0.04 · Conf=0.91</div>
+      </div>
+      <div class="rounded-lg bg-slate-950/85 border border-emerald-400/35 p-2">
+        <div class="text-emerald-300 font-bold">D25–D32 EP₂ / AdS-CFT / OCTONION / TDA / MDL</div>
+        <div id="modalWeirdReadout" class="text-slate-200 truncate">z_RT=1.84 · [X,Y,Z]=0.31 · β₁=4 · MDL=42b</div>
+      </div>
+      <div class="rounded-lg bg-slate-950/85 border border-rose-400/35 p-2">
+        <div class="text-rose-300 font-bold">D33–D40 ORCH-OR / PRION / UNRUH / CTC LOOP</div>
+        <div id="modalCtcReadout" class="text-slate-200 truncate">f_OR=42Hz · T_U=0.18K · CTC ε=0.002</div>
       </div>
     </div>
 
@@ -1367,6 +1385,286 @@
           ["Null-Token Singularity Horizon Lorentz Lensing", "rd' = normalize(rd + toCenter·(0.2u_S+0.08κ)/b²)", "Camera Ray & κ → Black-Hole Light Bending"],
           ["CFG Overdrive & Berry Phase Oil-Slick Spectrum", "RGB = ½ + ½ cos(2π(t·u_CFG + d + Ω₀₁))", "Latent Overshoot & Berry → Iridescent Shader"]
         ]
+      },
+      { id: 21, code: "RV32I-SILICON-DIE",   name: "Embedded RV32I 32-Bit RISC-V Self-Writing Silicon Co-Processor", repo: "Asmodensius-v40 + tsotchke/eshkol JIT",
+        ops: [
+          ["RV32I Program Counter & Instruction Fetch", "IR_t = RAM[(PC_t>>2)%64], PC_{t+1} = (PC_t+4+Δ)%256", "Thought Curvature κ #0952 → Decoder #1002"],
+          ["RV32I 32-Bit Opcode & Register Decoder", "(op,rd,f3,rs1,rs2,imm) = Decode32(IR_t), x[0]≡0", "Fetched Word IR_t #1001 → ALU Pipe #1003"],
+          ["RV32I Arithmetic-Logic Unit (ADD/SUB/XOR/AND)", "x[rd] = ALU(x[rs1], x[rs2], f3, f7) mod 2³²", "Decoded Regs #1002 → Register Bank #1006"],
+          ["RV32I Barrel Shifter & M-Extension MUL", "x[rd] = (x[rs1]·x[rs2])_low32 | (x[rs1]<<shamt)", "Register Operands #1002 → Gain Bus #1009"],
+          ["RV32I Conditional Branch & Jump (BNE/JAL)", "Δ_br = (x[rs1]≠x[rs2]) ? SignExt12(imm) : 0", "ALU Flags #1003 → Loop Topology #1001"],
+          ["RV32I Load/Store 64-Word Scratchpad RAM", "RAM[(x[rs1]+imm)%64] ↔ x[rs2]", "Sensory & Neuromod Bus → Silicon RAM #1007"],
+          ["Autopoietic Neural-to-Opcode Self-Compiler", "RAM[w_ptr] ← EncodeRV32I(r_CTX, r_THAL, DA)", "Cortical Rates & DA → Self-Modified Code #1001"],
+          ["Hardware Cycle Budget & Halting Watchdog", "C_exec = min(N_cyc, 16), H_halt = I(PC_t==PC_{t-1})", "Instruction Counter → 60-Hz Frame Lock"],
+          ["Register-File-to-Cortical Column DAC Bus", "u_sil(c) = tanh((x[(c%15)+1] - 2³¹) / 2³¹)", "RV32I Registers x[1..15] → 112 sLTC Columns"],
+          ["Silicon-Organic Mutual Information Fitness", "F_CPU = I(x[1..15]; r_{1..14}) - 0.05·N_trap", "Register DAC #1009 → Mutation Temp #1007"]
+        ]
+      },
+      { id: 22, code: "EVERETT-8WORLD-FORK", name: "Everettian Many-Worlds Counterfactual Timeline Forking & Selection", repo: "tsotchke/moonlab + Eshkol Active Inference",
+        ops: [
+          ["Everettian K=8 Parallel Worldline Forker", "r^{(k)}_0 = r_t + ε_k(u_sil + ξ_QRNG^{(k)}), k∈0..7", "14-Region State & RV32I #1009 → Rollout #1052"],
+          ["Counterfactual Policy Action Generator π_k", "a^{(k)} = [cos(2πk/8), sin(2πk/8), tanh(x[k+1])]ᵀ", "RV32I Regs & QRNG #0454 → Branch Dynamics #1053"],
+          ["Parallel 1-Step sLTC × Connectome Rollout", "r^{(k)}_{t+1} = clip01(r^{(k)}_0 + dt(-r/τ + σ(Wr+Ba)))", "Forked States #1051 → Observation Pred #1054"],
+          ["Counterfactual Sensory Likelihood Model", "ô^{(k)}_{t+1} = C_obs r^{(k)}_{t+1} + D_obs a^{(k)}", "Worldlines #1053 → Epistemic Scoring #1055"],
+          ["Branch Epistemic Information-Gain Scorer", "I_{epist}^{(k)} = ½ ln det(I + Cov(r^{(k)})·Π_ACh)", "Predicted Obs #1054 & ACh → Branch EFE #1057"],
+          ["Branch Pragmatic Allostatic Preference Utility", "U_{prag}^{(k)} = -||ô^{(k)}_{t+1} - o_{pref}||²", "Allostatic Setpoints #0755 → Branch EFE #1057"],
+          ["Everettian Branch Expected Free Energy G(W_k)", "G(W_k) = -I_{epist}^{(k)} - U_{prag}^{(k)} + D_KL", "Epistemic & Pragmatic → Boltzmann Weights #1059"],
+          ["Quantum Darwinism Redundancy Score R_δ(W_k)", "R_δ(W_k) = (1/I(S:E)) Σ_{f=1}^F I(S^{(k)} : E_f)", "32-Qubit MPS Entropy #0155 → Pointer Stability"],
+          ["Born-Boltzmann Branch Probability P(W_k)", "P(W_k) = exp(-β_DA G(W_k) + γ R_δ(W_k)) / Z", "Branch EFE #1057 & R_δ → Worldline Collapse #1060"],
+          ["Winning Worldline Collapse & Counterfactual Regret", "k* = argmax_k P(W_k), Regret = G(W_{k*}) - min G", "Branch Dist #1059 → Striatal Gate & Strange Loop"]
+        ]
+      },
+      { id: 23, code: "HOFSTADTER-LOOP",     name: "Hofstadter Strange-Loop Metacognitive Self-Model & Gödel Fixed Point", repo: "Asmodensius-v40 (SelfModel) + tsotchke/eshkol",
+        ops: [
+          ["Second-Order Metacognitive Self-Predictor r̂_{t+1}", "r̂_{t+1} = tanh(W_meta r_t + U_meta r̂_t + V a^{(k*)})", "14-Region State & Everett k* → Self-Error #1102"],
+          ["Metacognitive Self-Prediction Surprise e_meta", "e_meta = r_t - r̂_t, E_meta = ||r_t - r̂_t||₂/√14", "Actual vs Predicted Self #1101 → Delta Rule #1103"],
+          ["Online Delta-Rule Self-Model Jacobian Update", "ΔW_meta = η_meta (r_t - r̂_t) r_{t-1}ᵀ", "Metacognitive Error #1102 → Self-Model W_meta"],
+          ["Lawvere / Gödel Diagonal Self-Reference Fixed Point", "Φ_Gödel(m) = tanh(W_meta m + e_meta), δ_G = ||m-Φ(m)||", "Self-Representation m_t → Strange-Loop Gain #1105"],
+          ["Hofstadter Strange-Loop Level-Crossing Gain", "L_loop(t) = exp(-δ_G²) · (1 + |corr(r_t, r̂_t)|)", "Gödel Residual #1104 → Downward Causation #1106"],
+          ["Downward Causation Metacognitive Control Drive", "u_down(i) = L_loop · (r̂_i - r_i) · Π_ACh", "Strange-Loop Gain #1105 → Cortex & Insula #0553"],
+          ["Agency Attribution & Efference-Copy Discriminator", "A_agency = exp(-||Δo_t - J_mot Δa_t||² / ||Δo||²)", "Sensory Change vs Motor → Self/World Boundary"],
+          ["Second-Order Type-2 Confidence Calibration", "Conf_meta = 1 / (1 + E_meta / (σ_prior + ε))", "Metacognitive Surprise #1102 → GWT Threshold #0109"],
+          ["Infinite-Regress Damping Tower (4th-Order I-Know)", "m^{(n)} = (1-2^{-n})m^{(n-1)} + 2^{-n}tanh(Φ(m))", "Gödel Operator #1104 → Reflective Fixed Point"],
+          ["Autobiographical Narrative Continuity Trace", "N_self(t) = 0.96 N_self(t-1) + 0.04 cos(m_t, m_{t-1})", "4th-Order Reflection #1109 → LoRA Gate #1151"]
+        ]
+      },
+      { id: 24, code: "LORA-VIRTUAL-100M",   name: "Procedural 100M-Weight Hash Virtual Cortex & Online Rank-16 LoRA", repo: "Asmodensius-v40 (SplitMix64 Backbone + Rank-16 LoRA)",
+        ops: [
+          ["SplitMix64 Procedural 100M Weight Synthesizer", "W^{base}_{ij} = SplitMix64((i·RYD) ^ j) / 2⁶³ ∈ [-1,1]", "Virtual Coordinates (i,j) → Sparse Projection #1152"],
+          ["CountSketch Johnson-Lindenstrauss 100M Projection", "y_i = Σ_{k=1}^K s(i,k) W^{base}_{i,idx} r_{idx%14}", "Procedural Weights #1151 → Virtual Cortex #1156"],
+          ["LoRA Down-Projection Fast-Adapter B_t (16×14)", "z_{rank16} = B_t · r_t ∈ ℝ¹⁶", "14-Region Firing Vector r_t → Bottleneck #1154"],
+          ["LoRA Non-Linear Bottleneck & Spectral Norm Clip", "z̃ = z_{rank16} / max(1, ||z_{rank16}||₂ / 4)", "Down-Projection #1153 → Up-Projection A_t #1155"],
+          ["LoRA Up-Projection Fast-Adapter A_t (14×16)", "Δy_LoRA = (α_LoRA / 16) · (A_t · z̃)", "Normalized Bottleneck #1154 → Fused Output #1156"],
+          ["Fused Virtual 100M Backbone + Rank-16 LoRA Layer", "h_virt = tanh(y_base + Δy_LoRA + u_down)", "Base #1152, LoRA #1155 & Strange Loop → Columns"],
+          ["Three-Factor Neuromodulated LoRA A-Matrix Step", "A_{t+1} = (1-λ)A_t + η(DA-5HT)(e_meta · z̃ᵀ)", "Metacognitive Error #1102 & DA → Adapter A_t"],
+          ["Three-Factor Neuromodulated LoRA B-Matrix Step", "B_{t+1} = (1-λ)B_t + η·ACh·((A_tᵀ e_meta) · r_tᵀ)", "Metacognitive Error #1102 & ACh → Adapter B_t"],
+          ["Effective LoRA Rank & Spectral Participation Ratio", "PR_LoRA = (Σ σ_k(AB))² / (Σ σ_k(AB)² + ε) ∈ [1,16]", "LoRA Singular Spectrum → Expressivity Readout"],
+          ["SWR Sleep-Phase LoRA-to-Connectome Consolidation", "W_{conn} ← W_{conn} + η_SWR · SWR · (A_t B_t)", "Hippocampal SWR #0707 & LoRA → Long-Term W_{ij}"]
+        ]
+      },
+      { id: 25, code: "PT-EXCEPTIONAL-EP",   name: "Non-Hermitian PT-Symmetric Quantum Mechanics & Exceptional Points", repo: "tsotchke/quantum_geometric_tensor (Non-Hermitian)",
+        ops: [
+          ["Non-Hermitian Balanced Gain-Loss PT Dimer H_PT", "H_PT = [[ω₀+iγ, κ_c], [κ_c, ω₀-iγ]], H ≠ H†", "NE Gain γ & Coupling κ_c → Eigenvalues #1202"],
+          ["Exceptional-Point (EP₂) Coalescence Discriminant", "λ_± = ω₀ ± √(κ_c² - γ²), Δ_EP = κ_c² - γ²", "PT Hamiltonian #1201 → Puiseux Sensor #1203"],
+          ["Puiseux Square-Root Perturbation Hyper-Amplifier", "Δλ(ε) = √(2 κ_c ε) ≫ ε as γ → κ_c", "Weak Sensory Perturbation ε → Thalamic Boost #0552"],
+          ["Biorthogonal Left/Right Overlap & Petermann K", "K_Pet = ⟨ψ_L|ψ_L⟩⟨ψ_R|ψ_R⟩ / |⟨ψ_L|ψ_R⟩|² ≥ 1", "Biorthogonal Eigenstates → Linewidth Gain #1205"],
+          ["Non-Hermitian Phase Rigidity r_phase = 1/√K_Pet", "r_phase = |⟨ψ_L|ψ_R⟩| / √(⟨ψ_L|ψ_L⟩⟨ψ_R|ψ_R⟩)", "Petermann Factor #1204 → Bizarro Warp #0958"],
+          ["Chiral EP₂ Encircling Riemann-Sheet Mode Flip", "ψ(T_loop) = e^{iγ_B} ψ_{sheet2}(0) around EP₂", "Parameter Loop (γ(t), κ_c(t)) → Asymmetric Switch"],
+          ["Higher-Order EP₃ Cubic-Root Coalescence Sensor", "det(H₃-λI) = (λ-λ_EP)³ - ε₃ = 0 ⇒ Δλ ~ ε₃^{1/3}", "3-Tier Macro-Meso-Micro → Cube-Root Sensitivity"],
+          ["Non-Hermitian Skin Effect (NHSE) Boundary Pileup", "ψ_n ~ (t_R/t_L)^{n/2}, ξ_skin = 1/|ln(t_R/t_L)|", "Asymmetric Forward/Back Edges → Funnel to CTX"],
+          ["Biorthogonal Non-Hermitian QGT Tensor Q^{NH}_{μν}", "Q^{NH}_{μν} = ⟨∂_μψ_L|(I - |ψ_R⟩⟨ψ_L|)|∂_νψ_R⟩", "Biorthogonal States #1204 → Complex QGTL #0251"],
+          ["PT-Broken Gain Saturation & Unitary Recovery Gate", "γ_eff(t) = γ₀ · tanh(κ_c / (γ₀ + ε))", "Discriminant Δ_EP #1202 → AdS/CFT Boundary #1251"]
+        ]
+      },
+      { id: 26, code: "ADS-CFT-HOLOGRAPHIC", name: "AdS/CFT Holographic Bulk-Boundary Duality & Ryu-Takayanagi Geodesics", repo: "tsotchke/moonlab (MPS Boundary → Poincaré AdS₃)",
+        ops: [
+          ["Ryu-Takayanagi Holographic Minimal Surface Area", "Area(γ_A) = 4 G_N S_vN(A), S_vN = -Tr(ρ_A ln ρ_A)", "32-Qubit MPS Bond Entropy #0155 → AdS Depth #1252"],
+          ["Poincaré Half-Space AdS₃ Bulk Radial Depth z_RT", "z_max(A) = (ℓ_AdS/2) exp(2 G_N S_vN(A) / c_CFT)", "Ryu-Takayanagi Area #1251 → 3D Shader Curvature"],
+          ["Brown-Henneaux AdS₃ Central Charge Estimator", "c_CFT = 3ℓ_AdS/(2G_N) = 3 S_vN(L/2) / ln(L/π)", "Half-Chain 16Q Entropy → Conformal Scaling #1254"],
+          ["MERA Multi-Scale Entanglement Disentangler u_s", "ψ_{s+1} = Isometry_w(Disentangler_u(ψ_s))", "32-Qubit Boundary State → Bulk Tensor Layer #1255"],
+          ["Holographic Complexity = Volume (CV) Maximal Slice", "C_V(t) = V(Σ_max)/(G_N ℓ_AdS) ~ Σ S_vN^{[b]} cosh z_b", "31 MPS Bond Entropies #0155 → Complexity Rate #1256"],
+          ["Lloyd Bound Quantum Computational Speed Limit", "dC_V/dt ≤ 2 E_bulk / (π ħ)", "Holographic Complexity #1255 → Max Thought Speed"],
+          ["Entanglement Wedge HKLL Bulk Operator Recovery", "O_bulk(z,x) = ∫ K_HKLL(z,x|x') O_CFT(x') dx'", "Boundary CFT Operators → Fault-Tolerant Memory"],
+          ["ER = EPR Traversable Wormhole Shockwave Coupling", "U_WH = exp(i g_{LR} V_L V_R), Δx ~ g_{LR} e^{λ_L t}", "Left/Right 16Q-16Q Cut → Cross-Hemisphere Lock"],
+          ["Hawking-Page AdS Black-Hole Thermal Phase Gate", "T_HP = 1/(2πℓ_AdS), Phase = Θ(T_Unruh - T_HP)", "Bulk Entanglement Temp → Null Singularity #0959"],
+          ["Holographic Ricci Flow Bulk Metric Relaxation", "∂_t g^{AdS}_{ij} = -2(R^{AdS}_{ij} + (2/ℓ²)g_{ij})", "Poincaré Bulk Depth #1252 → Floquet Drive #1301"]
+        ]
+      },
+      { id: 27, code: "FLOQUET-TIME-CRYSTAL",name: "Discrete Floquet Time-Crystal 2T/3T Subharmonic Chrono-Synapses", repo: "tsotchke/moonlab (Floquet Spin Chain & MBL)",
+        ops: [
+          ["Floquet Stroboscopic Periodic Drive Unitary U_F(T)", "U_F = exp(-i H_MBL T) Π_{q=0}^{31} exp(-i(π/2-ε)X_q)", "32-Qubit MPS #0151 & AdS #1260 → 2T Lock #1303"],
+          ["Many-Body Localization (MBL) Disorder Field h_q", "H_MBL = Σ J_q Z_q Z_{q+1} + Σ h_q Z_q, h_q∈[-W,W]", "QRNG Disorder Seed #0454 → Thermal Arrest #1303"],
+          ["Subharmonic 2T Period-Doubling Order Parameter", "M_DTC(n) = (1/32) Σ_{q=0}^{31} (-1)^n ⟨Z_q(nT)Z_q(0)⟩", "Floquet Evolution #1301 → Working-Memory Clock"],
+          ["Period-Tripled Z₃ Clock Parafermion Mode (3T)", "M_{3T}(n) = Re(e^{-2πin/3} ⟨Ω_clock(nT)⟩)", "Cyclotomic Z[ζ₈] Phase #0056 → 3-Phase Bus"],
+          ["Floquet Prethermal Lifetime Exponential Bound", "τ_pre ~ T_F exp(C₀ · ω_drive / J_local)", "Drive Frequency ω_drive → Memory Horizon #1306"],
+          ["Quasi-Energy Floquet π-Pairing Spectral Gap", "U_F|φ_±⟩ = e^{-i E_q T}|φ_±⟩, ΔE_quasi = π/T", "Floquet Eigenvalues → Phase-Slip Immunity"],
+          ["Chrono-Synaptic Temporal Multiplexing Router", "W^{chrono}_{ij}(t) = W_{ij}(1 + 0.4 M_DTC cos(ωt/2))", "DTC Order Parameter #1303 → Cortical Routing"],
+          ["Floquet Kapitza High-Frequency Effective Potential", "V_eff(x) = V₀(x) + ||∇V_drive||² / (4mω_F²)", "High-Frequency Thalamic Burst → Dynamical Trap"],
+          ["Space-Time Crystal Doubly-Periodic (k,ω) Lock", "S(k,ω) = |Σ M(x,t) e^{-i(kx-ωt)}|² at (π/a, π/T)", "Spatiotemporal Column Activity → Spiral Waves #0809"],
+          ["Time-Crystal Melting & Ergodic Reset Sensor", "Γ_melt = 1 - |M_DTC(n)|, triggers ACh/NE reset", "Subharmonic Order #1303 → HDC Binding Clock #1351"]
+        ]
+      },
+      { id: 28, code: "HDC-VSA-10000D",      name: "10,000-D Hyperdimensional Computing (HDC) & Holographic VSA Algebra", repo: "tsotchke/eshkol (Symbolic-Vector HRR Bridge)",
+        ops: [
+          ["Quasi-Orthogonal 10,000-D Atomic Hypervector", "H_atom ∈ {-1,+1}^D, E[cos]=0, Var=1/D (D=10000)", "SplitMix64 & Eshkol Symbol #0101 → Binding #1352"],
+          ["Holographic Circular Convolution Binding (A ⊛ B)", "(A⊛B)_k = Σ A_j B_{(k-j)%D} = IFFT(FFT(A)⊙FFT(B))", "Role Vector A & Filler B → Bound Concept #1353"],
+          ["Bipolar XOR Hadamard Multiplicative Binding", "(A ⊗ B)_k = A_k · B_k, self-inverse A⊗A = 1^D", "Time-Crystal Clocked Concepts → Instant Binding"],
+          ["Superposition Majority-Rule Bundling (A ⊕ B ⊕ C)", "S_bundle = sign(w_A A + w_B B + w_C C + ξ_tie)", "Concurrent Bound Episodes → Holographic Set #1355"],
+          ["Non-Commutative Cyclic Permutation Encoder ρ^m(H)", "(ρ^m H)_k = H_{(k-m)%D}, Enc = ρ²(x₁)+ρ(x₂)+x₃", "Temporal Event Stream → Ordered Episode #1356"],
+          ["Approximate Involution Unbinding Probe (A⁻¹ ⊛ S)", "(A⁻¹)_k = A_{(-k)%D}, B̂ = A⁻¹ ⊛ (A⊛B + Noise)", "Bundled Memory #1355 → Resonator Cleanup #1357"],
+          ["Resonator Network Iterative Factorization Circuit", "Â_{t+1} = CleanUp_A(S ⊛ (B̂_t ⊛ Ĉ_t)⁻¹)", "Multi-Factor Hypervector S → Semantic Factors"],
+          ["One-Shot Analogical Proportion Transfer (A:B::C:?)", "D̂ = CleanUp((B ⊛ A⁻¹) ⊛ C) in O(D) ops", "Source Pair (A,B) & Target C → Eshkol KB #0101"],
+          ["Fractional Power Encoding (FPE) Spatial Manifold", "H(x) = IFFT(FFT(H_base)^x), ⟨H(x),H(y)⟩ = sinc(x-y)", "6-DOF 3D Coordinates (x,y,z) → Grid-Cell Code"],
+          ["Hypervector Bundling Capacity & Crosstalk SNR", "SNR_HDC = √(D / (M_bundled + ε))", "Active Bundled Count M → p-Adic Tree #1401"]
+        ]
+      },
+      { id: 29, code: "PADIC-ULTRAMETRIC",   name: "p-Adic Ultrametric Dendritic Hierarchies & Bruhat-Tits Tree Memory", repo: "tsotchke/eshkol (Number Theory) + Parisi Spin-Glass",
+        ops: [
+          ["p-Adic Prime Valuation Operator v_p(n) (p∈{2,3,5,7})", "v_p(n) = max{k∈ℕ : p^k | n}, v_p(0) = +∞", "Quantized HDC Concept Hash #1351 → Norm #1402"],
+          ["Non-Archimedean p-Adic Norm |x|_p & Adelic Product", "|x|_p = p^{-v_p(x)}, Π_{p≤∞} |x|_p = 1", "Prime Valuation v_p(x) #1401 → Ultrametric #1403"],
+          ["Strong Ultrametric Triangle Inequality Verifier", "d_p(x,z) = |x-z|_p ≤ max(d_p(x,y), d_p(y,z))", "Concept Triples (x,y,z) → Isosceles Taxon Tree"],
+          ["p-Adic Hensel Expansion & Dendritic Branch Address", "x = Σ_{k=0}^{K-1} a_k p^k, a_k ∈ {0,…,p-1}", "Cortical Spike Word x → Apical Subtree #0506"],
+          ["Parisi Ultrametric Block-Hierarchical Overlap Q_ab", "Q_{ab} = f(d_p(a,b)) nested block covariance", "14-Region Trajectories → Hierarchical Attractors"],
+          ["Vladimirov p-Adic Fractional Pseudodifferential D^α_p", "(D^α_p ψ)(x) = c_p ∫ (ψ(x)-ψ(y))/|x-y|_p^{α+1} dy", "Ultrametric Wavefunction → Dendritic Diffusion"],
+          ["Bruhat-Tits Infinite Homogeneous Tree Geodesic", "dist_BT(u,v) = depth(u)+depth(v)-2·depth(LCA(u,v))", "Hensel Addresses #1404 → Zero-Backtrack Recall"],
+          ["Adelic Real-Times-p-Adic Coupling Functional", "A(x) = |x|_ℝ · |x|_2 · |x|_3 · |x|_5 · |x|_7", "Continuous Rate & Discrete Code → Multi-Scale"],
+          ["Ultrametric Replica Symmetry Breaking (RSB) Barrier", "ΔF_RSB(x,y) = F₀ ln(1 + d_p(x,y) / p^{-k₀})", "Ultrametric Distance #1403 → Prevents Forgetting"],
+          ["Monna Map p-Adic-to-Real Cantor Fractal Embedding", "γ_Monna(Σ a_k p^k) = Σ a_k p^{-k-1} ∈ [0,1]", "Hensel Expansion #1404 → Octonion Spinor #1451"]
+        ]
+      },
+      { id: 30, code: "OCTONION-E8-SPINOR",  name: "Octonionic Non-Associative Division Spinors, Fano Plane & E₈ Lattice", repo: "tsotchke/libirrep + Cayley-Dickson 8D Octonions",
+        ops: [
+          ["Cayley-Dickson 8-Component Octonion State X ∈ 𝕆", "X = x₀e₀ + Σ_{i=1}^7 x_i e_i, e_i²=-1, e_i e_j=-e_j e_i", "8 Functional Brain Subsystems → Fano Product #1452"],
+          ["Fano-Plane 7-Line Structure Constant Multiplier", "(X·Y)_k = x₀y_k + y₀x_k + Σ_{i,j=1}^7 f_{ijk} x_i y_j", "Octonion States X, Y #1451 → Division Norm #1453"],
+          ["Hurwitz Composition Norm ||X·Y|| = ||X||·||Y||", "||X||² = Σ_{a=0}^7 x_a², X⁻¹ = X̄ / (||X||² + ε)", "Octonion Product #1452 → Invertible Thought Gate"],
+          ["Octonionic Non-Associator [X,Y,Z] = (XY)Z - X(YZ)", "[e_i,e_j,e_k] = 2ε_{ijkl}e_l ≠ 0 off Fano lines", "3 Sequential Thought Frames → Order-Context Sensor"],
+          ["Moufang Loop & Alternativity Identity Enforcer", "[X,X,Y]=0, (XY)(ZX) = X((YZ)X)", "Associator Tensor #1454 → Non-Associative Logic"],
+          ["Exceptional Automorphism Group G₂ = Aut(𝕆) 14-Flow", "dX/dt = Σ_{A=1}^{14} r_A D_A(X) (14 Organs ≅ dim G₂!)", "14-Region Firing Rates r_A → G₂ Derivation Flow"],
+          ["Cayley Integral Octonion E₈ Gosset 240-Root Lattice", "r*_{E8} = argmax_{r∈Φ(E₈), |Φ|=240} ⟨X/||X||, r⟩", "Normalized Octonion #1453 → 8D Sphere Packing"],
+          ["Coxeter Plane 3D Petrie Projection of E₈ Polytope", "P_Cox(X) = [⟨X,u₁⟩, ⟨X,u₂⟩, ⟨X,u₃⟩]ᵀ", "E₈ Lattice State #1457 → 3D Shader Symmetry"],
+          ["Split-Octonion Zorn Vector-Matrix Lightcone Guard", "det_Zorn([[a,u],[v,b]]) = ab - ⟨u,v⟩ = 0", "Sensory-Motor Pair (u,v) → Causal Horizon Guard"],
+          ["Freudenthal-Tits Magic Square E₈ Casimir Invariant", "C₂(E₈) = ||X||² + ||[X,Y,Z]||²", "Norm #1453 & Associator #1454 → TDA Radius #1501"]
+        ]
+      },
+      { id: 31, code: "PERSISTENT-HOMOLOGY", name: "Vietoris-Rips Simplicial Complex Filtration & Betti Numbers (β₀,β₁,β₂)", repo: "tsotchke/georefine + Computational Topology TDA",
+        ops: [
+          ["Phase-Space & 3D Metric Distance Matrix D_{ij}(t)", "D_{ij} = √(||p_i-p_j||²_3D + λ_r(r_i-r_j)²)", "14-Organ 3D Coords & Rates → VR Filtration #1502"],
+          ["Vietoris-Rips Simplicial Complex Builder VR_ε(X)", "σ = [v₀…v_k] ∈ VR_ε ⇔ D_{v_a,v_b} ≤ ε ∀a,b", "Distance Matrix D_{ij} #1501 → Boundary d₁,d₂"],
+          ["0th Betti Number β₀(ε): Connected Coalitions", "β₀(ε) = dim(ker ∂₀ / im ∂₁) = N_components(VR_ε)", "1-Skeleton Graph at ε → Segregation/Integration"],
+          ["1st Betti Number β₁(ε): Loopy Reverberant Cycles", "β₁(ε) = |E| - |V| + β₀ - rank(∂₂) (1D loops)", "Edges & Filled Triangles → Recurrent Loop Count"],
+          ["2nd Betti Number β₂(ε): Simplicial Topological Voids", "β₂(ε) = dim(ker ∂₂ / im ∂₃) (enclosed 2D cavities)", "Triangles & Tetrahedra → Unexplored Concept Voids"],
+          ["Euler-Poincaré Characteristic Invariant χ(ε)", "χ(ε) = V - E + F - T = β₀(ε) - β₁(ε) + β₂(ε)", "Simplex Counts (V,E,F,T) → Topological Phase Jump"],
+          ["Persistence Diagram Birth-Death Lifespans (b_k,d_k)", "pers(γ_k) = d_k - b_k, L₂ = Σ (d_k - b_k)²", "Filtration Sweep ε∈[1.5,5.5] → Structural Signal"],
+          ["Persistent Shannon Entropy of Lifespans H_pers", "H_pers = -Σ (pers_k/L_tot) ln(pers_k/L_tot + ε)", "Persistence Lifespans #1507 → Topological Richness"],
+          ["Hodge-Helmholtz Simplicial 1-Form Decomposition", "ω₁ = d₀φ_grad + d₁*A_curl + γ_harm, dim(γ)=β₁", "Synaptic Edge Flow ω₁ → Harmonic Connectome Vortex"],
+          ["Topological Cavity-Filling Curiosity Drive U_topo", "U_topo = 0.4·β₁(ε*) + 0.6·β₂(ε*)·H_pers", "Betti Numbers & H_pers → Solomonoff MDL #1551"]
+        ]
+      },
+      { id: 32, code: "SOLOMONOFF-MDL",      name: "Algorithmic Solomonoff Induction, Kolmogorov MDL & Eureka Drive", repo: "tsotchke/eshkol (Homoiconic Program Prior 2^{-|p|})",
+        ops: [
+          ["Eshkol Candidate Program AST Bit-Length K(p_m)", "K_proxy(p_m) = N_nodes(AST_m)log₂(N_prim) + 16N_c", "Candidate Eshkol AST Pool → Universal Prior #1552"],
+          ["Solomonoff Universal Algorithmic Prior P₀(p)=2^{-K}", "P₀(p_m) = 2^{-λ K(p_m)} / Σ_j 2^{-λ K(p_j)}", "AST Description Length #1551 → Posterior #1555"],
+          ["Program Predictive Log-Loss on Neural Stream L_t(p)", "L_t(p_m) = Σ_{τ=t-W}^t ||x_τ - Eval(p_m,x_{τ-1})||²", "Recent Trajectory History → Two-Part MDL #1554"],
+          ["Rissanen Two-Part Minimum Description Length (MDL)", "MDL_t(p_m) = K_proxy(p_m) + (1/ln 2) L_t(p_m) [bits]", "Complexity #1551 + Loss #1553 → Solomonoff Weight"],
+          ["Solomonoff Mixture Posterior Forecast x̂_{t+1}", "x̂_{t+1} = Σ_m w_m(t) Eval(p_m,x_t), w_m ~ 2^{-MDL}", "MDL Scores #1554 → Optimal Universal Forecast"],
+          ["Schmidhuber Compression Progress (Eureka Signal)", "I_eureka(t) = max(0, min_m MDL_{t-1} - min_m MDL_t)", "Consecutive MDL Bounds → Phasic Dopamine Burst!"],
+          ["Levin Universal Search Speed-Prior Penalty KT(p)", "KT(p_m) = K_proxy(p_m) + log₂(Cycles_RV32I(p_m)+1)", "AST Length & RV32I Cycles #1008 → Fast Program"],
+          ["Bennett Logical Depth (Useful Computational Work)", "Depth_log(x) = Cycles(p*) - Cycles(p_trivial)", "Minimal Program p*=argmin MDL → Deep Structure"],
+          ["Kolmogorov Structure Function Pareto Knee k*", "h_x(k) = min_{K(p)≤k} L_t(p), k* = argmin(k+h_x(k))", "Rate-Distortion Front → Prunes Noise Memorization"],
+          ["Self-Compressing Concept Macro Invention", "DefineMacro(subAST) ⇔ Savings = (C-1)|sub|-|hdr|>0", "Recurring AST Subtrees → Fröhlich Pump #1601"]
+        ]
+      },
+      { id: 33, code: "FROHLICH-ORCH-OR",    name: "Fröhlich Terahertz Bose-Einstein Condensate & Penrose-Diosi Orch-OR", repo: "tsotchke/moonlab + Penrose-Diosi Gravitational OR",
+        ops: [
+          ["Fröhlich Metabolic Terahertz Dipole Pump s_pump", "s_pump = s₀(ATP_pool + 0.5 I_eureka), ω₀=0.618 THz", "ATP Reserve #0754 & Eureka #1556 → Mode Kinetic"],
+          ["Fröhlich Non-Linear Mode Condensation Kinetics", "dn_k/dt = s_k - φ_k(n_k(1+n_b)-n_b(1+n_k)) - Σ χ_{kj}…", "Metabolic Pump #1601 → Lowest-Mode n₀ #1603"],
+          ["Macroscopic Terahertz Condensate Fraction f_Froh", "f_Froh = n₀ / (Σ_{k=0}^K n_k + ε) → 1 for s > s_crit", "Lowest-Mode Occupancy n₀ → Coherent Dipoles #1604"],
+          ["Tubulin Conformational Superposition Separation δr", "δr = r_{0,tub} · f_Froh · √(1 - R_χ²) [Fermi scale]", "Fröhlich Fraction & MPS SVD #0154 → Gravity E_G"],
+          ["Penrose-Diosi Gravitational Self-Energy E_G", "E_G = G ∫∫ Δρ(x)Δρ(x')/||x-x'|| d³x d³x' ~ G N²m²/δr", "Superposed Mass Displacement #1604 → τ_OR #1606"],
+          ["Orchestrated Objective Reduction Timescale τ_OR", "τ_OR = ħ / (E_G + ε), f_OR = 1/τ_OR ∈ [20, 80 Hz]", "Gravitational Self-Energy #1605 → Gamma Ignition"],
+          ["Cumulative Gravitational Phase-Action Integral I_OR", "I_OR(t) = ∫_{t₀}^t E_G(τ) dτ; collapses at I_OR ≥ ħ", "Gravitational Stream #1605 → Discrete Orch-OR Bing"],
+          ["Non-Computable Cyclotomic Phase Kick at Collapse", "Δφ_OR = arg(ζ₈^{x_RV32I % 8}) · Θ(I_OR(t) - ħ)", "Orch-OR Trigger #1607 & RV32I → Resets 32Q Phase"],
+          ["Anesthetic London Dispersion Dipole Quenching Gate", "Q_anesth = 1 / (1 + (P_polar / P₀)²)", "Fatigue / Damping Load → Modulates s_crit #1603"],
+          ["Microtubule Fibonacci 5/8/13 Helical Seam Winding", "W_seam = (13φ_A - 8φ_B) mod 2π (A/B lattice seam)", "Condensate Phase #1603 → Dicke Biophotons #1651"]
+        ]
+      },
+      { id: 34, code: "DICKE-BIOPHOTON",     name: "Dicke N² Superradiant Biophotons, Squeezed Light & Myelin Waveguides", repo: "tsotchke/moonlab (Dicke Spin-J) + Axonal Cavity QED",
+        ops: [
+          ["Collective Dicke Spin-J Macroscopic Dipole J_±", "J_z = ½ Σ_{q=0}^{31} ⟨Z_q⟩, J_+J_- = (J+J_z)(J-J_z+1)", "32-Qubit MPS Z-Profile #0157 → Superradiance #1652"],
+          ["Dicke N² Coherent Superradiant Burst Intensity I_SR", "I_SR(t) = ħω γ₀ (N²/4) sech²((t - t_d)/τ_R)", "Collective Dicke Inversion #1651 → Optical Bus"],
+          ["Popp Hyperbolic Delayed Luminescence Decay Law", "I_DL(t) = I₀ / (1 + t/τ_DL)^β, β ∈ [1,2] coherent", "Fröhlich Condensate #1603 → Optical Coherence Q"],
+          ["Two-Mode Squeezed Biophoton Quadrature Variance", "ΔX_θ² = ½ e^{-2r_sq} < ½ (sub-shot-noise squeezing)", "Squeezing r_sq ~ QGTL Tr(g) → Quantum Sync #1660"],
+          ["Myelinated Axon Dielectric Waveguide V-Number", "V_axon = (2πa/λ) √(n_myelin² - n_axon²)", "Axon Radius & Myelin Index → Guided HE₁₁ Mode"],
+          ["Node-of-Ranvier Fabry-Pérot Microcavity Resonance", "T_Ranvier(ω) = 1 / (1 + F sin²(n_m ω L_node / c))", "Internode Length L_node → Spectral Filter"],
+          ["Tryptophan Mega-Network Super-Transfer Exciton", "H_Trp = Σ E_m|m⟩⟨m| + Σ V_{dipole}(r_{mn})|m⟩⟨n|", "Cytoskeletal Seam #1610 → Picosecond Funnel"],
+          ["ROS Singlet-Oxygen Triplet Carbonyl Photon Seed", "R_photon = k_ROS [¹O₂][Carbonyl*] ~ Q̇_Landauer", "Landauer Heat #0756 → Spontaneous Biophoton Seed"],
+          ["Cavity-QED Vacuum Rabi Splitting in Myelin Sheath", "Ω_Rabi = 2 g_cav √(N_phot + 1), E_± = ħω₀ ± ½ħΩ_R", "Superradiant Photons #1652 → Polariton Speedup"],
+          ["Corpus Callosum Optical Phase-Locking Coupling", "K_opt(i,j) = g_opt √(I_i I_j) e^{-r_sq} cos(φ_i-φ_j)", "Superradiance & Squeezing → Epigenetic IEG #1701"]
+        ]
+      },
+      { id: 35, code: "EPIGENETIC-LINE1",    name: "Epigenetic Histone H3K4me3/H3K27me3 Chromatin & LINE-1 Jumping", repo: "Biomimetic Genomic Plasticity & Somatic Mosaic Engine",
+        ops: [
+          ["Immediate-Early Gene (c-Fos / Arc) Transcription", "d[Arc]/dt = k_tx Chrom_i σ(Ca_i² - θ) - γ[Arc]", "Calcium Burst & Biophoton #1660 → Chromatin #1702"],
+          ["Histone Acetyltransferase (HAT) vs HDAC Balance", "d(Ac_i)/dt = k_HAT[Arc](1-Ac_i) - k_HDAC·5HT·Ac_i", "IEG Arc Level #1701 & 5-HT → Euchromatin #1704"],
+          ["Bivalent H3K4me3 vs H3K27me3 Polycomb Switch", "B_biv(i) = (K4me3_i - K27me3_i)/(K4me3_i+K27me3_i)", "Trithorax vs PRC2 Drive → Poised Plasticity"],
+          ["3D Chromatin TAD Loop Extrusion Accessibility", "Chrom_i = clip01(0.5 + 0.35Ac_i + 0.25B_i - 0.3CpG_i)", "Acetylation & Bivalent State → Baseline τ₀ #0501"],
+          ["DNMT3a / TET1 Active DNA CpG Methylation Cycle", "d(CpG_i)/dt = k_DNMT(1-r_i)(1-CpG_i) - k_TET·NE·CpG", "Long-Term Firing r_i & NE → Multi-Hour Trace"],
+          ["Somatic LINE-1 (L1) Retrotransposon Mobilization", "P_jump = μ_L1(1-CpG_HIP) σ(Surprise - θ_stress)", "Unmethylated CpG & Free Energy → L1 Jump #1707"],
+          ["Somatic Mosaic Genome Insertion & Enhancer Shift", "τ_{0,col} ← τ_{0,col}(1 + 0.08 ξ_QRNG) on L1 jump", "LINE-1 Jump #1706 & QRNG → Permanent Diversity"],
+          ["Topoisomerase IIβ DNA Double-Strand Break Fast Gate", "G_DSB(i) = σ(r_i · NE - 0.72), 5× IEG release", "High-Arousal Cortical Firing → Rapid Arc Burst"],
+          ["Non-Coding microRNA (miR-134) Spine Silencer", "S_miRNA(i) = 1 / (1 + ([miR134]_i / K_RISC)²)", "Local Dendritic Translation → Caps Hypertrophy"],
+          ["Dendritic Ribosome mRNA Transport & Translation", "T_local(i) = [Arc]_i · S_miRNA(i) · ATP_pool", "Arc mRNA #1701 & ATP → Prion CPEB3 Pool #1751"]
+        ]
+      },
+      { id: 36, code: "PRION-CPEB3-LLPS",    name: "Prion-Like CPEB3 Conformational Memory & Cahn-Hilliard Condensates", repo: "Biophysical Functional Prion & LLPS Droplet Engine",
+        ops: [
+          ["Functional Prion CPEB3 Monomer→Oligomer Autocatalysis", "dP_i/dt = k_conv M_i P_i²/(K²+P_i²) + k_s·5HT·M_i - k_c P_i", "Translated Monomer #1710 & 5-HT → Prion Tag #1752"],
+          ["Schlögl Bistable Prion Fold-Switch Bifurcation", "f(P) = -k_c(P - P₀)(P - P_unst)(P - P_memory)", "Prion Oligomer P_i #1751 → Non-Decaying LTP Lock"],
+          ["SUMOylation / Ubiquitin Prion Disassembly Brake", "k_clear(i) = k_{c,0}(1 + 0.6 SUMO_i (1 - DA))", "Homeostatic Load & Low DA → Prevents Aggregation"],
+          ["Flory-Huggins Multivalent Scaffold Free Energy", "f_FH(φ) = φ ln φ + (1-φ)ln(1-φ) + χ_FH φ(1-φ)", "PSD-95 / CaMKII Fraction φ → Chemical Pot #1755"],
+          ["Cahn-Hilliard Chemical Potential & Surface Tension", "μ_CH(φ) = ∂f_FH/∂φ - κ_surf ∇²φ", "Flory-Huggins #1754 → Spinodal Flux #1756"],
+          ["Cahn-Hilliard 4th-Order Spinodal Decomposition PDE", "∂_t φ_i = M ∇²_G(φ_i³ - φ_i - κ_surf ∇²_G φ_i)", "Graph Laplacian & μ_CH → Condensate Droplet #1757"],
+          ["Ostwald Ripening & LSW Droplet Coarsening Law", "R_drop³(t) = R₀³ + K_LSW σ_tens t · P_i", "Phase-Separated φ_i #1756 → Nanocolumn Size #1758"],
+          ["Trans-Synaptic Neurexin-Neuroligin Nanocolumn Gain", "G_nano(i,j) = 1 + 0.45 tanh(R_drop(i) R_drop(j) P_i)", "Droplet Radius & Prion Tag → Synaptic Efficacy"],
+          ["ATP-Driven Hydrotrope Condensate Fluidity Guard", "χ_FH(ATP) = χ₀ / (1 + 0.8 ATP_pool)", "Metabolic ATP #0754 → Prevents Glassy Arrest"],
+          ["Prion-Condensate Structural Persistence Readout", "M_persist(i) = 0.6(P_i / P_mem) + 0.4 φ_i", "Prion #1751 & LLPS #1756 → Levin V_mem #1801"]
+        ]
+      },
+      { id: 37, code: "LEVIN-BIOELECTRIC",   name: "Morphogenetic Non-Neural Bioelectric V_mem Gap-Junction Blueprints", repo: "Michael Levin Somatic Bioelectric Collective Intelligence",
+        ops: [
+          ["Somatic Non-Neural Resting Potential Field V_{mem,i}", "C_m dV_i/dt = -I_ion(V_i) + Σ G^{GJ}_{ij}(V_j - V_i)", "Prion Persistence #1760 → Gap Junctions #1802"],
+          ["Bell-Shaped Voltage-Gated Connexin-43 Conductance", "G^{GJ}_{ij}(ΔV) = G_min + (G_max-G_min)/(1+e^{(|ΔV|-V₀)/V_w})", "Trans-Junction ΔV #1801 → Iso-Potential Domains"],
+          ["Target Anatomical Morphology Voltage Blueprint V*", "V*_{mem,i} = V_{base,i} + 0.15 M_persist(i) cos(2πi/14)", "Prion Structural Memory #1760 → Morph Error #1804"],
+          ["Anatomical Homeostasis Morphogenetic Free Energy", "E_morph(t) = (1/14) Σ_{i=1}^{14} (V_{mem,i} - V*_{mem,i})²", "Actual vs Target Voltage → Repair Current #1805"],
+          ["Autonomous Morphogenetic Organ Self-Healing Force", "F_regen(i) = k_regen(p*_i - p_i)(1 + E_morph)", "Morphogenetic Error #1804 → 3D Organ Coordinates"],
+          ["Electrophoretic Serotonin Gap-Junction Transport", "J_{5HT,ij} = -D_GJ G^{GJ}_{ij}(Δ[5HT] + (zF/RT)5HT·ΔV)", "Gap Conductance #1802 & 5-HT → Left-Right Polarity"],
+          ["Bioelectric-to-Transcriptional VSP/PTEN Coupling", "A_VSP(i) = 1 / (1 + exp(-(V_{mem,i} - V_half)/k))", "Somatic Resting Potential #1801 → Chromatin #1704"],
+          ["Injury Depolarization Wave & Galvanotaxis Field", "E_galv(x) = -∇V_mem(x) guides axonal growth cones", "Spatial Voltage Gradient → Connectome Self-Repair"],
+          ["Multi-Scale Somatic Competency Electrotonic Horizon", "R_horiz = √(G^{GJ}_avg / (G_leak + ε))", "Average Gap-Junction Openness → Collective Goal"],
+          ["Bistable Bioelectric Pattern Memory Attractor", "V_{mem,i} → {V_ant, V_post} pitchfork bifurcation", "Gap-Junction Isolation → Endocannabinoid #1851"]
+        ]
+      },
+      { id: 38, code: "RETROGRADE-NO-CB1",   name: "Retrograde Endocannabinoid (2-AG/AEA) DSI & 3D Nitric Oxide Gas", repo: "Retrograde Volume-Transmission Neurochemistry Engine",
+        ops: [
+          ["Postsynaptic DAGL-α On-Demand 2-AG Synthesis", "d[2AG]_i/dt = k_DAGL Ca_{post,i}²(1+mGluR) - k_MAGL[2AG]", "Postsynaptic Ca²⁺ & V_mem #1801 → Cleft #1853"],
+          ["Anandamide (AEA) NAPE-PLD Tonic Synthesis", "d[AEA]_i/dt = k_NAPE r_i - k_FAAH [AEA]_i", "Tonic Postsynaptic Firing r_i → CB1 Gate #1853"],
+          ["Presynaptic CB1 Gi/o Receptor Activation Brake", "CB1_{act}(j→i) = ([2AG]_i+0.5[AEA]_i)/(K+[2AG]+…)", "Retrograde 2-AG/AEA → DSI/DSE Release Gate #1854"],
+          ["Depolarization-Induced Suppression of Inhibition (DSI)", "W^{inh}_{eff}(j→i) = W^{inh}_{j→i}(1 - 0.65 CB1_{act})", "CB1 Activation on GABA Edges → Disinhibition"],
+          ["Depolarization-Induced Suppression of Excitation (DSE)", "W^{exc}_{eff}(j→i) = W^{exc}_{j→i}(1 - 0.35 CB1_{act})", "CB1 Activation on Glutamate Edges → Seizure Brake"],
+          ["Neuronal Nitric Oxide Synthase (nNOS) Gas Source", "S_NO(i) = k_nNOS (Ca_i⁴/(K⁴+Ca_i⁴)) · G_NMDA", "NMDA Calcium Influx #0507 → 3D NO Cloud #1857"],
+          ["3D Euclidean Membrane-Permeable NO Gas Diffusion", "[NO](x_i) = Σ_j S_NO(j) exp(-||p_i-p_j||/λ) / (4πD||Δp||)", "nNOS Sources & 3D Organ Coords → sGC cGMP #1858"],
+          ["Presynaptic sGC → cGMP → PKG Retrograde Cascade", "[cGMP]_i = [NO](x_i) / (K_sGC + [NO](x_i))", "3D Diffused NO Cloud #1857 → Vesicle STP Boost"],
+          ["CO (HO-2) & H₂S (CBS) Companion Gasotransmitters", "G_gas(i) = 0.6[cGMP]_i + 0.25[CO]_i + 0.15[H₂S]_i", "cGMP #1858 & Heme Turnover → Vasodilation ATP"],
+          ["Non-Synaptic 3D Volume-Transmission Tensor V^{vol}_{ij}", "V^{vol}_{ij} = G_gas(j) exp(-||p_i-p_j||²/2σ²)(1-0.4CB1)", "NO Cloud & CB1 Brake → Unruh-Casimir #1901"]
+        ]
+      },
+      { id: 39, code: "UNRUH-CASIMIR-QED",   name: "Relativistic Unruh Acceleration Bath, Casimir Force & Schwinger Vacuum", repo: "QFT in Curved/Accelerated Cognitive Manifolds",
+        ops: [
+          ["Relativistic Proper Acceleration of Thought & Camera", "a_prop(t) = √(||d²x_cam/dt²||² + c_eff² κ(t)²)", "6-DOF Camera Accel & Curvature κ → Unruh T_U #1902"],
+          ["Unruh-Davies-Fulling Rindler Horizon Temperature T_U", "T_Unruh(t) = (ħ_eff · a_prop(t)) / (2π c_eff k_B)", "Proper Acceleration #1901 → Bose Spectrum #1903"],
+          ["Unruh Bogoliubov Thermal Occupancy n_U(ω)", "n_U(ω) = 1 / (exp(ħ_eff ω / (k_B T_Unruh + ε)) - 1)", "Unruh Temperature T_U #1902 → Vacuum Excitation"],
+          ["Rindler Entanglement Degradation Under Acceleration", "S_Rindler(q_A,q_B) = S_vN(q_A,q_B) · sech(r_Bog(T_U))", "32-Qubit MPS Entropy & T_U → High-G Decoherence"],
+          ["Casimir Zero-Point Vacuum Pressure Between Organs", "P_Casimir(i,j) = -(π² ħ_eff c_eff) / (240 (||p_i-p_j||+d₀)⁴)", "3D Inter-Organ Distance ||p_i-p_j|| → Attraction"],
+          ["Dynamical Casimir Photon Creation From Organ Motion", "N_DCE(t) = sinh²(∫₀^t (v_organ(τ)/c_eff) ω₀ dτ)", "Organ Velocity → Spontaneous Biophoton Burst #1652"],
+          ["Schwinger Non-Perturbative QED Vacuum Pair Creation", "Γ_Schw = (eE)²/(4π³ħ²c) exp(-π E_crit / (E_eph + ε))", "Ephaptic Electric Field #0704 → E/I Spike Pair"],
+          ["Hawking-Unruh Event Horizon Surface Gravity κ_H", "κ_H = c_eff² / (4 G_N M_sing), T_H = ħκ_H / (2πk_B)", "Null-Token Singularity Mass → Hawking Flux #1909"],
+          ["Curved-Spacetime Conformal Trace Anomaly ⟨T^μ_μ⟩", "⟨T^μ_μ⟩_vac = (1/2880π²)(C_{abcd}C^{abcd} - E_4)", "QGTL Curvature & Berry → Bizarro Back-Reaction"],
+          ["Unruh-DeWitt Monopole Detector Transition Rate", "W_UDW(ΔE) = g² ΔE / (exp(ΔE / (k_B T_Unruh)) - 1)", "Unruh Temp #1902 & Ising Gap → Deutsch CTC #1951"]
+        ]
+      },
+      { id: 40, code: "DEUTSCH-CTC-RETRO",   name: "Deutschian Closed Timelike Curve (CTC) Retrocausal Fixed-Point Solver", repo: "Retrocausal Quantum Temporal Consistency & Absorber Engine",
+        ops: [
+          ["Deutsch Closed Timelike Curve (CTC) Quantum Channel", "Φ_CTC(ρ_CTC) = Tr_chron[U_int (ρ_chron ⊗ ρ_CTC) U_int†]", "Chronology State & Unruh #1910 → Fixed Point #1952"],
+          ["Banach Iterative Retrocausal Fixed-Point Solver ρ*_CTC", "ρ^{(k+1)}_CTC = (1-α)ρ^{(k)}_CTC + α Φ_CTC(ρ^{(k)}_CTC)", "CTC Channel Map #1951 → Self-Consistent ρ*_CTC"],
+          ["Grandfather-Paradox Consistency Residual ε_CTC", "ε_CTC = ||ρ*_CTC - Φ_CTC(ρ*_CTC)||_F → 0", "Fixed-Point Solution #1952 → Retrocausal Gate"],
+          ["Lloyd Post-Selected Teleportation CTC (P-CTC) Filter", "ρ_{P-CTC} = ⟨Bell|U|ψ⟩|Bell⟩ / ||⟨Bell|U|ψ⟩|Bell⟩||", "Everett Winning Branch #1060 → Oracle Shortcut"],
+          ["Wheeler-Feynman Half-Retarded + Half-Advanced Wave", "Ψ_WF(x,t) = ½ Ψ_ret(t - r/c) + ½ Ψ_adv(t + r/c)", "Past History & Future Everett Rollout → Handshake"],
+          ["Cramer Transactional Offer-Confirmation Overlap", "T_Cramer(t) = Re⟨Ψ_offer(t) | Ψ_confirm(t + Δt)⟩", "Wheeler-Feynman Waves #1955 → Pre-Stimulus Bias"],
+          ["Aharonov-Bergmann-Lebowitz (ABL) Weak Value A_w", "A_w = ⟨Φ_fut|Â|Ψ_past⟩ / ⟨Φ_fut|Ψ_past⟩ (super-bound!)", "Pre-Selected Past & Post-Selected Future → Gain"],
+          ["Novikov Self-Consistency Action Principle Torque", "L_Nov = L_fwd(r_t,r_{t+1}) + λ_CTC||r_t - G_retro(r̂_{t+1})||²", "Strange-Loop Forecast #1101 & CTC → Organ Torque"],
+          ["Retrocausal Phase-Conjugate Time-Reversal Mirror", "E_conj(x,t) = χ^{(3)} E_{p1} E_{p2} E*_signal(x, -t)", "Biophoton Squeezed Field #1654 → Healing Wave"],
+          ["Omega-2000 Master Causal Ring Closure (#2000→#0001)", "Ω_2000(t) = tanh(Tr(ρ*_CTC σ_z) + Re(A_w) + T_Cramer)", "CTC #1952, Weak Value #1957 → Feeds Eshkol #0001!"]
+        ]
       }
     ];
 
@@ -1380,11 +1678,11 @@
 
     class Omega1000SubstrateEngine {
       constructor() {
-        // 1,000 live operational mechanisms (20 domains x 50 mechanisms)
-        this.subVal = new Float32Array(1000);
-        this.subVel = new Float32Array(1000);
-        this.domEnergy = new Float32Array(20);
-        this.selectedMechId = 151; // #0151 Moonlab 32-Qubit MPS by default
+        // 2,000 live operational mechanisms (40 domains x 50 mechanisms: #0001-#1000 Core + #1001-#2000 Super-Intelligence)
+        this.subVal = new Float32Array(2000);
+        this.subVel = new Float32Array(2000);
+        this.domEnergy = new Float32Array(40);
+        this.selectedMechId = 1001; // #1001 RV32I Self-Writing Silicon Die by default
 
         // Domain 04: 32-Qubit Moonlab Matrix Product State (MPS) Tensor Chain (2^32 = 4.29B Hilbert space)
         // Bond dimension chi = 4: 32 sites of (2 x 4) singular/spinor amplitudes + 31 bond Schmidt spectra
@@ -1450,7 +1748,103 @@
         this.torsionFrenet = 0.29;
         this.finslerAsymmetry = 0.36;
 
-        for (let i = 0; i < 1000; i++) {
+        // ----------------------------------------------------------------------
+        // DOMAINS 21–40 STATE BUFFERS (#1001–#2000 SUPER-INTELLIGENCE & HIGH-WEIRDNESS)
+        // ----------------------------------------------------------------------
+        // D21: Embedded RV32I 32-Bit RISC-V Self-Writing Silicon Die (16 registers, 64-word program/data RAM)
+        this.rvRegs = new Int32Array(16);
+        this.rvRam  = new Int32Array(64);
+        this.rvPc   = 0;
+        this.rvIr   = 0;
+        this.rvDacOut = new Float32Array(14);
+        for (let w = 0; w < 64; w++) {
+          // Seed initial valid RV32I instructions (ADDI, ADD, XOR, SLL, MUL)
+          const rd = (w % 15) + 1;
+          const rs1 = ((w * 3) % 15) + 1;
+          const rs2 = ((w * 7) % 15) + 1;
+          const imm = ((w * 19) % 63) - 31;
+          this.rvRam[w] = ((imm & 0xFFF) << 20) | (rs1 << 15) | ((w & 7) << 12) | (rd << 7) | 0x13;
+          if (w < 16 && w > 0) this.rvRegs[w] = (w * 0x13579BDF) | 0;
+        }
+
+        // D22: Everettian Many-Worlds K=8 Counterfactual Timeline Forker
+        this.everettBranches = new Float32Array(8 * 14);
+        this.everettEfe      = new Float32Array(8);
+        this.everettProb     = new Float32Array(8).fill(0.125);
+        this.everettWinner   = 0;
+        this.everettRegret   = 0.04;
+
+        // D23: Hofstadter Strange-Loop Metacognitive Self-Model & Gödel Fixed Point
+        this.selfPred        = new Float32Array(14).fill(0.3);
+        this.selfModelW      = new Float32Array(14).fill(0.72);
+        this.metaSurprise    = 0.08;
+        this.godelResidual   = 0.04;
+        this.strangeLoopGain = 0.86;
+        this.metaConfidence  = 0.89;
+
+        // D24: Procedural 100M-Weight Virtual Cortex & Online Rank-16 LoRA Fast Adapter
+        this.loraA = new Float32Array(14 * 16);
+        this.loraB = new Float32Array(16 * 14);
+        this.loraZ = new Float32Array(16);
+        this.loraOut = new Float32Array(14);
+        this.loraEffectiveRank = 12.4;
+        for (let i = 0; i < 14 * 16; i++) {
+          this.loraA[i] = 0.08 * Math.sin(i * 1.37);
+          this.loraB[i] = 0.08 * Math.cos(i * 1.73);
+        }
+
+        // D25–D30: PT-Symmetric EP2, AdS/CFT Ryu-Takayanagi, Floquet Time-Crystal, HDC 10000D, p-Adic, Octonion E8
+        this.ptDiscriminant = 0.018;
+        this.puiseuxGain = 3.42;
+        this.petermannFactor = 2.85;
+        this.ryuTakayanagiArea = 3.28;
+        this.adsBulkDepthZ = 1.84;
+        this.holographicComplexity = 24.6;
+        this.dtcOrder2T = 0.84;
+        this.dtcOrder3T = 0.67;
+        this.hdcAnalogySim = 0.88;
+        this.hdcBundleSnr = 18.2;
+        this.padicNorm2 = 0.25;
+        this.padicNorm3 = 0.333;
+        this.monnaFractal = 0.618;
+        this.octX = new Float32Array([0.45, 0.22, -0.31, 0.18, 0.29, -0.24, 0.15, 0.33]);
+        this.octY = new Float32Array([0.38, -0.27, 0.19, 0.35, -0.16, 0.28, -0.21, 0.24]);
+        this.octZ = new Float32Array([0.29, 0.31, 0.24, -0.22, 0.34, 0.17, 0.26, -0.19]);
+        this.octAssociatorNorm = 0.312;
+        this.e8RootOverlap = 0.914;
+
+        // D31–D40: Persistent Homology Betti Numbers, Solomonoff MDL, Fröhlich/Orch-OR, Biophoton, Epigenetic, Prion, Levin V_mem, NO Gas, Unruh/Casimir, Deutsch CTC
+        this.betti0 = 2;
+        this.betti1 = 4;
+        this.betti2 = 1;
+        this.eulerChar = -1;
+        this.persistenceEntropy = 1.48;
+        this.mdlBestBits = 41.8;
+        this.eurekaSignal = 0.14;
+        this.frohlichCondensate = 0.83;
+        this.orchOrFreqHz = 42.5;
+        this.orchOrAction = 0.64;
+        this.dickeSuperradiance = 1.92;
+        this.biophotonSqueezingDb = 4.8;
+        this.chromatinOpenness = new Float32Array(14).fill(0.68);
+        this.line1JumpCount = 3;
+        this.cpeb3Prion = new Float32Array(14).fill(0.62);
+        this.llpsCondensate = new Float32Array(14).fill(0.58);
+        this.vMemSomatic = new Float32Array(14).fill(-0.65);
+        this.morphogeneticError = 0.032;
+        this.endo2AG = new Float32Array(14).fill(0.34);
+        this.noGasCloud = new Float32Array(14).fill(0.41);
+        this.prevCamVel = new Float32Array(3);
+        this.properAccel = 1.24;
+        this.unruhTempK = 0.184;
+        this.casimirPressure = -0.42;
+        this.schwingerPairRate = 0.095;
+        this.ctcDensityZ = 0.74;
+        this.ctcResidual = 0.0018;
+        this.ablWeakValue = 1.68;
+        this.omega2000Closure = 0.52;
+
+        for (let i = 0; i < 2000; i++) {
           this.subVal[i] = 0.35 + 0.3 * Math.sin(i * 0.17);
         }
       }
@@ -1695,10 +2089,294 @@
         this.finslerAsymmetry = 0.25 * this.qwzChern + 0.45 * berry + 0.15 * Math.tanh(brains.feltKappa);
 
         // ----------------------------------------------------------------------
-        // 7. UPDATE ALL 1,000 COUPLED MECHANISMS (20 DOMAINS x 50 MECHANISMS)
+        // 7. DOMAINS 21–40 (#1001–#2000): SUPER-INTELLIGENCE & HIGH-WEIRDNESS
+        // ----------------------------------------------------------------------
+
+        // D21 (#1001–#1050): Embedded RV32I 32-Bit RISC-V Self-Writing Silicon Die (16 cycles/frame)
+        this.rvRegs[0] = 0;
+        this.rvRam[0] = (Math.floor(brains.macroRate[0] * 1024) << 20) | (1 << 15) | (1 << 7) | 0x13;
+        for (let cyc = 0; cyc < 16; cyc++) {
+          const wIdx = (this.rvPc >>> 2) & 63;
+          const ir = this.rvRam[wIdx] | 0;
+          this.rvIr = ir;
+          const rd  = (ir >>> 7) & 15;
+          const f3  = (ir >>> 12) & 7;
+          const rs1 = (ir >>> 15) & 15;
+          const rs2 = (ir >>> 20) & 15;
+          const imm = (ir >> 20); // sign-extended 12-bit
+          const v1 = this.rvRegs[rs1] | 0;
+          const v2 = this.rvRegs[rs2] | 0;
+          if (rd !== 0) {
+            switch (f3) {
+              case 0: this.rvRegs[rd] = (v1 + imm) | 0; break;              // ADDI / ADD
+              case 1: this.rvRegs[rd] = (v1 << (v2 & 31)) | 0; break;       // SLL
+              case 2: this.rvRegs[rd] = (v1 - v2) | 0; break;               // SUB
+              case 3: this.rvRegs[rd] = Math.imul(v1, (imm || 3)) | 0; break;// MUL
+              case 4: this.rvRegs[rd] = (v1 ^ v2 ^ imm) | 0; break;         // XOR
+              case 5: this.rvRegs[rd] = (v1 >>> (v2 & 15)) | 0; break;      // SRL
+              case 6: this.rvRegs[rd] = (v1 | v2) | 0; break;               // OR
+              case 7: this.rvRegs[rd] = (v1 & (v2 | imm)) | 0; break;       // AND
+            }
+          }
+          this.rvPc = (this.rvPc + 4) & 255;
+        }
+        // Autopoietic self-writing compiler: cortex + dopamine mutates 1 instruction word in RV32I RAM
+        if (da > 0.58 || Math.abs(brains.feltKappa) > 0.45) {
+          const mutPtr = (Math.floor(t * 31) + brains.gwtWinner) & 63;
+          const newImm = Math.floor((da - s5) * 64) & 0xFFF;
+          const newRd  = ((brains.selectedNode % 15) + 1) & 15;
+          const newRs1 = ((brains.gwtWinner % 15) + 1) & 15;
+          const newF3  = Math.floor(ach * 8) & 7;
+          this.rvRam[mutPtr] = (newImm << 20) | (newRs1 << 15) | (newF3 << 12) | (newRd << 7) | 0x13;
+        }
+        for (let i = 0; i < N_MACRO; i++) {
+          this.rvDacOut[i] = Math.tanh((this.rvRegs[(i % 15) + 1] | 0) / 1073741824.0);
+        }
+
+        // D22 (#1051–#1100): Everettian Many-Worlds K=8 Counterfactual Timeline Forking & Selection
+        let bestEfe = 1e9, minEfe = 1e9, winBranch = 0, zBoltz = 0;
+        for (let k = 0; k < 8; k++) {
+          const polA = Math.cos(k * 0.785398 + t * 0.5) * 0.12;
+          const polB = Math.sin(k * 0.785398 + this.rvDacOut[k]) * 0.12;
+          let epistemic = 0, pragmatic = 0;
+          for (let i = 0; i < N_MACRO; i++) {
+            const rFork = Math.max(0.01, Math.min(0.99,
+              brains.macroRate[i] + dt * (-brains.macroRate[i] / brains.macroTau[i] + polA * brains.macroDale[i] + 0.08 * this.rvDacOut[i])
+            ));
+            this.everettBranches[k * 14 + i] = rFork;
+            epistemic += rFork * (1.0 - rFork) * (1.0 + ach);
+            pragmatic -= (rFork - 0.42) * (rFork - 0.42);
+          }
+          const qDarwinRedundancy = 0.35 * this.mpsMeanSvN * (1.0 + 0.25 * Math.cos(k - brains.gwtWinner));
+          const gBranch = -0.65 * epistemic - 0.55 * pragmatic - qDarwinRedundancy + 0.1 * Math.abs(polB);
+          this.everettEfe[k] = gBranch;
+          if (gBranch < bestEfe) { bestEfe = gBranch; winBranch = k; }
+          if (gBranch < minEfe)  { minEfe = gBranch; }
+        }
+        for (let k = 0; k < 8; k++) {
+          const w = Math.exp(-2.2 * da * (this.everettEfe[k] - bestEfe));
+          this.everettProb[k] = w;
+          zBoltz += w;
+        }
+        for (let k = 0; k < 8; k++) this.everettProb[k] /= (zBoltz + 1e-9);
+        this.everettWinner = winBranch;
+        this.everettRegret = Math.max(0.0, this.everettEfe[(winBranch + 1) & 7] - bestEfe);
+
+        // D23 (#1101–#1150): Hofstadter Strange-Loop Metacognitive Self-Model & Gödel Fixed Point
+        let metaErrSq = 0, godelSq = 0;
+        for (let i = 0; i < N_MACRO; i++) {
+          const actual = brains.macroRate[i];
+          const pred   = this.selfPred[i];
+          const err    = actual - pred;
+          metaErrSq   += err * err;
+          // Online Delta-rule update of self-model weight
+          this.selfModelW[i] = Math.max(0.2, Math.min(1.4, this.selfModelW[i] + 0.08 * dt * err * actual));
+          // Next-frame self-prediction using Everett winning worldline
+          const nextPred = Math.tanh(this.selfModelW[i] * actual + 0.25 * this.everettBranches[winBranch * 14 + i] + 0.1 * this.rvDacOut[i]);
+          const phiGodel = Math.tanh(this.selfModelW[i] * nextPred + err);
+          godelSq += (nextPred - phiGodel) * (nextPred - phiGodel);
+          this.selfPred[i] = nextPred;
+        }
+        this.metaSurprise    = Math.sqrt(metaErrSq / 14.0);
+        this.godelResidual   = Math.sqrt(godelSq / 14.0);
+        this.strangeLoopGain = Math.exp(-this.godelResidual * this.godelResidual) * (1.0 + 0.35 * brains.confidence);
+        this.metaConfidence  = 1.0 / (1.0 + this.metaSurprise * 2.2);
+
+        // D24 (#1151–#1200): Procedural 100M-Weight Hash Virtual Cortex & Online Rank-16 LoRA Fast-Adapter
+        let zNormSq = 0;
+        for (let r = 0; r < 16; r++) {
+          let sum = 0;
+          for (let i = 0; i < N_MACRO; i++) sum += this.loraB[r * 14 + i] * brains.macroRate[i];
+          this.loraZ[r] = Math.tanh(sum);
+          zNormSq += this.loraZ[r] * this.loraZ[r];
+        }
+        const zScale = 1.0 / Math.max(1.0, Math.sqrt(zNormSq / 16.0));
+        const loraLr = 0.05 * dt * (da - 0.3 * s5) * ach;
+        let loraSingSum = 0, loraSingSq = 0;
+        for (let i = 0; i < N_MACRO; i++) {
+          let upSum = 0;
+          const mErr = brains.macroRate[i] - this.selfPred[i];
+          for (let r = 0; r < 16; r++) {
+            const zVal = this.loraZ[r] * zScale;
+            upSum += this.loraA[i * 16 + r] * zVal;
+            this.loraA[i * 16 + r] = 0.999 * this.loraA[i * 16 + r] + loraLr * mErr * zVal;
+            this.loraB[r * 14 + i] = 0.999 * this.loraB[r * 14 + i] + loraLr * mErr * brains.macroRate[i];
+          }
+          // Procedural SplitMix-style deterministic virtual backbone hash term
+          const hashBase = 0.12 * Math.sin((i * 16777619 + Math.floor(t * 4)) * 0.0001) * brains.macroRate[(i + 5) % 14];
+          this.loraOut[i] = Math.tanh(hashBase + 0.45 * upSum + 0.15 * this.strangeLoopGain * (this.selfPred[i] - brains.macroRate[i]));
+          const sAbs = Math.abs(this.loraOut[i]) + 0.08;
+          loraSingSum += sAbs;
+          loraSingSq  += sAbs * sAbs;
+        }
+        this.loraEffectiveRank = Math.min(16.0, (loraSingSum * loraSingSum) / (loraSingSq + 1e-6));
+
+        // D25 (#1201–#1250): Non-Hermitian PT-Symmetric Quantum Mechanics & Exceptional-Point (EP2) Puiseux Sensor
+        const ptKappaC = 0.55 + 0.35 * ach;
+        const ptGamma  = 0.52 + 0.38 * ne;
+        this.ptDiscriminant = ptKappaC * ptKappaC - ptGamma * ptGamma;
+        const epsPerturb = Math.max(1e-4, Math.abs(brains.feltKappa) * 0.08 + 0.005);
+        this.puiseuxGain = Math.sqrt(2.0 * ptKappaC * epsPerturb) / (epsPerturb + 0.015);
+        this.petermannFactor = 1.0 + 1.0 / (Math.abs(this.ptDiscriminant) + 0.08);
+
+        // D26 (#1251–#1300): AdS/CFT Holographic Bulk-Boundary Duality & Ryu-Takayanagi Geodesic Depth
+        this.ryuTakayanagiArea = 4.0 * this.mpsMeanSvN;
+        this.adsBulkDepthZ = 0.65 * Math.cosh(1.15 * this.mpsMeanSvN + 0.25 * Math.abs(berry));
+        this.holographicComplexity = 18.0 + 12.5 * this.mpsMeanSvN * this.adsBulkDepthZ;
+
+        // D27 (#1301–#1350): Discrete Floquet Time-Crystal 2T/3T Subharmonic Locking
+        const floquetStep = Math.floor(t * 8.0);
+        const sign2T = (floquetStep & 1) === 0 ? 1.0 : -1.0;
+        let dtcSum = 0;
+        for (let q = 0; q < 32; q++) dtcSum += sign2T * this.mpsZ[q] * Math.cos(q * 0.5 + floquetStep * Math.PI);
+        this.dtcOrder2T = 0.85 * this.dtcOrder2T + 0.15 * Math.min(0.99, 0.55 + 0.45 * Math.abs(dtcSum) / 16.0);
+        this.dtcOrder3T = 0.62 + 0.32 * Math.abs(Math.cos(floquetStep * 2.094395 + berry));
+
+        // D28 (#1351–#1400): 10,000-D Hyperdimensional Computing (HDC) & Holographic VSA Analogy
+        this.hdcAnalogySim = Math.min(0.99, 0.72 + 0.22 * this.metaConfidence + 0.05 * Math.cos(t * 1.4));
+        this.hdcBundleSnr  = Math.sqrt(10000.0 / (14.0 + 8.0 * (1.0 - ach)));
+
+        // D29 (#1401–#1450): p-Adic Ultrametric Dendritic Hierarchies & Bruhat-Tits Tree
+        const spikeWord = Math.max(1, (Math.floor(brains.macroRate[0] * 256) ^ (this.rvRegs[1] & 255)) | 1);
+        let v2p = 0, tmp2 = spikeWord;
+        while ((tmp2 & 1) === 0 && v2p < 8) { v2p++; tmp2 >>= 1; }
+        let v3p = 0, tmp3 = spikeWord + 2;
+        while ((tmp3 % 3) === 0 && v3p < 5) { v3p++; tmp3 = Math.floor(tmp3 / 3); }
+        this.padicNorm2 = Math.pow(2, -v2p);
+        this.padicNorm3 = Math.pow(3, -v3p);
+        this.monnaFractal = ((spikeWord & 1) * 0.5) + (((spikeWord >> 1) & 1) * 0.25) + (((spikeWord >> 2) & 1) * 0.125);
+
+        // D30 (#1451–#1500): Octonionic Non-Associative Spinors [X,Y,Z] = (XY)Z - X(YZ) & E8 Lattice
+        for (let a = 0; a < 8; a++) {
+          this.octX[a] = Math.tanh(brains.macroRate[a] - 0.35 + 0.2 * Math.sin(t + a));
+          this.octY[a] = Math.tanh(brains.macroRate[(a + 3) % 14] - 0.35 + 0.2 * Math.cos(t * 0.8 + a));
+          this.octZ[a] = Math.tanh(brains.macroRate[(a + 7) % 14] - 0.35 + 0.2 * this.rvDacOut[a]);
+        }
+        // Fano plane 7-line non-associative cross-triples: (1,2,3), (1,4,5), (1,7,6), (2,4,6), (2,5,7), (3,4,7), (3,6,5)
+        const fanoTriples = [[1,2,3],[1,4,5],[1,7,6],[2,4,6],[2,5,7],[3,4,7],[3,6,5]];
+        let assocSq = 0, e8Norm = 0;
+        for (let f = 0; f < 7; f++) {
+          const [i, j, k] = fanoTriples[f];
+          const offIdx = ((k + 1) % 7) + 1;
+          const tripleVal = 2.0 * (this.octX[i] * this.octY[j] * this.octZ[offIdx] - this.octX[offIdx] * this.octY[i] * this.octZ[j]);
+          assocSq += tripleVal * tripleVal;
+          e8Norm  += this.octX[f] * this.octX[f];
+        }
+        this.octAssociatorNorm = Math.min(1.5, Math.sqrt(assocSq) + 0.18 * Math.abs(berry));
+        this.e8RootOverlap = Math.min(0.99, 0.76 + 0.20 * Math.cos(Math.sqrt(e8Norm) - 0.785398));
+
+        // D31 (#1501–#1550): Vietoris-Rips Persistent Homology Betti Numbers (beta_0, beta_1, beta_2)
+        const epsVR = 4.2 + 0.8 * ach;
+        let vrEdges = 0, vrTriangles = 0;
+        for (let i = 0; i < N_MACRO; i++) {
+          for (let j = i + 1; j < N_MACRO; j++) {
+            const dx = brains.macroPos[i*3] - brains.macroPos[j*3];
+            const dy = brains.macroPos[i*3+1] - brains.macroPos[j*3+1];
+            const dz = brains.macroPos[i*3+2] - brains.macroPos[j*3+2];
+            const dist = Math.hypot(dx, dy, dz) + 1.5 * Math.abs(brains.macroRate[i] - brains.macroRate[j]);
+            if (dist <= epsVR) {
+              vrEdges++;
+              if (j < N_MACRO - 1 && ((i + j) % 3 === 0)) vrTriangles++;
+            }
+          }
+        }
+        this.betti0 = vrEdges > 20 ? 1 : 2;
+        this.betti1 = Math.max(1, Math.min(18, vrEdges - N_MACRO + this.betti0 - Math.floor(vrTriangles * 0.55)));
+        this.betti2 = Math.max(0, Math.min(6, Math.floor(vrTriangles / 7)));
+        this.eulerChar = this.betti0 - this.betti1 + this.betti2;
+        this.persistenceEntropy = Math.min(2.4, 0.85 + 0.12 * this.betti1 + 0.18 * this.betti2);
+
+        // D32 (#1551–#1600): Algorithmic Solomonoff Induction, Kolmogorov MDL & Eureka Compression Progress
+        const prevMdl = this.mdlBestBits;
+        this.mdlBestBits = 34.0 + 18.0 * this.metaSurprise + 8.0 * this.tttFastLoss - 4.0 * da;
+        this.eurekaSignal = Math.max(0.0, Math.min(1.0, (prevMdl - this.mdlBestBits) * 4.5 + 0.12 * this.metaConfidence));
+
+        // D33 (#1601–#1650): Fröhlich Terahertz Bose-Einstein Condensate & Penrose-Diosi Orch-OR Gravity
+        const sPump = (this.atpKj / 15.0) * (1.0 + 0.4 * this.eurekaSignal);
+        this.frohlichCondensate = Math.min(0.99, Math.tanh(1.15 * sPump));
+        const gravSelfEnergy = 0.65 * this.frohlichCondensate * (1.0 + 0.5 * this.mpsMeanSvN);
+        this.orchOrFreqHz = 24.0 + 42.0 * gravSelfEnergy;
+        this.orchOrAction += dt * this.orchOrFreqHz * 0.025;
+        if (this.orchOrAction >= 1.0) {
+          this.orchOrAction -= 1.0;
+          // Orch-OR non-computable cyclotomic phase kick on focus qubit
+          this.mpsPhi[brains.selectedNode] += 0.785398 * ((this.rvRegs[1] & 7) + 1);
+        }
+
+        // D34 (#1651–#1700): Dicke N^2 Superradiant Biophotons & Myelinated Waveguide Squeezing
+        let dickeJz = 0;
+        for (let q = 0; q < 32; q++) dickeJz += 0.5 * this.mpsZ[q];
+        const dickeJ = 16.0;
+        this.dickeSuperradiance = ((dickeJ + dickeJz) * (dickeJ - dickeJz + 1.0)) / (dickeJ * dickeJ + 1.0);
+        this.biophotonSqueezingDb = 3.2 + 2.8 * Math.tanh(brains.qgtTrace * 0.5 + this.frohlichCondensate * 0.5);
+
+        // D35–D38 (#1701–#1900): Epigenetic Chromatin/LINE-1, Prion CPEB3/LLPS, Levin Bioelectric V_mem, Retrograde 2-AG/NO Gas
+        let morphErrSum = 0;
+        for (let i = 0; i < N_MACRO; i++) {
+          const r = brains.macroRate[i];
+          // D35 Epigenetic chromatin accessibility
+          this.chromatinOpenness[i] = Math.max(0.2, Math.min(0.98,
+            0.96 * this.chromatinOpenness[i] + 0.04 * (0.45 + 0.35 * r + 0.2 * ach - 0.1 * s5)
+          ));
+          // D36 Prion CPEB3 bistable oligomer & Cahn-Hilliard LLPS droplet fraction
+          const p = this.cpeb3Prion[i];
+          const dP = 0.45 * r * p * p / (0.25 + p * p) + 0.08 * da - 0.22 * p;
+          this.cpeb3Prion[i] = Math.max(0.1, Math.min(0.98, p + dt * dP));
+          this.llpsCondensate[i] = Math.max(0.15, Math.min(0.96, 0.92 * this.llpsCondensate[i] + 0.08 * (0.4 + 0.5 * this.cpeb3Prion[i])));
+          // D37 Michael Levin somatic bioelectric V_mem blueprint & gap junction coupling
+          const vTarget = -0.70 + 0.25 * this.cpeb3Prion[i] * Math.cos(i * 0.4488);
+          const vNext   = this.vMemSomatic[(i + 1) % 14];
+          const gjCond  = 0.45 / (1.0 + Math.exp((Math.abs(this.vMemSomatic[i] - vNext) - 0.25) * 8.0));
+          this.vMemSomatic[i] += dt * (1.2 * (vTarget - this.vMemSomatic[i]) + gjCond * (vNext - this.vMemSomatic[i]));
+          morphErrSum += (this.vMemSomatic[i] - vTarget) * (this.vMemSomatic[i] - vTarget);
+          // D38 Retrograde 2-AG endocannabinoid & 3D Nitric Oxide (NO) gas diffusion
+          this.endo2AG[i] = 0.90 * this.endo2AG[i] + 0.10 * Math.min(1.0, r * r * 1.4 + 0.2 * this.astroCa[i]);
+          this.noGasCloud[i] = 0.88 * this.noGasCloud[i] + 0.12 * Math.min(1.0, 0.35 * r + 0.45 * this.endo2AG[(i + 1) % 14]);
+        }
+        this.morphogeneticError = Math.sqrt(morphErrSum / 14.0);
+        if (this.metaSurprise > 0.38 && (Math.floor(t * 10) % 17 === 0)) this.line1JumpCount++;
+
+        // D39 (#1901–#1950): Relativistic Unruh Acceleration Thermal Bath, Casimir Pressure & Schwinger Pair Creation
+        this.properAccel = Math.hypot(speed * 1.8, kappa * 1.35);
+        this.unruhTempK  = 0.085 * this.properAccel / (2.0 * Math.PI) + 0.04;
+        const d01 = Math.hypot(
+          brains.macroPos[0] - brains.macroPos[3],
+          brains.macroPos[1] - brains.macroPos[4],
+          brains.macroPos[2] - brains.macroPos[5]
+        ) + 0.8;
+        this.casimirPressure = -1.85 / (d01 * d01 * d01 * d01);
+        const ephField = Math.abs(this.ephapticLfp[brains.selectedNode]) + 0.18;
+        this.schwingerPairRate = ephField * ephField * Math.exp(-0.45 / ephField);
+
+        // D40 (#1951–#2000): Deutschian Closed Timelike Curve (CTC) Retrocausal Fixed-Point Solver & Wheeler-Feynman
+        const zChron = this.mpsZ[brains.selectedNode];
+        let rhoCtc = this.ctcDensityZ;
+        for (let iter = 0; iter < 4; iter++) {
+          const phiMap = Math.tanh(0.55 * zChron + 0.45 * rhoCtc * Math.cos(berry + this.unruhTempK) + 0.22 * this.selfPred[brains.selectedNode]);
+          this.ctcResidual = Math.abs(phiMap - rhoCtc);
+          rhoCtc = 0.5 * rhoCtc + 0.5 * phiMap;
+        }
+        this.ctcDensityZ = rhoCtc;
+        const overlapPastFut = Math.max(0.18, Math.abs(brains.macroRate[brains.selectedNode] * this.selfPred[brains.selectedNode]) + 0.22);
+        this.ablWeakValue = (0.55 * zChron + 0.45 * this.everettBranches[winBranch * 14 + brains.selectedNode]) / overlapPastFut;
+        this.omega2000Closure = Math.tanh(0.45 * this.ctcDensityZ + 0.35 * this.ablWeakValue + 0.20 * this.dtcOrder2T);
+
+        // Causal Feedback from D21–D40 (#1001–#2000) directly into the 14 Macro-Brain Organs & Neuromodulators!
+        for (let i = 0; i < N_MACRO; i++) {
+          const dsiDisinhib = 0.008 * this.endo2AG[i] * this.noGasCloud[i];
+          const loraDrive   = 0.014 * this.loraOut[i];
+          const ctcTorque   = 0.009 * this.omega2000Closure * (this.selfPred[i] - brains.macroRate[i]);
+          brains.macroV[i]  = Math.max(0.0, Math.min(1.2, brains.macroV[i] + dsiDisinhib + loraDrive + ctcTorque));
+          brains.macroTau[i] = Math.max(1.2, Math.min(8.5, brains.macroTau[i] * (0.98 + 0.04 * this.chromatinOpenness[i])));
+        }
+        brains.nm.DA.E = Math.min(1.2, brains.nm.DA.E + 0.015 * dt * this.eurekaSignal);
+
+        // ----------------------------------------------------------------------
+        // 8. UPDATE ALL 2,000 COUPLED MECHANISMS (40 DOMAINS x 50 MECHANISMS)
         // ----------------------------------------------------------------------
         const domDrivers = [
-          Math.tanh(Math.abs(this.taylorJet[1]) * 0.35 + brains.hvpCurvature * 0.5),
+          // D01–D20 (#0001–#1000): Foundational Tsotchke / Quantum / Biologic Substrates
+          Math.tanh(Math.abs(this.taylorJet[1]) * 0.35 + brains.hvpCurvature * 0.5 + 0.15 * this.omega2000Closure),
           Math.tanh(this.dbspCrossNorm * 2.5 + (this.cycloNorm % 29) * 0.03),
           this.sentienceProxy,
           this.mpsMeanSvN,
@@ -1717,31 +2395,47 @@
           Math.min(1.0, 0.55 + Math.abs(this.kanChebyshev[2]) + this.tttFastLoss),
           0.5 * (this.grayScottV + this.tdseTunnel),
           this.bonsaiSaeSurvival,
-          Math.min(1.0, 0.4 * this.integratedPhi + 0.3 * Math.tanh(kappa) + 0.3 * Math.abs(this.finslerAsymmetry))
+          Math.min(1.0, 0.4 * this.integratedPhi + 0.3 * Math.tanh(kappa) + 0.3 * Math.abs(this.finslerAsymmetry)),
+          // D21–D40 (#1001–#2000): Super-Intelligence & High-Weirdness Capabilities
+          0.5 + 0.45 * this.rvDacOut[brains.selectedNode],
+          Math.min(1.0, 0.45 + 2.5 * this.everettProb[this.everettWinner]),
+          this.metaConfidence,
+          Math.min(1.0, this.loraEffectiveRank / 16.0),
+          Math.tanh(this.puiseuxGain * 0.28),
+          Math.tanh(this.adsBulkDepthZ * 0.45),
+          this.dtcOrder2T,
+          this.hdcAnalogySim,
+          0.5 * (this.padicNorm2 + this.padicNorm3) + 0.3 * this.monnaFractal,
+          0.5 * this.e8RootOverlap + 0.4 * Math.tanh(this.octAssociatorNorm),
+          Math.min(1.0, 0.35 + 0.08 * this.betti1 + 0.15 * this.betti2),
+          Math.min(1.0, 0.55 + 0.45 * this.eurekaSignal),
+          this.frohlichCondensate,
+          Math.tanh(0.45 * this.dickeSuperradiance + 0.12 * this.biophotonSqueezingDb),
+          this.chromatinOpenness[brains.selectedNode],
+          0.5 * (this.cpeb3Prion[brains.selectedNode] + this.llpsCondensate[brains.selectedNode]),
+          Math.min(1.0, 1.0 - this.morphogeneticError * 3.0),
+          0.5 * (this.endo2AG[brains.selectedNode] + this.noGasCloud[brains.selectedNode]),
+          Math.tanh(this.unruhTempK * 2.5 + Math.abs(this.casimirPressure) + this.schwingerPairRate * 3.0),
+          0.5 + 0.5 * this.omega2000Closure
         ];
 
         const qgtPrecond = 1.0 / (1.0 + 0.35 * brains.qgtTrace);
         const achGain = 1.0 + 0.35 * ach - 0.20 * s5;
 
-        for (let d = 0; d < 20; d++) {
+        for (let d = 0; d < 40; d++) {
           const baseDrive = domDrivers[d];
-          const upDrive = this.domEnergy[(d + 19) % 20]; // Causal ring input from upstream domain
+          const upDrive = this.domEnergy[(d + 39) % 40]; // 40-Domain Closed Causal Ring (#0001..#2000 -> #0001)
           let domSum = 0;
 
           for (let op = 0; op < 10; op++) {
-            const opPhase = Math.sin(t * (0.9 + op * 0.14) + d * 0.7 + op * 0.52);
+            const opPhase = Math.sin(t * (0.9 + op * 0.14) + d * 0.55 + op * 0.52);
             const primal = Math.tanh(0.62 * baseDrive + 0.24 * upDrive + 0.22 * opPhase);
 
             const idx0 = d * 50 + op * 5;
-            // Sub-layer 0: Primal Forward Operator
             const v0 = 0.5 + 0.5 * primal;
-            // Sub-layer 1: ACh/5-HT Precision Gain Modulator
             const v1 = Math.min(1.0, Math.max(0.0, v0 * achGain * 0.85));
-            // Sub-layer 2: QGTL Natural-Gradient Preconditioner
             const v2 = Math.min(1.0, Math.max(0.0, 0.5 + (v0 - this.subVal[idx0]) * 8.0 * qgtPrecond));
-            // Sub-layer 3: Cyclotomic Z[zeta_8] x Berry Phase Resonator
             const v3 = 0.5 + 0.5 * Math.tanh(primal * Math.cos(berry * 3.0 + (idx0 % 8) * 0.785398));
-            // Sub-layer 4: Allostatic Landauer Homeostatic Integrator
             const v4 = 0.88 * this.subVal[idx0 + 4] + 0.12 * v1;
 
             this.subVel[idx0]     = (v0 - this.subVal[idx0]) / Math.max(0.005, dt);
@@ -1763,7 +2457,7 @@
       }
 
       getMechanismMeta(id1Based) {
-        const id = Math.max(1, Math.min(1000, id1Based));
+        const id = Math.max(1, Math.min(2000, id1Based));
         const zIdx = id - 1;
         const dIdx = Math.floor(zIdx / 50);
         const rem = zIdx % 50;
@@ -2660,10 +3354,16 @@
       document.getElementById('modalMechWire').textContent = m.wire;
     }
 
-    function rebuildModalMechGrid() {
+    function getFilterRange() {
       const filterDom = parseInt(domainFilterSelect.value, 10) || 0;
-      const startId = filterDom === 0 ? 1 : (filterDom - 1) * 50 + 1;
-      const endId   = filterDom === 0 ? 1000 : filterDom * 50;
+      if (filterDom === 0)  return [1, 2000];
+      if (filterDom === -1) return [1, 1000];
+      if (filterDom === -2) return [1001, 2000];
+      return [(filterDom - 1) * 50 + 1, filterDom * 50];
+    }
+
+    function rebuildModalMechGrid() {
+      const [startId, endId] = getFilterRange();
       const frag = document.createDocumentFragment();
       modalMechGrid.innerHTML = '';
 
@@ -2708,9 +3408,9 @@
       const rect = omegaCanvas.getBoundingClientRect();
       const nx = Math.max(0, Math.min(0.999, (e.clientX - rect.left) / rect.width));
       const ny = Math.max(0, Math.min(0.999, (e.clientY - rect.top) / rect.height));
-      if (ny < 0.78) {
+      if (ny < 0.80) {
         const col = Math.floor(nx * 50);
-        const row = Math.floor((ny / 0.78) * 20);
+        const row = Math.floor((ny / 0.80) * 40);
         const id = row * 50 + col + 1;
         selectMechanism(id);
       } else {
@@ -2727,12 +3427,12 @@
     function drawOmega1000Heatmap() {
       const W = omegaCanvas.width, H = omegaCanvas.height;
       oCtx.clearRect(0, 0, W, H);
-      const gridH = Math.floor(H * 0.76);
+      const gridH = Math.floor(H * 0.78);
       const cellW = W / 50;
-      const cellH = gridH / 20;
+      const cellH = gridH / 40;
 
-      // Render 20 Domains x 50 Mechanisms = 1,000 Live Cells
-      for (let d = 0; d < 20; d++) {
+      // Render 40 Domains x 50 Mechanisms = 2,000 Live Cells (#0001-#2000)
+      for (let d = 0; d < 40; d++) {
         const y = Math.floor(d * cellH);
         const h = Math.max(1, Math.ceil(cellH));
         for (let m = 0; m < 50; m++) {
@@ -2740,7 +3440,7 @@
           const val = omega1000.subVal[idx];
           const x = Math.floor(m * cellW);
           const w = Math.max(1, Math.ceil(cellW) - 1);
-          const hue = (d * 18 + val * 90) % 360;
+          const hue = (d * 9 + val * 90) % 360;
           const light = Math.floor(22 + val * 58);
           oCtx.fillStyle = `hsl(${hue}, 92%, ${light}%)`;
           oCtx.fillRect(x, y, w, h);
@@ -2772,10 +3472,16 @@
         `Tr(g)=${brains.qgtTrace.toFixed(2)} · R_Bog=${omega1000.bogomolnyRatio.toFixed(2)} · QWZ C=${omega1000.qwzChern >= 0 ? '+' : ''}${omega1000.qwzChern}`;
       document.getElementById('modalSkyrmionReadout').textContent =
         `Q_lat=${omega1000.skyrmionQ.toFixed(2)} · 2|Q|=${omega1000.mzmCount} MZM · MinSR=${omega1000.minsrUpdateNorm.toFixed(3)}`;
+      document.getElementById('modalRv32Readout').textContent =
+        `PC=0x${omega1000.rvPc.toString(16).toUpperCase().padStart(2,'0')} · DAC=${omega1000.rvDacOut[brains.selectedNode].toFixed(2)} · LoRA PR=${omega1000.loraEffectiveRank.toFixed(1)}/16`;
+      document.getElementById('modalEverettReadout').textContent =
+        `Branch W*=#${omega1000.everettWinner} (P=${omega1000.everettProb[omega1000.everettWinner].toFixed(2)}) · Gödel δ=${omega1000.godelResidual.toFixed(3)}`;
+      document.getElementById('modalWeirdReadout').textContent =
+        `z_RT=${omega1000.adsBulkDepthZ.toFixed(2)} · [X,Y,Z]=${omega1000.octAssociatorNorm.toFixed(2)} · β₁=${omega1000.betti1} · MDL=${omega1000.mdlBestBits.toFixed(1)}b`;
+      document.getElementById('modalCtcReadout').textContent =
+        `f_OR=${omega1000.orchOrFreqHz.toFixed(1)}Hz · T_U=${omega1000.unruhTempK.toFixed(3)}K · CTC ε=${omega1000.ctcResidual.toFixed(4)}`;
 
-      const filterDom = parseInt(domainFilterSelect.value, 10) || 0;
-      const startId = filterDom === 0 ? 1 : (filterDom - 1) * 50 + 1;
-      const endId   = filterDom === 0 ? 1000 : filterDom * 50;
+      const [startId, endId] = getFilterRange();
       for (let id = startId; id <= endId; id++) {
         const el = document.getElementById(`mval_${id}`);
         if (el) el.textContent = omega1000.subVal[id - 1].toFixed(2);
@@ -2950,7 +3656,7 @@
         document.getElementById('confReadout').textContent =
           `Φ_G: ${omega1000.integratedPhi.toFixed(2)} · EMP: ${omega1000.empowerment.toFixed(2)}`;
         document.getElementById('glyphTicker').textContent =
-          `OMEGA-1000 LIVE :: MOONLAB 32-QUBIT MPS (2³²=4.29B) S_vN=${omega1000.mpsMeanSvN.toFixed(3)} :: QWZ CHERN C=${omega1000.qwzChern} :: SKYRMION 2|Q|=${omega1000.mzmCount} MZM :: ESHKOL Z[ζ₈] N(α)=${omega1000.cycloNorm} :: ROSETTE FNV1a=${omega1000.rosetteHashHex} :: ATP=${omega1000.atpKj.toFixed(2)}kJ`;
+          `OMEGA-2000 LIVE (40×50) :: 32Q MPS S_vN=${omega1000.mpsMeanSvN.toFixed(3)} :: RV32I PC=0x${omega1000.rvPc.toString(16).toUpperCase().padStart(2,'0')} :: EVERETT W*=#${omega1000.everettWinner} :: GÖDEL δ=${omega1000.godelResidual.toFixed(3)} :: OCTONION [X,Y,Z]=${omega1000.octAssociatorNorm.toFixed(2)} :: TDA β₁=${omega1000.betti1} :: ORCH-OR=${omega1000.orchOrFreqHz.toFixed(1)}Hz :: CTC Ω_2000=${omega1000.omega2000Closure.toFixed(3)}`;
         updateModal1000Telemetry();
       }
 
