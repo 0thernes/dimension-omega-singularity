@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIMENSION Ω v5.1 // OMEGA-3000 AUDIT-HARDENED A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · Exact 1st-Law Ledger · Causal Lesion Verified)</title>
+  <title>DIMENSION Ω v5.2 // OMEGA-3000 DEEP-AUDITED A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · Exact 1st-Law Ledger · Causal Lesion Verified)</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     * { box-sizing: border-box; user-select: none; }
@@ -100,7 +100,7 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.1 // OMEGA-3000 AUDIT-HARDENED A-LIFE CREATURE & CONSCIOUSNESS ORGANISM</span>
+          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.2 // OMEGA-3000 DEEP-AUDITED A-LIFE CREATURE & CONSCIOUSNESS ORGANISM</span>
           <span id="lockBadge" class="font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">DRAG OR CLICK TO FLY</span>
         </div>
         <div class="font-mono-tech text-xs text-slate-300">
@@ -828,8 +828,10 @@
           S5:  { E: 0.40, P: 1.0 }
         };
 
-        this.macroPos = new Float32Array(N_MACRO * 3);
-        this.macroVel = new Float32Array(N_MACRO * 3);
+        this.macroPos     = new Float32Array(N_MACRO * 3);
+        this.macroBasePos = new Float32Array(N_MACRO * 3);
+        this.macroVel     = new Float32Array(N_MACRO * 3);
+        this.stepCount    = 0;
         this.macroV   = new Float32Array(N_MACRO);
         this.macroRate= new Float32Array(N_MACRO);
         this.macroSpk = new Float32Array(N_MACRO);
@@ -866,7 +868,12 @@
           this.Pm[i] = (qrng.uniform() - 0.5) * 2.0 / Math.sqrt(N_MACRO);
         }
         this.rateMu = new Float32Array(N_MACRO).fill(0.25);
-        this.latentBuf = [];
+        this.latentRing = [
+          new Float32Array(this.K_LATENT),
+          new Float32Array(this.K_LATENT),
+          new Float32Array(this.K_LATENT)
+        ];
+        this.latentCount = 0;
         this.kappa = 0.42;
         this.kMean = 0.40;
         this.kSD   = 0.18;
@@ -885,9 +892,12 @@
           const phi = Math.acos(1 - 2 * (i + 0.5) / N_MACRO);
           const theta = Math.PI * (1 + Math.sqrt(5)) * i;
           const rad = 3.8 + 1.1 * Math.sin(i * 1.7);
-          this.macroPos[i * 3 + 0] = rad * Math.sin(phi) * Math.cos(theta);
-          this.macroPos[i * 3 + 1] = rad * Math.cos(phi) * 0.82;
-          this.macroPos[i * 3 + 2] = rad * Math.sin(phi) * Math.sin(theta);
+          const px = rad * Math.sin(phi) * Math.cos(theta);
+          const py = rad * Math.cos(phi) * 0.82;
+          const pz = rad * Math.sin(phi) * Math.sin(theta);
+          this.macroPos[i * 3 + 0] = px; this.macroBasePos[i * 3 + 0] = px;
+          this.macroPos[i * 3 + 1] = py; this.macroBasePos[i * 3 + 1] = py;
+          this.macroPos[i * 3 + 2] = pz; this.macroBasePos[i * 3 + 2] = pz;
           this.macroV[i] = 0.2 + 0.4 * qrng.uniform();
           this.macroRate[i] = 0.25 + 0.3 * qrng.uniform();
           this.macroDale[i] = MACRO_REGIONS[i].exc ? 1.0 : -1.25;
@@ -1042,16 +1052,20 @@
           this.microBloch[i] = this.microQ3[i].bloch0();
 
           const bx = this.microBloch[i][0];
-          this.macroPos[i * 3 + 0] += Math.sin(t * 0.9 + i * 1.1) * 0.004 * (1.0 + this.macroSpk[i]);
-          this.macroPos[i * 3 + 1] += Math.cos(t * 0.8 + i * 1.5 + this.berry01) * 0.004 * (1.0 + this.macroSpk[i]);
-          this.macroPos[i * 3 + 2] += Math.sin(t * 0.7 + i * 2.1 + bx) * 0.004 * (1.0 + this.macroSpk[i]);
+          // Levin Morphogenetic Homeostatic Restoring Force toward macroBasePos (prevents secular drift outside WebGL2 r < 6.15 shell!)
+          const ix = i * 3;
+          this.macroPos[ix + 0] += Math.sin(t * 0.9 + i * 1.1) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 0] - this.macroPos[ix + 0]);
+          this.macroPos[ix + 1] += Math.cos(t * 0.8 + i * 1.5 + this.berry01) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 1] - this.macroPos[ix + 1]);
+          this.macroPos[ix + 2] += Math.sin(t * 0.7 + i * 2.1 + bx) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 2] - this.macroPos[ix + 2]);
         }
 
         this.gwtWinner = winnerIdx;
         this.mpsEnergy = moonlabTensorContract(this.mesoH[0], this.mesoH[2]);
 
-        // 5. Compute Thought Curvature κ(t) in 6D Latent Manifold
-        const z = new Float32Array(this.K_LATENT);
+        // 5. Compute Thought Curvature κ(t) in 6D Latent Manifold (Zero-Allocation Ring Buffer!)
+        const slot = this.stepCount % 3;
+        const z = this.latentRing[slot];
+        z.fill(0.0);
         for (let i = 0; i < N_MACRO; i++) {
           const centered = this.macroRate[i] - this.rateMu[i];
           this.rateMu[i] += 0.01 * centered;
@@ -1059,10 +1073,12 @@
             z[k] += this.Pm[k * N_MACRO + i] * centered;
           }
         }
-        this.latentBuf.push(z);
-        if (this.latentBuf.length > 3) this.latentBuf.shift();
-        if (this.latentBuf.length === 3) {
-          const [a, b, c] = this.latentBuf;
+        this.stepCount++;
+        if (this.latentCount < 3) this.latentCount++;
+        if (this.latentCount === 3) {
+          const a = this.latentRing[(this.stepCount) % 3];
+          const b = this.latentRing[(this.stepCount + 1) % 3];
+          const c = this.latentRing[(this.stepCount + 2) % 3];
           let n1 = 0, n2 = 0, dot12 = 0;
           for (let k = 0; k < this.K_LATENT; k++) {
             const v1 = b[k] - a[k];
@@ -1093,7 +1109,8 @@
         this.efeFreeEnergy = -(this.confidence * 1.6 + 0.45 * this.mpsEnergy - 0.25 * Math.abs(this.feltKappa));
         this.hvpCurvature  = 0.65 + 0.35 * Math.tanh(this.qgtTrace * 0.5 + Math.abs(this.berry01));
 
-        if (Math.random() < 0.35) {
+        // Deterministic 20-Hz telemetry history & Tsotchke QRNG advancement (0 Math.random() calls!)
+        if ((this.stepCount % 3) === 0) {
           this.kappaHist.push(this.kappa);
           if (this.kappaHist.length > 90) this.kappaHist.shift();
           this.berryHist.push(Math.abs(this.berry01));
@@ -2275,12 +2292,31 @@
         this.peerTrust   = new Float32Array([0.72, 0.81, 0.65, 0.78]);
         this.tomKalmanPred = new Float32Array([2.0, 6.0, 10.0, 14.0]);
         this.tomKalmanErr  = 0.12;
+        // D53 & N91–N95: 32-Unit Recurrent SELF GRU Vector & Ship-of-Theseus Eigenform Identity Continuity
+        this.selfGru    = new Float32Array(32);
+        this.selfAnchor = new Float32Array(32);
+        for (let u = 0; u < 32; u++) {
+          const v = 0.45 + 0.35 * Math.cos(u * 0.3927);
+          this.selfGru[u]    = v;
+          this.selfAnchor[u] = v;
+        }
+        this.selfIdentityCorr = 0.985;
+        this.dbspExactErr = 0.0;
+        this.synapticTurnover = 0.0;
+        this.rebusWaves = 0;
         this.berryClockPhase = 0.0;
         this.selfSurgeryPrunes = 1;
         this.omega3000Closure = 0.88;
+        this.prevDomEnergy = new Float32Array(60).fill(0.52);
 
         for (let i = 0; i < 3000; i++) {
           this.subVal[i] = 0.35 + 0.3 * Math.sin(i * 0.17);
+        }
+        for (let d = 0; d < 60; d++) {
+          let s = 0;
+          for (let m = 0; m < 50; m++) s += this.subVal[d * 50 + m];
+          this.domEnergy[d] = s / 50.0;
+          this.prevDomEnergy[d] = this.domEnergy[d];
         }
       }
 
@@ -2348,8 +2384,9 @@
           const mesoDrive = brains.mesoH[macroIdx][q % N_MESO];
           const jCoupling = 0.35 * Math.sin(t * 1.1 + q * 0.45) + 0.45 * berry;
 
-          this.mpsTheta[q] += dt * (1.8 * rDrive + 0.9 * mesoDrive + 0.4 * ne);
-          this.mpsPhi[q]   += dt * (1.4 * da - 0.8 * s5 + jCoupling + 0.3 * kappa);
+          const TWO_PI = 2.0 * Math.PI;
+          this.mpsTheta[q] = (this.mpsTheta[q] + dt * (1.8 * rDrive + 0.9 * mesoDrive + 0.4 * ne)) % TWO_PI;
+          this.mpsPhi[q]   = (this.mpsPhi[q]   + dt * (1.4 * da - 0.8 * s5 + jCoupling + 0.3 * kappa)) % TWO_PI;
 
           const th = this.mpsTheta[q];
           const ph = this.mpsPhi[q];
@@ -2417,10 +2454,26 @@
         this.taylorJet[6] = Math.hypot(gamma * camPos[0], gamma * camPos[1], Math.sin(ph1) * Math.sin(ph2));
         this.taylorJet[7] = 0.5 * this.taylorJet[1] * this.taylorJet[1] - 0.5 * w2 * this.taylorJet[0] * this.taylorJet[0];
 
-        // DBSP Bilinear Cross-Term Delta(AB) = (dA)B + A(dB) + (dA)(dB)
-        const dA0 = 0.05 * Math.sin(t * 1.7) * da;
-        const dB0 = 0.05 * Math.cos(t * 1.3) * ach;
-        this.dbspCrossNorm = Math.hypot(dA0 * dB0 * 14.0, 0.12 * Math.abs(this.taylorJet[2]) * 0.1);
+        // DBSP Incremental 2x2 Stream Matrix Update: C_t = A_t * B_t via Delta(AB) = (dA)B + A(dB) + (dA)(dB)
+        const dA0 = 0.02 * Math.sin(t * 1.7) * da,  dA1 = -0.01 * Math.cos(t * 1.1) * ne;
+        const dB0 = 0.02 * Math.cos(t * 1.3) * ach, dB1 =  0.01 * Math.sin(t * 0.9) * s5;
+        const A0 = this.dbspA[0], A1 = this.dbspA[1], A2 = this.dbspA[2], A3 = this.dbspA[3];
+        const B0 = this.dbspB[0], B1 = this.dbspB[1], B2 = this.dbspB[2], B3 = this.dbspB[3];
+        // Initialize C = A * B on first step if C is zero
+        if (this.dbspC[0] === 0 && this.dbspC[3] === 0) {
+          this.dbspC[0] = A0*B0 + A1*B2; this.dbspC[1] = A0*B1 + A1*B3;
+          this.dbspC[2] = A2*B0 + A3*B2; this.dbspC[3] = A2*B1 + A3*B3;
+        }
+        // Incremental bilinear delta dC = (dA)B + A(dB) + (dA)(dB) on (0,0) entry
+        const dC00 = (dA0*B0 + dA1*B2) + (A0*dB0 + A1*dB1) + (dA0*dB0 + dA1*dB1);
+        const dC01 = (dA0*B1 + dA1*B3);
+        const dC10 = (A2*dB0 + A3*dB1);
+        this.dbspA[0] = A0 + dA0; this.dbspA[1] = A1 + dA1;
+        this.dbspB[0] = B0 + dB0; this.dbspB[2] = B2 + dB1;
+        this.dbspC[0] += dC00;    this.dbspC[1] += dC01;    this.dbspC[2] += dC10;
+        const exactC00 = this.dbspA[0]*this.dbspB[0] + this.dbspA[1]*this.dbspB[2];
+        this.dbspExactErr = Math.abs(this.dbspC[0] - exactC00);
+        this.dbspCrossNorm = Math.hypot(dC00 * 12.0, 0.012 * Math.abs(this.taylorJet[2]));
 
         // Cyclotomic Z[zeta_8]/(zeta_8^4 + 1) exact integer norm N(c) = A0^2 - 2*A1^2
         const a0 = 1 + (Math.floor(t * 2) % 3), a1 = 1, a2 = 0, a3 = -1;
@@ -2437,6 +2490,15 @@
         // 3. DOMAIN 03: ESHKOL CONSCIOUSNESS ENGINE (KB + FACTOR GRAPH + GWT)
         // ----------------------------------------------------------------------
         const surp = Math.min(1.0, Math.abs(brains.feltKappa) * 0.5);
+        // Live Eshkol KB Fact Assertions (kb-assert! / kb-query)
+        this.kbFacts[0] = Math.min(0.99, 0.70 + 0.25 * (this.atpKj / 16.0));         // (is:alive)
+        this.kbFacts[1] = Math.min(0.99, 0.65 + 0.30 * brains.confidence);           // (is:coherent)
+        this.kbFacts[2] = Math.min(0.99, 0.60 + 0.35 * this.mpsMeanSvN);             // (is:entangled)
+        this.kbFacts[3] = Math.min(0.99, 0.68 + 0.28 * (1.0 - surp));                // (is:homeostatic)
+        this.kbFacts[4] = Math.min(0.99, 0.62 + 0.32 * da);                          // (is:foraging)
+        this.kbFacts[5] = Math.min(0.99, 0.64 + 0.30 * ach);                         // (is:attending)
+        this.kbFacts[6] = Math.min(0.99, 0.66 + 0.28 * this.bodyContingency);        // (is:embodied)
+        this.kbFacts[7] = Math.min(0.99, 0.72 + 0.24 * this.selfIdentityCorr);       // (is:self-continuous)
         let bSum = 0;
         for (let i = 0; i < 8; i++) {
           const msg = surp * (0.5 + 0.5 * Math.sin(i + 6 * surp - 3 * brains.efeFreeEnergy));
@@ -2964,12 +3026,12 @@
         this.ledgerErrorRel = Math.abs(totalEnergyNow - this.E0_ledger) / (this.E0_ledger + 1e-9);
 
         // 3. D46: Borbely 2-Process Sleep (Process S Adenosine + Process C) & NREM/REM Dream Consolidation
-        this.processS = Math.max(0.15, Math.min(0.95, this.processS + dt * (this.sleepStage === 0 ? 0.032 : -0.065)));
+        this.processS = Math.max(0.18, Math.min(0.95, this.processS + dt * (this.sleepStage === 0 ? 0.058 : -0.045)));
         if (this.manualSleepOverride >= 0) {
           this.sleepStage = this.manualSleepOverride;
         } else {
-          const sleepDrive = this.processS - 0.28 * scnOut - 0.18 * this.orexin;
-          if (sleepDrive > 0.42) {
+          const sleepDrive = this.processS - 0.24 * scnOut - 0.16 * this.orexin;
+          if (sleepDrive > 0.48) {
             const uBrac = (t * 0.35) % 1.0;
             this.sleepStage = uBrac < 0.15 ? 1 : uBrac < 0.35 ? 2 : uBrac < 0.72 ? 3 : 4;
           } else {
@@ -3131,6 +3193,64 @@
           0.20 * this.omega2000Closure
         );
 
+        // 8. D53 & N91–N95: 32-Unit Recurrent SELF GRU Vector & Ship-of-Theseus Eigenform Identity Continuity
+        let dotSelf = 0, normCurr = 0, normAnch = 0;
+        const selfGate = this.lesions.self ? 0.0 : 1.0;
+        for (let u = 0; u < 32; u++) {
+          const drive = 0.45 * brains.macroRate[u % 14] + 0.25 * (0.5 + 0.5 * this.moodValence) + 0.30 * this.selfAnchor[u];
+          const zGate = 0.92 * selfGate;
+          this.selfGru[u] = selfGate * (zGate * this.selfGru[u] + (1.0 - zGate) * Math.tanh(drive));
+          dotSelf  += this.selfGru[u] * this.selfAnchor[u];
+          normCurr += this.selfGru[u] * this.selfGru[u];
+          normAnch += this.selfAnchor[u] * this.selfAnchor[u];
+        }
+        this.selfIdentityCorr = this.lesions.self ? 0.05 : (dotSelf / (Math.sqrt(normCurr * normAnch) + 1e-9));
+
+        // 9. N36–N40 Autonomous Self-Surgery & N71 5-HT2A REBUS Prior Flattening
+        if (this.metaSurprise > 0.035 && ((brains.stepCount % 90) === 0)) {
+          // Prune highest-error meso column in selected region and graft from neighbor column
+          const sel = brains.selectedNode;
+          const hVec = brains.mesoH[sel];
+          let worstM = 0, maxErr = -1;
+          for (let m = 0; m < N_MESO; m++) {
+            const err = Math.abs(brains.mesoElig[sel][m]);
+            if (err > maxErr) { maxErr = err; worstM = m; }
+          }
+          const donorM = (worstM + 1) % N_MESO;
+          hVec[worstM] = 0.5 * hVec[donorM];
+          brains.mesoElig[sel][worstM] = 0.0;
+          this.selfSurgeryPrunes++;
+        }
+        if ((this.hpaLocked || this.cortisol > 0.26 || this.processS > 0.42) && ((brains.stepCount % 75) === 0)) {
+          // N71 5-HT2A REBUS Prior Flattening: serotonergic wave relaxes rigid top-down priors & unlocks HPA
+          this.rebusWaves++;
+          this.cortisol = Math.max(0.18, this.cortisol * 0.94);
+          this.hpaLocked = false;
+        }
+
+        // 10. D13/D15/D24/D46: Live Dale-Preserving 3-Factor e-prop + SWR LoRA + Tononi SHY Connectome Plasticity on brains.W[i][j]
+        const epropLr = 0.004 * dt * (da - 0.38) * (this.lesions.rec ? 0.0 : 1.0);
+        const shyScale = this.sleepStage === 3 ? (1.0 - 0.003 * dt) : 1.0;
+        let wDeltaSum = 0;
+        for (let i = 0; i < N_MACRO; i++) {
+          const daleSign = brains.macroDale[i] >= 0 ? 1.0 : -1.0;
+          const preRate  = brains.macroRate[i];
+          for (let j = 0; j < N_MACRO; j++) {
+            if (i === j || brains.Reach[i][j] === 0) continue;
+            const postElig = brains.mesoElig[j][i % N_MESO];
+            const swrConsol = this.swrReplayActive * 0.002 * dt * this.loraOut[j] * preRate;
+            const dW = (epropLr * preRate * Math.abs(postElig) + swrConsol) * daleSign;
+            const oldW = brains.W[i][j];
+            // Enforce Dale's Law sign invariance: excitatory stays in [0.04, 1.25], inhibitory stays in [-1.50, -0.05]
+            const newW = daleSign > 0
+              ? Math.max(0.04, Math.min(1.25, oldW * shyScale + dW))
+              : Math.max(-1.50, Math.min(-0.05, oldW * shyScale + dW));
+            wDeltaSum += Math.abs(newW - oldW);
+            brains.W[i][j] = newW;
+          }
+        }
+        this.synapticTurnover += wDeltaSum;
+
         // Causal Feedback from D41–D60 (#2001–#3000) directly into the 14 Macro-Brain Organs & Neuromodulators!
         for (let i = 0; i < N_MACRO; i++) {
           const affectDrive = 0.010 * (this.moodValence * brains.macroDale[i] + 0.3 * this.emotions7.play);
@@ -3211,9 +3331,10 @@
         const qgtPrecond = 1.0 / (1.0 + 0.35 * brains.qgtTrace);
         const achGain = 1.0 + 0.35 * ach - 0.20 * s5;
 
+        for (let d = 0; d < 60; d++) this.prevDomEnergy[d] = this.domEnergy[d];
         for (let d = 0; d < 60; d++) {
           const baseDrive = domDrivers[d];
-          const upDrive = this.domEnergy[(d + 59) % 60]; // 60-Domain Closed Causal Ring (#0001..#3000 -> #0001)
+          const upDrive = this.prevDomEnergy[(d + 59) % 60]; // Synchronous 60-Domain Closed Causal Ring (#0001..#3000 -> #0001)
           let domSum = 0;
 
           for (let op = 0; op < 10; op++) {
@@ -3221,10 +3342,10 @@
             const primal = Math.tanh(0.62 * baseDrive + 0.24 * upDrive + 0.22 * opPhase);
 
             const idx0 = d * 50 + op * 5;
-            const v0 = 0.5 + 0.5 * primal;
-            const v1 = Math.min(1.0, Math.max(0.0, v0 * achGain * 0.85));
-            const v2 = Math.min(1.0, Math.max(0.0, 0.5 + (v0 - this.subVal[idx0]) * 8.0 * qgtPrecond));
-            const v3 = 0.5 + 0.5 * Math.tanh(primal * Math.cos(berry * 3.0 + (idx0 % 8) * 0.785398));
+            const v0 = 0.5 + 0.48 * primal;
+            const v1 = 0.5 + 0.48 * Math.tanh((v0 * achGain - 0.52) * 2.1);
+            const v2 = 0.5 + 0.48 * Math.tanh((v0 - this.subVal[idx0]) * 10.0 * qgtPrecond);
+            const v3 = 0.5 + 0.48 * Math.tanh(primal * Math.cos(berry * 3.0 + (idx0 % 8) * 0.785398));
             const v4 = 0.88 * this.subVal[idx0 + 4] + 0.12 * v1;
 
             this.subVel[idx0]     = (v0 - this.subVal[idx0]) / Math.max(0.005, dt);
@@ -3727,6 +3848,11 @@
     let hudVisible = true;
 
     window.addEventListener('keydown', (e) => {
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : '';
+      if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA') {
+        if (e.key === 'Escape' && modal1000Open) toggleModal1000(false);
+        return;
+      }
       const k = e.key.toLowerCase();
       keys[k] = true;
       flyTarget = null;
@@ -4237,8 +4363,10 @@
     domainFilterSelect.addEventListener('change', rebuildModalMechGrid);
 
     window.addEventListener('keydown', (e) => {
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : '';
+      if (e.key === 'Escape' && modal1000Open) { toggleModal1000(false); return; }
+      if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA') return;
       if (e.key.toLowerCase() === 'm') toggleModal1000();
-      if (e.key === 'Escape' && modal1000Open) toggleModal1000(false);
     });
 
     function pickHeatmapMechanism(e) {
@@ -4511,6 +4639,9 @@
           `Φ_G: ${omega1000.integratedPhi.toFixed(2)} · EMP: ${omega1000.empowerment.toFixed(2)}`;
         document.getElementById('glyphTicker').textContent =
           `OMEGA-3000 LIVE (60×50) :: 14/14 INDICATORS · 10/10 FRAMEWORKS · 25/25 A-LIFE :: 5-POOL METAB Glc=${omega1000.bloodPool.glc.toFixed(2)} Fat=${omega1000.adiposeFatKj.toFixed(0)}kJ :: SLEEP=${omega1000.sleepStageName} :: AFFECT Val=${omega1000.moodValence.toFixed(2)} :: SIM=${omega1000.simArtefactProb.toFixed(2)} :: FREE-WONT VETO=${omega1000.freeWontVetoes} :: 32Q MPS S_vN=${omega1000.mpsMeanSvN.toFixed(3)} :: Ω_3000=${omega1000.omega3000Closure.toFixed(3)}`;
+        const selM = omega1000.getMechanismMeta(omega1000.selectedMechId);
+        document.getElementById('hover1000Readout').textContent =
+          `${selM.idStr} [D${String(selM.domId).padStart(2, '0')} ${selM.domCode}] ${selM.fullName.slice(0, 26)}: ${selM.val >= 0 ? '+' : ''}${selM.val.toFixed(3)}`;
         updateModal1000Telemetry();
       }
 
