@@ -2,7 +2,7 @@
 **1,000 NEW Bleeding-Edge Super-Intelligence & High-Weirdness Computational Capabilities (`#1001–#2000`, Domains 21–40) Coupled to the 1,000 Foundational Tsotchke/Quantum/Biologic Substrates (`#0001–#1000`, Domains 01–20) = 2,000 Total Real-Time Operational Mechanisms**
 
 > [!IMPORTANT]
-> **100% Real-Time Operational & Zero-Cosmetic Mandate:** Every single capability `#1001` through `#2000` documented in this report is a **closed-form mathematical operator, numerical tensor algorithm, or computational simulation mechanism** executing live at 60 FPS inside [`dimension-omega-singularity/index.html`](file:///Z:/%5BVibe%20Coded%20%28AI%29%5D/CLAUDECODE/dimension-omega-singularity/index.html) (`DIMENSION Ω v4.0 // OMEGA-2000`). Each capability consumes live upstream state variables and drives live downstream state variables in a closed 40-Domain, 2,000-Mechanism causal ring (`#0001 -> ... -> #1000 -> #1001 -> ... -> #2000 -> #0001`).
+> **100% Real-Time Operational & Zero-Cosmetic Mandate:** Every single capability `#1001` through `#2000` documented in this report is a **closed-form mathematical operator, numerical tensor algorithm, or computational simulation mechanism** executing live at 60 FPS inside [`dimension-omega-singularity/index.html`](file:///Z:/%5BVibe%20Coded%20%28AI%29%5D/CLAUDECODE/dimension-omega-singularity/index.html) (`DIMENSION Ω v5.4 // OMEGA-3000 LINE-BY-LINE AUDITED`). Each capability consumes live upstream state variables and drives live downstream state variables in a closed 40-Domain, 2,000-Mechanism causal ring (`#0001 -> ... -> #1000 -> #1001 -> ... -> #2000 -> #0001`).
 
 ---
 

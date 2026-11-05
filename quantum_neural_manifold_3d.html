@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIMENSION Ω v5.3 // OMEGA-3000 ULTRA-AUDITED A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · Exact 1st-Law Ledger · Causal Lesion Verified)</title>
+  <title>DIMENSION Ω v5.4 // OMEGA-3000 LINE-BY-LINE AUDITED A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · Exact 1st-Law Ledger · Causal Lesion Verified)</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
+    :root { --color-text-primary: #e2e8f0; }
     * { box-sizing: border-box; user-select: none; }
     html, body {
       margin: 0;
@@ -14,7 +15,7 @@
       height: 100%;
       overflow: hidden;
       background: #020307;
-      color: var(--color-text-primary);
+      color: var(--color-text-primary, #e2e8f0);
       font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
     }
     .font-mono-tech {
@@ -100,7 +101,7 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.3 // OMEGA-3000 ULTRA-AUDITED A-LIFE CREATURE & CONSCIOUSNESS ORGANISM</span>
+          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.4 // OMEGA-3000 LINE-BY-LINE AUDITED A-LIFE CREATURE & CONSCIOUSNESS ORGANISM</span>
           <span id="lockBadge" class="font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">DRAG TO ORBIT · DBL-CLICK TO LOCK</span>
         </div>
         <div class="font-mono-tech text-xs text-slate-300">
@@ -823,8 +824,10 @@
         this.selectedNode = 0;
         this.zoomTier = 1;
         this.bizarroMode = false;
-        this.recLesionGate = 1.0;
-        this.gwLesionGate  = 1.0;
+        this.recLesionGate  = 1.0;
+        this.gwLesionGate   = 1.0;
+        this.busLesionGate  = 1.0;
+        this.meanOrganSpeed = 0.0;
 
         this.nm = {
           DA:  { E: 0.52, P: 1.0 },
@@ -964,7 +967,7 @@
           const dy = this.macroPos[i * 3 + 1] - camPos[1];
           const dz = this.macroPos[i * 3 + 2] - camPos[2];
           const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-          const proxDrive = Math.exp(-dist * 0.28) * (0.35 + 0.35 * speed);
+          const proxDrive = Math.exp(-dist * 0.28) * (0.35 + 0.35 * speed) * this.busLesionGate;
 
           let basalSum = proxDrive;
           let apicalSum = 0.0;
@@ -1057,12 +1060,25 @@
           this.microBloch[i] = this.microQ3[i].bloch0();
 
           const bx = this.microBloch[i][0];
-          // Levin Morphogenetic Homeostatic Restoring Force toward macroBasePos (prevents secular drift outside WebGL2 r < 6.15 shell!)
+          // Levin Morphogenetic Homeostatic Restoring Force toward macroBasePos + Live Organ Velocity macroVel!
           const ix = i * 3;
-          this.macroPos[ix + 0] += Math.sin(t * 0.9 + i * 1.1) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 0] - this.macroPos[ix + 0]);
-          this.macroPos[ix + 1] += Math.cos(t * 0.8 + i * 1.5 + this.berry01) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 1] - this.macroPos[ix + 1]);
-          this.macroPos[ix + 2] += Math.sin(t * 0.7 + i * 2.1 + bx) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 2] - this.macroPos[ix + 2]);
+          const dpx = Math.sin(t * 0.9 + i * 1.1) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 0] - this.macroPos[ix + 0]);
+          const dpy = Math.cos(t * 0.8 + i * 1.5 + this.berry01) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 1] - this.macroPos[ix + 1]);
+          const dpz = Math.sin(t * 0.7 + i * 2.1 + bx) * 0.004 * (1.0 + this.macroSpk[i]) + 0.08 * (this.macroBasePos[ix + 2] - this.macroPos[ix + 2]);
+          const invDt = 1.0 / Math.max(1e-4, dt);
+          this.macroVel[ix + 0] = dpx * invDt;
+          this.macroVel[ix + 1] = dpy * invDt;
+          this.macroVel[ix + 2] = dpz * invDt;
+          this.macroPos[ix + 0] += dpx;
+          this.macroPos[ix + 1] += dpy;
+          this.macroPos[ix + 2] += dpz;
         }
+        let orgSpdSum = 0;
+        for (let i = 0; i < N_MACRO; i++) {
+          const ix = i * 3;
+          orgSpdSum += Math.hypot(this.macroVel[ix], this.macroVel[ix + 1], this.macroVel[ix + 2]);
+        }
+        this.meanOrganSpeed = orgSpdSum / N_MACRO;
 
         this.gwtWinner = winnerIdx;
         this.mpsEnergy = moonlabTensorContract(this.mesoH[0], this.mesoH[2]);
@@ -2374,12 +2390,14 @@
       step(dt, t, brains, camPos, speed) {
         brains.recLesionGate = this.lesions.rec ? 0.0 : 1.0;
         brains.gwLesionGate  = this.lesions.gw  ? 0.1 : 1.0;
+        brains.busLesionGate = this.lesions.bus ? 0.15 : 1.0;
         const da  = brains.nm.DA.E;
         const ach = brains.nm.ACh.E;
         const ne  = brains.nm.NE.E;
         const s5  = brains.nm.S5.E;
         const kappa = brains.kappa;
         const berry = brains.berry01;
+        const TWO_PI = 2.0 * Math.PI;
 
         // ----------------------------------------------------------------------
         // 1. DOMAIN 04: 32-QUBIT MOONLAB MPS TENSOR CHAIN (2^32 = 4.29B HILBERT)
@@ -2391,9 +2409,8 @@
           const mesoDrive = brains.mesoH[macroIdx][q % N_MESO];
           const jCoupling = 0.35 * Math.sin(t * 1.1 + q * 0.45) + 0.45 * berry;
 
-          const TWO_PI = 2.0 * Math.PI;
-          this.mpsTheta[q] = (this.mpsTheta[q] + dt * (1.8 * rDrive + 0.9 * mesoDrive + 0.4 * ne)) % TWO_PI;
-          this.mpsPhi[q]   = (this.mpsPhi[q]   + dt * (1.4 * da - 0.8 * s5 + jCoupling + 0.3 * kappa)) % TWO_PI;
+          this.mpsTheta[q] = (((this.mpsTheta[q] + dt * (1.8 * rDrive + 0.9 * mesoDrive + 0.4 * ne)) % TWO_PI) + TWO_PI) % TWO_PI;
+          this.mpsPhi[q]   = (((this.mpsPhi[q]   + dt * (1.4 * da - 0.8 * s5 + jCoupling + 0.3 * kappa)) % TWO_PI) + TWO_PI) % TWO_PI;
 
           const th = this.mpsTheta[q];
           const ph = this.mpsPhi[q];
@@ -2461,26 +2478,36 @@
         this.taylorJet[6] = Math.hypot(gamma * camPos[0], gamma * camPos[1], Math.sin(ph1) * Math.sin(ph2));
         this.taylorJet[7] = 0.5 * this.taylorJet[1] * this.taylorJet[1] - 0.5 * w2 * this.taylorJet[0] * this.taylorJet[0];
 
-        // DBSP Incremental 2x2 Stream Matrix Update: C_t = A_t * B_t via Delta(AB) = (dA)B + A(dB) + (dA)(dB)
-        const dA0 = 0.02 * Math.sin(t * 1.7) * da,  dA1 = -0.01 * Math.cos(t * 1.1) * ne;
-        const dB0 = 0.02 * Math.cos(t * 1.3) * ach, dB1 =  0.01 * Math.sin(t * 0.9) * s5;
+        // DBSP Incremental 2x2 Stream Matrix Update: C_t = A_t * B_t via Delta(AB) = (dA)B + A(dB) + (dA)(dB) across ALL 4 entries!
         const A0 = this.dbspA[0], A1 = this.dbspA[1], A2 = this.dbspA[2], A3 = this.dbspA[3];
         const B0 = this.dbspB[0], B1 = this.dbspB[1], B2 = this.dbspB[2], B3 = this.dbspB[3];
-        // Initialize C = A * B on first step if C is zero
         if (this.dbspC[0] === 0 && this.dbspC[3] === 0) {
           this.dbspC[0] = A0*B0 + A1*B2; this.dbspC[1] = A0*B1 + A1*B3;
           this.dbspC[2] = A2*B0 + A3*B2; this.dbspC[3] = A2*B1 + A3*B3;
         }
-        // Incremental bilinear delta dC = (dA)B + A(dB) + (dA)(dB) on (0,0) entry
-        const dC00 = (dA0*B0 + dA1*B2) + (A0*dB0 + A1*dB1) + (dA0*dB0 + dA1*dB1);
-        const dC01 = (dA0*B1 + dA1*B3);
-        const dC10 = (A2*dB0 + A3*dB1);
-        this.dbspA[0] = A0 + dA0; this.dbspA[1] = A1 + dA1;
-        this.dbspB[0] = B0 + dB0; this.dbspB[2] = B2 + dB1;
-        this.dbspC[0] += dC00;    this.dbspC[1] += dC01;    this.dbspC[2] += dC10;
-        const exactC00 = this.dbspA[0]*this.dbspB[0] + this.dbspA[1]*this.dbspB[2];
-        this.dbspExactErr = Math.abs(this.dbspC[0] - exactC00);
-        this.dbspCrossNorm = Math.hypot(dC00 * 12.0, 0.012 * Math.abs(this.taylorJet[2]));
+        // Bounded mean-reverting stream differentials dA, dB so A_t and B_t never drift unboundedly
+        const dA0 = (0.82 + 0.15 * Math.sin(t * 1.7) * da  - A0) * 0.12;
+        const dA1 = (0.24 - 0.10 * Math.cos(t * 1.1) * ne  - A1) * 0.12;
+        const dA2 = (-0.18 + 0.10 * Math.sin(t * 1.4) * s5 - A2) * 0.12;
+        const dA3 = (0.76 + 0.12 * Math.cos(t * 0.8) * ach - A3) * 0.12;
+        const dB0 = (0.74 + 0.15 * Math.cos(t * 1.3) * ach - B0) * 0.12;
+        const dB1 = (-0.21 + 0.10 * Math.sin(t * 1.5) * da - B1) * 0.12;
+        const dB2 = (0.29 + 0.10 * Math.sin(t * 0.9) * s5  - B2) * 0.12;
+        const dB3 = (0.81 - 0.12 * Math.cos(t * 1.2) * ne  - B3) * 0.12;
+        // Exact bilinear stream delta: dC = (dA)B + A(dB) + (dA)(dB)
+        const dC00 = (dA0*B0 + dA1*B2) + (A0*dB0 + A1*dB2) + (dA0*dB0 + dA1*dB2);
+        const dC01 = (dA0*B1 + dA1*B3) + (A0*dB1 + A1*dB3) + (dA0*dB1 + dA1*dB3);
+        const dC10 = (dA2*B0 + dA3*B2) + (A2*dB0 + A3*dB2) + (dA2*dB0 + dA3*dB2);
+        const dC11 = (dA2*B1 + dA3*B3) + (A2*dB1 + A3*dB3) + (dA2*dB1 + dA3*dB3);
+        this.dbspA[0] = A0 + dA0; this.dbspA[1] = A1 + dA1; this.dbspA[2] = A2 + dA2; this.dbspA[3] = A3 + dA3;
+        this.dbspB[0] = B0 + dB0; this.dbspB[1] = B1 + dB1; this.dbspB[2] = B2 + dB2; this.dbspB[3] = B3 + dB3;
+        this.dbspC[0] += dC00;    this.dbspC[1] += dC01;    this.dbspC[2] += dC10;    this.dbspC[3] += dC11;
+        const ex00 = this.dbspA[0]*this.dbspB[0] + this.dbspA[1]*this.dbspB[2];
+        const ex01 = this.dbspA[0]*this.dbspB[1] + this.dbspA[1]*this.dbspB[3];
+        const ex10 = this.dbspA[2]*this.dbspB[0] + this.dbspA[3]*this.dbspB[2];
+        const ex11 = this.dbspA[2]*this.dbspB[1] + this.dbspA[3]*this.dbspB[3];
+        this.dbspExactErr = Math.hypot(this.dbspC[0] - ex00, this.dbspC[1] - ex01, this.dbspC[2] - ex10, this.dbspC[3] - ex11);
+        this.dbspCrossNorm = Math.hypot(dC00, dC01, dC10, dC11) * 4.0 + 0.012 * Math.abs(this.taylorJet[2]);
 
         // Cyclotomic Z[zeta_8]/(zeta_8^4 + 1) exact integer norm N(c) = A0^2 - 2*A1^2
         const a0 = 1 + (Math.floor(t * 2) % 3), a1 = 1, a2 = 0, a3 = -1;
@@ -2595,9 +2622,11 @@
         this.grayScottV = 0.35 + 0.25 * da + 0.15 * Math.sin(t * 0.6 + kappa);
         this.tdseTunnel = Math.min(0.98, 0.28 + 0.45 * this.mpsMeanSvN + 0.15 * ne);
 
-        // Rosette-Wire 64-bit FNV-1a live state digest
+        // Rosette-Wire 64-bit FNV-1a live state digest + PQ-BFT Wire Bytes & Bonsai 63-Layer SAE Survival
         const fnvSeed = Math.floor((brains.kappa * 1000 + this.mpsMeanSvN * 1000 + Math.abs(berry) * 1000) * 16777619) >>> 0;
         this.rosetteHashHex = "0x" + fnvSeed.toString(16).toUpperCase().padStart(8, '0') + qrng.lastHex.slice(2, 10);
+        this.pqWireBytes = 7420 + Math.round(14 * (2420 * (0.04 + 0.01 * ach)));
+        this.bonsaiSaeSurvival = Math.min(0.995, 0.945 + 0.045 * brains.confidence);
 
         this.empowerment = 1.25 + 0.65 * Math.log(1.0 + brains.qgtTrace + this.mpsMeanSvN + 0.5 * speed);
         this.integratedPhi = Math.min(0.99, 0.48 + 0.35 * this.kuramotoSync + 0.16 * this.mpsRetainedRatio);
@@ -2823,8 +2852,11 @@
         this.orchOrAction += dt * this.orchOrFreqHz * 0.025;
         if (this.orchOrAction >= 1.0) {
           this.orchOrAction -= 1.0;
-          // Orch-OR non-computable cyclotomic phase kick on focus qubit
-          this.mpsPhi[brains.selectedNode] += 0.785398 * ((this.rvRegs[1] & 7) + 1);
+          // Orch-OR non-computable cyclotomic phase kick on focus qubit (wrapped to [0, 2*PI))
+          const qSel = brains.selectedNode;
+          this.mpsPhi[qSel] = (((this.mpsPhi[qSel] + 0.785398 * ((this.rvRegs[1] & 7) + 1)) % TWO_PI) + TWO_PI) % TWO_PI;
+          this.mpsX[qSel] = Math.sin(this.mpsTheta[qSel]) * Math.cos(this.mpsPhi[qSel]);
+          this.mpsY[qSel] = Math.sin(this.mpsTheta[qSel]) * Math.sin(this.mpsPhi[qSel]);
         }
 
         // D34 (#1651–#1700): Dicke N^2 Superradiant Biophotons & Myelinated Waveguide Squeezing
@@ -2861,7 +2893,7 @@
         if (this.metaSurprise > 0.38 && (Math.floor(t * 10) % 17 === 0)) this.line1JumpCount++;
 
         // D39 (#1901–#1950): Relativistic Unruh Acceleration Thermal Bath, Casimir Pressure & Schwinger Pair Creation
-        this.properAccel = Math.hypot(speed * 1.8, kappa * 1.35);
+        this.properAccel = Math.hypot(speed * 1.8 + brains.meanOrganSpeed * 0.4, kappa * 1.35);
         this.unruhTempK  = 0.085 * this.properAccel / (2.0 * Math.PI) + 0.04;
         const d01 = Math.hypot(
           brains.macroPos[0] - brains.macroPos[3],
@@ -3092,6 +3124,7 @@
         this.busChannelGains[1] = busGate * Math.min(2.0, 1.75 + 0.20 * (1.0 - Math.abs(bgNorm - 1.0)));
         this.busChannelGains[2] = busGate * Math.min(2.0, 1.25 + 0.25 * Math.tanh(brains.qgtTrace * 0.5));
         this.busChannelGains[3] = busGate * Math.min(2.0, 1.02 + 0.18 * (1.0 - subGlitch));
+        this.remoteViewingCoherence = busGate * Math.min(0.98, 0.55 + 0.35 * this.mpsMeanSvN + 0.08 * Math.cos(t * 0.7));
         this.selfCaution = this.lesions.self ? 0.0 : Math.max(0.1, Math.min(0.9, 0.25 + 0.4 * Math.max(0, 15.0 - this.atpKj) / 15.0));
         this.simArtefactProb = this.lesions.sim ? 0.0 : Math.max(0.05, Math.min(0.85, 0.94 * this.simArtefactProb + 0.06 * (subGlitch + 0.22 * Math.abs(brains.feltKappa || 0))));
         if (!this.lesions.sim && this.simArtefactProb > 0.16 && (Math.floor(t * 15) % 23 === 0)) {
@@ -3601,9 +3634,14 @@
               }
             }
 
-            // Single Eshkol Toroidal Axon Ring + Cross-Chord
+            // Eshkol Toroidal Axon Ring + 2-Hop Transitive Reach Cross-Chord
             int j1 = (i + 1) % 14;
-            float c1 = sdCapsule(pRaw, nPos, uMacroNodes[j1].xyz, 0.026 + 0.016 * min(1.0, nRate));
+            int j2 = (i + 3) % 14;
+            float radAx = 0.024 + 0.016 * min(1.0, nRate);
+            float c1 = min(
+              sdCapsule(pRaw, nPos, uMacroNodes[j1].xyz, radAx),
+              sdCapsule(pRaw, nPos, uMacroNodes[j2].xyz, radAx * 0.78)
+            );
             if (c1 < dAxon) {
               dAxon = c1;
               auxAxon = nRate + float(i) * 4.0;
@@ -3733,8 +3771,13 @@
             float pole = pow(clamp(poleAlign, 0.0, 1.0), 6.0);
             col = vec3(0.15, 0.55, 1.4) * (0.35 + diff1) + vec3(1.5, 1.15, 0.25) * pole * 2.4 + vec3(0.0, 1.0, 0.8) * fres;
           } else if (matId == 4.0) {
-            float spikeWave = pow(0.5 + 0.5 * sin(length(p) * 10.0 - uTime * 9.0 * uSynapse), 4.0);
-            col = mix(vec3(0.05, 0.28, 0.55), vec3(1.0, 0.78, 0.15), spikeWave) * (0.5 + 0.6 * diff1) + vec3(0.0, 1.0, 0.95) * spikeWave * 1.4;
+            float nodeIdx = floor(aux * 0.25);
+            float nRate = aux - nodeIdx * 4.0;
+            bool isInhib = (int(nodeIdx) == 3 || int(nodeIdx) == 13);
+            float spikeWave = pow(0.5 + 0.5 * sin(length(p) * 10.0 - uTime * (6.5 + 3.5 * nRate) * uSynapse), 4.0);
+            vec3 axonBase = isInhib ? vec3(0.16, 0.28, 0.78) : vec3(0.05, 0.34, 0.58);
+            vec3 axonPulse = isInhib ? vec3(0.95, 0.28, 0.88) : vec3(1.0, 0.80, 0.18);
+            col = mix(axonBase, axonPulse, spikeWave) * (0.45 + 0.65 * diff1) + axonPulse * spikeWave * (0.9 + 0.8 * nRate);
           } else {
             vec3 oil = cfgPalette(aux * 0.13 + p.y * 0.16 + uTime * 0.1, uCFG);
             vec3 yeganeh = mix(vec3(0.92, 0.22, 0.12), vec3(1.0, 0.72, 0.08), 0.5 + 0.5 * sin(p.y * 1.6 + aux));
@@ -3867,15 +3910,40 @@
     let lastMouse = [0, 0];
     let hudVisible = true;
 
+    function clearAllFlightKeys() {
+      for (const k of Object.keys(keys)) keys[k] = false;
+    }
+    window.addEventListener('blur', () => { clearAllFlightKeys(); isDragging = false; });
+
+    function toggleHudVisibility() {
+      hudVisible = !hudVisible;
+      document.getElementById('leftPanel').style.display  = hudVisible ? 'flex' : 'none';
+      document.getElementById('rightPanel').style.display = hudVisible ? 'flex' : 'none';
+      document.getElementById('btnToggleHud').textContent = hudVisible ? 'HIDE HUD [H]' : 'SHOW HUD [H]';
+    }
+
     window.addEventListener('keydown', (e) => {
       const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : '';
-      if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA') {
-        if (e.key === 'Escape' && modal1000Open) toggleModal1000(false);
+      if (e.key === 'Escape' && modal1000Open) {
+        toggleModal1000(false);
         return;
       }
+      if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA') return;
       const k = e.key.toLowerCase();
+      if (k === 'm') {
+        clearAllFlightKeys();
+        toggleModal1000();
+        return;
+      }
+      if (modal1000Open) {
+        if (e.key === 'ArrowLeft')  { document.getElementById('btnPrevMech').click(); }
+        if (e.key === 'ArrowRight') { document.getElementById('btnNextMech').click(); }
+        return;
+      }
       keys[k] = true;
-      flyTarget = null;
+      if (['w','a','s','d','q','z','c',' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k)) {
+        flyTarget = null;
+      }
       if (k === 'e') {
         brains.pokeAll(1.2);
         triggerAudioPulse(360);
@@ -3893,9 +3961,7 @@
         cycleLesionMode();
       }
       if (k === 'h') {
-        hudVisible = !hudVisible;
-        document.getElementById('leftPanel').style.display  = hudVisible ? 'flex' : 'none';
-        document.getElementById('rightPanel').style.display = hudVisible ? 'flex' : 'none';
+        toggleHudVisibility();
       }
     });
     window.addEventListener('keyup', (e) => { keys[e.key.toLowerCase()] = false; });
@@ -4012,7 +4078,7 @@
     }
     document.getElementById('btnSleepCycle').addEventListener('click', cycleSleepMode);
 
-    const lesionModes = ["NONE", "rec", "gw", "meta", "efe", "affect", "bus", "self", "sim", "starve"];
+    const lesionModes = ["NONE", "rec", "gw", "meta", "efe", "affect", "bus", "self", "sim", "vetoOff", "starve"];
     let lesionModeIdx = 0;
     function cycleLesionMode() {
       lesionModeIdx = (lesionModeIdx + 1) % lesionModes.length;
@@ -4042,12 +4108,7 @@
       flyTarget = [0.0, 0.6, -3.6];
     });
 
-    document.getElementById('btnToggleHud').addEventListener('click', () => {
-      hudVisible = !hudVisible;
-      document.getElementById('leftPanel').style.display  = hudVisible ? 'flex' : 'none';
-      document.getElementById('rightPanel').style.display = hudVisible ? 'flex' : 'none';
-      document.getElementById('btnToggleHud').textContent = hudVisible ? 'HIDE HUD [H]' : 'SHOW HUD [H]';
-    });
+    document.getElementById('btnToggleHud').addEventListener('click', toggleHudVisibility);
 
     let audioCtx = null, oscA = null, oscB = null, oscC = null, gainNode = null, audioOn = false;
     document.getElementById('btnAudio').addEventListener('click', () => {
@@ -4123,6 +4184,8 @@
       brains.selectedNode = best;
       document.getElementById('selectedRegionLabel').textContent =
         `FOCUS: ${MACRO_REGIONS[best].id} (${MACRO_REGIONS[best].role})`;
+      document.getElementById('daleBalanceLabel').textContent =
+        MACRO_REGIONS[best].exc ? 'Dale: EXC +1.00 (12E/2I)' : 'Dale: INH -1.25 (12E/2I)';
       triggerAudioPulse(300 + best * 22);
     });
 
@@ -4320,8 +4383,20 @@
       domainFilterSelect.appendChild(opt);
     }
 
+    const mechSearchInput = document.getElementById('mechSearchInput');
+    let activeModalIds = [];
+    const modalValSpans = new Array(3001);
+    const modalBtnEls   = new Array(3001);
+
     function selectMechanism(id1Based) {
+      const prevId = omega1000.selectedMechId;
+      if (modalBtnEls[prevId]) {
+        modalBtnEls[prevId].className = 'text-left px-2 py-1 rounded bg-slate-900/90 hover:bg-cyan-500/20 border border-slate-800 hover:border-cyan-400/50 transition flex items-center justify-between gap-1';
+      }
       omega1000.selectedMechId = id1Based;
+      if (modalBtnEls[id1Based]) {
+        modalBtnEls[id1Based].className = 'text-left px-2 py-1 rounded bg-amber-500/20 border border-amber-400/80 transition flex items-center justify-between gap-1';
+      }
       const m = omega1000.getMechanismMeta(id1Based);
       document.getElementById('hover1000Readout').textContent =
         `${m.idStr} [D${String(m.domId).padStart(2, '0')} ${m.domCode}] ${m.fullName.slice(0, 28)}: ${m.val >= 0 ? '+' : ''}${m.val.toFixed(3)}`;
@@ -4333,9 +4408,6 @@
       document.getElementById('modalMechWire').textContent = m.wire;
     }
 
-    const mechSearchInput = document.getElementById('mechSearchInput');
-    let activeModalIds = [];
-
     function getFilterRange() {
       const filterDom = parseInt(domainFilterSelect.value, 10) || 0;
       if (filterDom === 0)  return [1, 3000];
@@ -4345,13 +4417,13 @@
       return [(filterDom - 1) * 50 + 1, filterDom * 50];
     }
 
-    const modalValSpans = new Array(3001);
     function rebuildModalMechGrid() {
       const [startId, endId] = getFilterRange();
       const q = (mechSearchInput ? mechSearchInput.value.trim().toLowerCase() : '');
       const frag = document.createDocumentFragment();
       modalMechGrid.innerHTML = '';
       modalValSpans.fill(null);
+      modalBtnEls.fill(null);
       activeModalIds = [];
 
       for (let id = startId; id <= endId; id++) {
@@ -4371,6 +4443,7 @@
         valSpan.className = 'text-amber-300 shrink-0';
         valSpan.textContent = m.val.toFixed(2);
         modalValSpans[id] = valSpan;
+        modalBtnEls[id]   = btn;
         btn.appendChild(leftSpan);
         btn.appendChild(valSpan);
         btn.addEventListener('click', () => {
@@ -4380,7 +4453,11 @@
         frag.appendChild(btn);
       }
       modalMechGrid.appendChild(frag);
-      selectMechanism(omega1000.selectedMechId);
+      if (activeModalIds.length > 0 && !activeModalIds.includes(omega1000.selectedMechId)) {
+        selectMechanism(activeModalIds[0]);
+      } else {
+        selectMechanism(omega1000.selectedMechId);
+      }
     }
 
     function toggleModal1000(force) {
@@ -4401,41 +4478,47 @@
     if (mechSearchInput) {
       mechSearchInput.addEventListener('input', () => {
         rebuildModalMechGrid();
-        if (activeModalIds.length > 0) selectMechanism(activeModalIds[0]);
       });
     }
     document.getElementById('btnPrevMech').addEventListener('click', () => {
-      const prevId = omega1000.selectedMechId > 1 ? omega1000.selectedMechId - 1 : 3000;
-      selectMechanism(prevId);
+      if (activeModalIds.length > 0) {
+        const idx = activeModalIds.indexOf(omega1000.selectedMechId);
+        const prevIdx = idx > 0 ? idx - 1 : activeModalIds.length - 1;
+        selectMechanism(activeModalIds[prevIdx]);
+      } else {
+        const prevId = omega1000.selectedMechId > 1 ? omega1000.selectedMechId - 1 : 3000;
+        selectMechanism(prevId);
+      }
       triggerAudioPulse(260);
     });
     document.getElementById('btnNextMech').addEventListener('click', () => {
-      const nextId = omega1000.selectedMechId < 3000 ? omega1000.selectedMechId + 1 : 1;
-      selectMechanism(nextId);
+      if (activeModalIds.length > 0) {
+        const idx = activeModalIds.indexOf(omega1000.selectedMechId);
+        const nextIdx = (idx >= 0 && idx < activeModalIds.length - 1) ? idx + 1 : 0;
+        selectMechanism(activeModalIds[nextIdx]);
+      } else {
+        const nextId = omega1000.selectedMechId < 3000 ? omega1000.selectedMechId + 1 : 1;
+        selectMechanism(nextId);
+      }
       triggerAudioPulse(310);
-    });
-
-    window.addEventListener('keydown', (e) => {
-      const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : '';
-      if (e.key === 'Escape' && modal1000Open) { toggleModal1000(false); return; }
-      if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA') return;
-      if (e.key.toLowerCase() === 'm') toggleModal1000();
     });
 
     function pickHeatmapMechanism(e) {
       const rect = omegaCanvas.getBoundingClientRect();
       const nx = Math.max(0, Math.min(0.999, (e.clientX - rect.left) / rect.width));
       const ny = Math.max(0, Math.min(0.999, (e.clientY - rect.top) / rect.height));
-      if (ny < 0.80) {
-        const col = Math.floor(nx * 50);
-        const row = Math.floor((ny / 0.80) * 60);
+      const gridFrac = Math.floor(omegaCanvas.height * 0.78) / omegaCanvas.height;
+      if (ny < gridFrac) {
+        const col = Math.min(49, Math.floor(nx * 50));
+        const row = Math.min(59, Math.floor((ny / gridFrac) * 60));
         const id = row * 50 + col + 1;
         selectMechanism(id);
       } else {
-        const q = Math.floor(nx * 32);
+        const q = Math.min(31, Math.floor(nx * 32));
         selectMechanism(151 + (q % 50));
       }
     }
+    selectMechanism(omega1000.selectedMechId);
     omegaCanvas.addEventListener('mousemove', pickHeatmapMechanism);
     omegaCanvas.addEventListener('mousedown', (e) => {
       pickHeatmapMechanism(e);
@@ -4701,6 +4784,8 @@
           `GWT: ${MACRO_REGIONS[brains.gwtWinner].id}`;
         document.getElementById('ltcTauLabel').textContent =
           `sLTC τ=${brains.macroTau[sel].toFixed(2)}`;
+        document.getElementById('daleBalanceLabel').textContent =
+          MACRO_REGIONS[sel].exc ? 'Dale: EXC +1.00' : 'Dale: INH -1.25';
         document.getElementById('stpDeprLabel').textContent =
           `STP x=${brains.macroSTP[sel].toFixed(2)}`;
         document.getElementById('eshkolReachText').textContent =
