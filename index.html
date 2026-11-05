@@ -92,9 +92,12 @@
   <!-- CENTER RETICLE -->
   <div id="reticle" class="crosshair-ring"></div>
 
+  <!-- NON-OVERLAPPING FLEX HUD SHELL -->
+  <div class="fixed inset-2 z-20 flex flex-col justify-between gap-2 pointer-events-none">
+
   <!-- TOP TELEMETRY BAR -->
-  <header class="fixed top-2.5 left-2.5 right-2.5 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
-    <div class="hud-glass px-3.5 py-2 rounded-lg flex items-center gap-3 pointer-events-auto">
+  <header class="w-full flex flex-wrap items-center justify-between gap-2 pointer-events-none shrink-0">
+    <div class="hud-glass px-3 py-1.5 rounded-lg flex items-center gap-2.5 pointer-events-auto">
       <div class="relative flex items-center justify-center w-3 h-3">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-300"></span>
@@ -111,7 +114,7 @@
     </div>
 
     <!-- LIVE QUANTUM / THOUGHT CURVATURE / METABOLIC TELEMETRY -->
-    <div class="hud-glass px-3.5 py-2 rounded-lg flex flex-wrap items-center gap-3 font-mono-tech text-xs pointer-events-auto">
+    <div class="hud-glass px-3 py-1.5 rounded-lg flex flex-wrap items-center gap-2.5 font-mono-tech text-xs pointer-events-auto">
       <div>
         <span class="text-slate-400">POS (x,y,z,w)</span>
         <div id="posReadout" class="text-cyan-300 font-semibold">(0.0, 1.8, -8.5, 0.00)</div>
@@ -139,8 +142,11 @@
     </div>
   </header>
 
+  <!-- MIDDLE ROW: LEFT & RIGHT INSPECTOR PANELS (ZERO OVERLAP WITH HEADER OR FOOTER) -->
+  <div class="flex-1 min-h-0 w-full flex justify-between gap-2 pointer-events-none">
+
   <!-- LEFT PANEL: 3-LEVEL NESTED BRAINS-WITHIN-BRAINS LIVE INSPECTOR -->
-  <aside id="leftPanel" class="fixed top-20 left-2.5 bottom-14 z-20 w-80 hud-glass rounded-xl p-3 flex flex-col justify-between gap-2 overflow-y-auto custom-scroll pointer-events-auto">
+  <aside id="leftPanel" class="w-80 h-full hud-glass rounded-xl p-2.5 flex flex-col justify-between gap-1.5 overflow-y-auto custom-scroll pointer-events-auto">
     <div class="space-y-2">
       <div class="flex items-center justify-between border-b border-cyan-500/25 pb-1.5">
         <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">BRAINS-WITHIN-BRAINS HIERARCHY</span>
@@ -238,7 +244,7 @@
   </aside>
 
   <!-- RIGHT PANEL: BIZARRO LAND & QUANTUM GEOMETRIC TENSOR MANIPULATION -->
-  <aside id="rightPanel" class="fixed top-20 right-2.5 bottom-14 z-20 w-80 hud-glass rounded-xl p-3 flex flex-col justify-between gap-2 overflow-y-auto custom-scroll pointer-events-auto">
+  <aside id="rightPanel" class="w-80 h-full hud-glass rounded-xl p-2.5 flex flex-col justify-between gap-1.5 overflow-y-auto custom-scroll pointer-events-auto">
     <div class="space-y-2.5">
       <div class="flex items-center justify-between border-b border-cyan-500/25 pb-1.5">
         <span class="font-mono-tech text-xs font-bold tracking-wider text-amber-300">BIZARRO LAND & QGTL METRIC ENGINE</span>
@@ -339,9 +345,10 @@
       <div>• Thought Curvature: κ(t) = arccos(v̂₁·v̂₂) / (½(|v₁|+|v₂|))</div>
     </div>
   </aside>
+  </div>
 
   <!-- BOTTOM CORRUPTED GLYPHOLOGY & QUANTUM TICKER -->
-  <footer class="fixed bottom-2.5 left-2.5 right-2.5 z-20 flex items-center justify-between px-3.5 py-1.5 hud-glass rounded-lg font-mono-tech text-xs pointer-events-auto">
+  <footer class="w-full shrink-0 flex items-center justify-between px-3.5 py-1.5 hud-glass rounded-lg font-mono-tech text-xs pointer-events-auto">
     <div class="flex items-center gap-3 overflow-hidden">
       <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">TSOTCHKE</span>
       <span id="glyphTicker" class="text-slate-300 truncate">
@@ -357,6 +364,7 @@
       </button>
     </div>
   </footer>
+  </div>
 
   <script>
     // ============================================================================
@@ -1643,12 +1651,12 @@
       const rect = brainCanvas.getBoundingClientRect();
       const mx = (e.clientX - rect.left) * (brainCanvas.width / rect.width);
       const my = (e.clientY - rect.top) * (brainCanvas.height / rect.height);
-      const cx = brainCanvas.width * 0.5, cy = brainCanvas.height * 0.52;
+      const cx = brainCanvas.width * 0.5, cy = brainCanvas.height * 0.50;
       let best = brains.selectedNode, bestD = 32;
       for (let i = 0; i < N_MACRO; i++) {
         const ang = (i / N_MACRO) * Math.PI * 2 - Math.PI * 0.5;
-        const nx = cx + Math.cos(ang) * 86;
-        const ny = cy + Math.sin(ang) * 86;
+        const nx = cx + Math.cos(ang) * 74;
+        const ny = cy + Math.sin(ang) * 74;
         const d = Math.hypot(mx - nx, my - ny);
         if (d < bestD) {
           bestD = d;
@@ -1665,13 +1673,13 @@
       const W = brainCanvas.width, H = brainCanvas.height;
       bCtx.clearRect(0, 0, W, H);
 
-      const cx = W * 0.5, cy = H * 0.52;
+      const cx = W * 0.5, cy = H * 0.50;
       const sel = brains.selectedNode;
 
       const macroCoords = [];
       for (let i = 0; i < N_MACRO; i++) {
         const ang = (i / N_MACRO) * Math.PI * 2 - Math.PI * 0.5;
-        macroCoords.push([cx + Math.cos(ang) * 86, cy + Math.sin(ang) * 86]);
+        macroCoords.push([cx + Math.cos(ang) * 74, cy + Math.sin(ang) * 74]);
       }
 
       // Batched Eshkol Reach Edges: 2 stroke calls total instead of 158 per frame!
