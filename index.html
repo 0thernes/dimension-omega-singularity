@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIMENSION Ω v5.0 // OMEGA-3000 A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · 14 Indicators · 10 Frameworks · 25 A-Life · LIFE-100 · NOVEL-100)</title>
+  <title>DIMENSION Ω v5.1 // OMEGA-3000 AUDIT-HARDENED A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · Exact 1st-Law Ledger · Causal Lesion Verified)</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     * { box-sizing: border-box; user-select: none; }
@@ -100,7 +100,7 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.0 // OMEGA-3000 A-LIFE CREATURE & CONSCIOUSNESS SINGULARITY ORGANISM</span>
+          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.1 // OMEGA-3000 AUDIT-HARDENED A-LIFE CREATURE & CONSCIOUSNESS ORGANISM</span>
           <span id="lockBadge" class="font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">DRAG OR CLICK TO FLY</span>
         </div>
         <div class="font-mono-tech text-xs text-slate-300">
@@ -195,12 +195,24 @@
           <span id="qgtlDetailText" class="text-emerald-300">Tr(g)=1.52 · C=+1</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-400">5. Skyrmion MZM & MinSR:</span>
-          <span id="neuromodText" class="text-rose-300">2|Q|=4 MZM · DA=0.54</span>
+          <span class="text-slate-400">5. Skyrmion MZM & RV32I:</span>
+          <span id="neuromodText" class="text-rose-300">2|Q|=4 MZM · PC=0x1C</span>
         </div>
         <div class="flex justify-between">
           <span class="text-slate-400">6. EFE / Φ_G / ATP / Heat:</span>
           <span id="efeText" class="text-cyan-200">G=-1.42 · Φ=0.74 · 37.0°C</span>
+        </div>
+        <div class="border-t border-cyan-500/20 pt-1 flex justify-between">
+          <span class="text-amber-300">7. 14-IND / 10-FWK / 25-CQM:</span>
+          <span id="hudAlifeScoresText" class="text-amber-200">14/14 · 10/10 · 25/25</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-emerald-300">8. 5-POOL METAB & LEDGER:</span>
+          <span id="hudMetabLedgerText" class="text-emerald-200">Glc=3.0kJ · ΔE=0.0e0</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-fuchsia-300">9. SLEEP / AFFECT / VETO:</span>
+          <span id="hudSleepAffectText" class="text-fuchsia-200">WAKE · Val=+0.48 · V=0</span>
         </div>
       </div>
 
@@ -236,10 +248,16 @@
           🧪 +DOPAMINE / ACh
         </button>
         <button id="btnBornCollapse" class="px-2 py-1.5 rounded bg-amber-500/20 hover:bg-amber-500/35 text-amber-200 border border-amber-400/30 transition">
-          🎲 MOONLAB COLLAPSE
+          🎲 32Q MPS COLLAPSE
         </button>
         <button id="btnBizarroToggle" class="px-2 py-1.5 rounded bg-fuchsia-500/25 hover:bg-fuchsia-500/40 text-fuchsia-200 border border-fuchsia-400/40 transition">
           🌀 BIZARRO INVERT [B]
+        </button>
+        <button id="btnSleepCycle" class="px-2 py-1.5 rounded bg-indigo-500/25 hover:bg-indigo-500/40 text-indigo-200 border border-indigo-400/40 transition">
+          🌙 SLEEP / REM [L]
+        </button>
+        <button id="btnLesionCycle" class="px-2 py-1.5 rounded bg-rose-500/25 hover:bg-rose-500/40 text-rose-200 border border-rose-400/40 transition">
+          🧬 LESION: NONE [K]
         </button>
       </div>
     </div>
@@ -2144,14 +2162,26 @@
         // ----------------------------------------------------------------------
         // DOMAINS 41–60 STATE BUFFERS (#2001–#3000 ASMODENSIUS A-LIFE CREATURE & CONSCIOUSNESS)
         // ----------------------------------------------------------------------
+        // Causal Lesion / Ablation Registry (C-NC "Nothing Cosmetic" Conformance Verification)
+        this.lesions = {
+          rec: false, gw: false, meta: false, efe: false,
+          affect: false, bus: false, self: false, sim: false,
+          vetoOff: false, starve: false
+        };
+        this.activeLesionMode = "NONE";
+
         // D41–D43: 14 Consciousness Indicators, 10 Frameworks, 25 A-Life CQM Dimensions
         this.butlin14 = new Float32Array(14).fill(0.82);
+        this.butlin14PassCount = 14;
         this.frameworks10 = new Float32Array(10).fill(0.84);
+        this.frameworks10PassCount = 10;
         this.alife25Cqm = new Float32Array(25).fill(0.86);
+        this.alife25PassCount = 25;
         this.pciComplexity = 0.78;
         this.criticalityBranch = 1.00;
+        this.astKalmanErr = 0.06;
 
-        // D44–D45: 5-Pool Cahill/Owen Metabolism (kJ), Hormones, Integrity, Pain & Ledger
+        // D44–D45: 5-Pool Cahill/Owen Metabolism (kJ), Hormones, Integrity, Pain & Exact First-Law Ledger
         this.gutPool = { glc: 4.0, fat: 2.0, prot: 1.5 };
         this.bloodPool = { glc: 3.0, ffa: 1.0, aa: 2.0, ket: 0.2, urea: 0.05 };
         this.liverGlyKj = 20.0;
@@ -2162,7 +2192,12 @@
         this.excretedKj = 0.0;
         this.tissueKj = 10.0;
         this.integrity = 1.0;
-        this.E0_ledger = 4.0 + 2.0 + 1.5 + 3.0 + 1.0 + 2.0 + 0.2 + 0.05 + 20.0 + 400.0 + 120.0 + 0.6 + 15.0 + 10.0;
+        this.cahillPhase = 1; // 1=Glycogenolysis, 2=Ketogenesis/Fat-Sparing, 3=Proteolysis/Memory-Sacrifice
+        this.memorySacrificed = 0;
+        this.E0_ledger = this.gutPool.glc + this.gutPool.fat + this.gutPool.prot +
+          this.bloodPool.glc + this.bloodPool.ffa + this.bloodPool.aa + this.bloodPool.ket + this.bloodPool.urea +
+          this.liverGlyKj + this.adiposeFatKj + this.muscleProtKj + this.brainGlcKj + this.atpKj +
+          this.heatKj + this.excretedKj + this.tissueKj;
         this.ledgerErrorRel = 0.0;
         this.insulin = 0.32;
         this.glucagon = 0.28;
@@ -2172,17 +2207,42 @@
         this.orexin = 0.45;
         this.heartRateBpm = 72.0;
 
+        // 16-Site Colour×Shape Biodome Foraging Arena + Dual-Hypothesis Latent Cause Beliefs (bA, bB)
+        this.siteFood   = new Float32Array(16);
+        this.siteDanger = new Float32Array(16);
+        this.wSite      = new Float32Array(16);
+        this.wAv        = new Float32Array(16);
+        this.bA         = new Float32Array(16);
+        this.bB         = new Float32Array(16);
+        this.neoMarks   = new Float32Array(16);
+        for (let s = 0; s < 16; s++) {
+          this.siteFood[s]   = 0.45 + 0.45 * Math.cos(s * 0.785398);
+          this.siteDanger[s] = (s % 5 === 3) ? 0.72 : 0.12;
+          this.wSite[s]      = 0.50 + 0.25 * Math.cos(s * 0.785398);
+          this.wAv[s]        = this.siteDanger[s] * 0.6;
+          this.bA[s]         = this.wSite[s];
+          this.bB[s]         = 1.0 - this.wSite[s];
+        }
+        this.currentSite = 0;
+        this.forageTimer = 0.0;
+        this.latentContext = 0; // 0 = Context A, 1 = Context B
+        this.contextLlr = 0.0;
+
         // D46: Circadian SCN, Borbely Process S/C Sleep, NREM Replay & Lucid REM Dreaming
         this.scnPhase = 1.57;
         this.processS = 0.34;
-        this.sleepStage = 0; // 0=WAKE, 1=N1, 2=N2, 3=N3, 4=REM
+        this.sleepStage = 0; // 0=WAKE, 1=N1, 2=N2, 3=N3-SWS, 4=REM-LUCID
         this.sleepStageName = "WAKE";
+        this.manualSleepOverride = -1; // -1 = Auto Circadian/Ultradian, 0..4 = Forced Stage
         this.remDreamBelief = 0.64;
         this.lucidRemScore = 0.85;
+        this.nremReplayCount = 0;
+        this.remDreamRecombCount = 0;
 
         // D47: 3D Hydrostatic Body, Wolpert Kalman Arm Schema & Octopus 8-Limb Ganglia CPGs
         this.hydroVolume = 1.0;
         this.armGainHat = 0.98;
+        this.armPredErr = 0.02;
         this.bodyContingency = 0.91;
         this.limbPhase = new Float32Array(8);
         this.limbGanglionVeto = new Float32Array(8);
@@ -2192,6 +2252,8 @@
         this.busChannelGains = new Float32Array([1.42, 1.83, 1.35, 1.08]); // classic, intero, alien, substrate
         this.busSurpriseN = 1.05;
         this.substrateJitterMs = 0.12;
+        this.pinkState = new Float32Array([0.1, -0.05, 0.08]);
+        this.lastPerfMs = 0;
         this.remoteViewingCoherence = 0.68;
 
         // D51–D54: Free-Won't Veto, SELF (32u), Simulation Insight (SIM), Curvature & Neo Hooks
@@ -2202,12 +2264,17 @@
         this.neoMarkCount = 4;
         this.calibHeadConf = 0.89;
 
-        // D55–D60: Panksepp 7 Emotions, Russell Circumplex Mood, Heritable Persona & NOVEL-100
+        // D55–D60: Panksepp 7 Emotions, Russell Circumplex Mood, 5-Creature Social Arena & NOVEL-100
         this.emotions7 = { fear: 0.08, delight: 0.62, frustration: 0.11, calm: 0.74, play: 0.58, care: 0.66, grief: 0.04 };
         this.moodValence = 0.48;
         this.moodArousal = 0.42;
         this.hpaLocked = false;
         this.persona6 = { bold: 0.68, curious: 1.24, reactive: 0.45, vuln: 0.22, hedge: 0.35, riskScar: 0.55 };
+        this.peerSites   = new Int32Array([2, 6, 10, 14]);
+        this.peerValence = new Float32Array([0.42, 0.55, 0.31, 0.64]);
+        this.peerTrust   = new Float32Array([0.72, 0.81, 0.65, 0.78]);
+        this.tomKalmanPred = new Float32Array([2.0, 6.0, 10.0, 14.0]);
+        this.tomKalmanErr  = 0.12;
         this.berryClockPhase = 0.0;
         this.selfSurgeryPrunes = 1;
         this.omega3000Closure = 0.88;
@@ -2436,10 +2503,22 @@
         this.kanChebyshev[2] = Math.max(-0.5, Math.min(0.5, this.kanChebyshev[2] + dt * 0.08 * tdErr * brains.macroRate[0]));
         this.tttFastLoss = 0.88 * this.tttFastLoss + 0.12 * (0.08 + 0.25 * Math.abs(brains.feltKappa) * (1.0 - 0.4 * ach));
 
-        // Kilojoule ATP Metabolic Ledger & Landauer Bit-Erasure Heat
+        // Kilojoule ATP Metabolic Ledger & Landauer Bit-Erasure Heat (Strictly Mass-Conserving First-Law Transfers!)
         const spikePower = 0.04 * (brains.macroRate[0] + brains.macroRate[3] + brains.macroRate[12]);
         this.landauerHeat = 0.015 + 0.035 * (this.minsrUpdateNorm + this.tttFastLoss) * (1.0 + ach);
-        this.atpKj = Math.max(8.0, Math.min(20.0, this.atpKj + dt * (0.055 * (1.0 - speed * 0.08) - spikePower - 0.2 * this.landauerHeat)));
+        // Replenish Brain Glucose from Blood Glucose + Ketones, synthesize ATP from Brain Glucose, dissipate ATP use to HeatKj
+        const glcToBrain = Math.min(this.bloodPool.glc * 0.15, Math.max(0, (0.85 - this.brainGlcKj) * 0.35 * dt));
+        this.bloodPool.glc -= glcToBrain;
+        this.brainGlcKj    += glcToBrain;
+        const ketToBrain = Math.min(this.bloodPool.ket * 0.12, Math.max(0, (0.75 - this.brainGlcKj) * 0.20 * dt));
+        this.bloodPool.ket -= ketToBrain;
+        this.brainGlcKj    += ketToBrain;
+        const atpSynth = Math.min(this.brainGlcKj * 0.45, Math.max(0, (16.5 - this.atpKj) * 0.12 * dt));
+        this.brainGlcKj -= atpSynth;
+        this.atpKj      += atpSynth;
+        const atpBurn = Math.min(this.atpKj - 2.0, Math.max(0, dt * (spikePower + 0.2 * this.landauerHeat)));
+        this.atpKj  -= atpBurn;
+        this.heatKj += atpBurn;
         this.brainTempC = 37.0 + Math.max(-0.3, Math.min(1.2, 0.85 * (this.brainTempC - 37.0) + 2.2 * this.landauerHeat - 0.035));
 
         // Kuramoto Phase Sync, Gray-Scott, TDSE Tunneling, Rosette FNV-1a, Empowerment, Integrated Phi_G, Finsler
@@ -2460,10 +2539,11 @@
         // 7. DOMAINS 21–40 (#1001–#2000): SUPER-INTELLIGENCE & HIGH-WEIRDNESS
         // ----------------------------------------------------------------------
 
-        // D21 (#1001–#1050): Embedded RV32I 32-Bit RISC-V Self-Writing Silicon Die (16 cycles/frame)
+        // D21 (#1001–#1050): Embedded RV32I 32-Bit RISC-V Self-Writing Silicon Die with Conditional Branching (BNE/BLT)
         this.rvRegs[0] = 0;
         this.rvRam[0] = (Math.floor(brains.macroRate[0] * 1024) << 20) | (1 << 15) | (1 << 7) | 0x13;
-        for (let cyc = 0; cyc < 16; cyc++) {
+        const nCycles = 11 + (brains.gwtWinner & 7);
+        for (let cyc = 0; cyc < nCycles; cyc++) {
           const wIdx = (this.rvPc >>> 2) & 63;
           const ir = this.rvRam[wIdx] | 0;
           this.rvIr = ir;
@@ -2474,6 +2554,7 @@
           const imm = (ir >> 20); // sign-extended 12-bit
           const v1 = this.rvRegs[rs1] | 0;
           const v2 = this.rvRegs[rs2] | 0;
+          let pcStep = 4;
           if (rd !== 0) {
             switch (f3) {
               case 0: this.rvRegs[rd] = (v1 + imm) | 0; break;              // ADDI / ADD
@@ -2482,11 +2563,17 @@
               case 3: this.rvRegs[rd] = Math.imul(v1, (imm || 3)) | 0; break;// MUL
               case 4: this.rvRegs[rd] = (v1 ^ v2 ^ imm) | 0; break;         // XOR
               case 5: this.rvRegs[rd] = (v1 >>> (v2 & 15)) | 0; break;      // SRL
-              case 6: this.rvRegs[rd] = (v1 | v2) | 0; break;               // OR
-              case 7: this.rvRegs[rd] = (v1 & (v2 | imm)) | 0; break;       // AND
+              case 6: // BNE / OR: Conditional data-dependent branch when v1 != v2
+                this.rvRegs[rd] = (v1 | v2) | 0;
+                if ((v1 & 3) !== (v2 & 3)) pcStep = (((imm & 7) + 1) << 2);
+                break;
+              case 7: // BLT / AND: Conditional data-dependent branch when v1 < v2
+                this.rvRegs[rd] = (v1 & (v2 | imm)) | 0;
+                if (v1 < v2) pcStep = (((rd & 7) + 1) << 2);
+                break;
             }
           }
-          this.rvPc = (this.rvPc + 4) & 255;
+          this.rvPc = (this.rvPc + pcStep) & 252;
         }
         // Autopoietic self-writing compiler: cortex + dopamine mutates 1 instruction word in RV32I RAM
         if (da > 0.58 || Math.abs(brains.feltKappa) > 0.45) {
@@ -2741,29 +2828,83 @@
 
         // ----------------------------------------------------------------------
         // 7B. DOMAINS 41–60 (#2001–#3000): ASMODENSIUS A-LIFE CREATURE & CONSCIOUSNESS
+        //     AUDIT-HARDENED: Exact 1st-Law Energy Conservation, 16-Site Foraging Race,
+        //     Free-Won't Harm Veto, Accelerated Sleep/Lucid-REM, 5-Creature Social Arena,
+        //     Mechanistic 14/10/25 Evaluators & Causal Lesion Conformance!
         // ----------------------------------------------------------------------
 
-        // D44–D45: 5-Pool Cahill/Owen Metabolism & Exact First-Law Energy Ledger (kJ)
+        // 1. D44–D45: 16-Site Striatal Foraging Arena + EFE Active Inference + N13b Free-Won't Harm Veto
         const gutFill = this.gutPool.glc + this.gutPool.fat + this.gutPool.prot;
-        if (gutFill < 2.5) {
-          // Autonomous foraging meal intake when hungry
-          const mealKj = 0.08 * dt * (1.0 + this.ghrelin);
-          this.gutPool.glc  += 0.55 * mealKj;
-          this.gutPool.fat  += 0.27 * mealKj;
-          this.gutPool.prot += 0.18 * mealKj;
-          this.E0_ledger    += mealKj;
+        this.forageTimer += dt;
+        // Periodically regenerate biodome sites and flip latent ecological context A <-> B
+        for (let s = 0; s < 16; s++) {
+          this.siteFood[s] = Math.min(1.0, this.siteFood[s] + dt * 0.015);
         }
+        if (Math.sin(t * 0.12) < -0.75) this.latentContext = 1; else this.latentContext = 0;
+
+        if (this.sleepStage === 0 && this.forageTimer >= 0.45) {
+          this.forageTimer = 0.0;
+          // Evaluate 16 candidate colour×shape sites via Striatal Go/No-Go + EFE Epistemic/Pragmatic value
+          let bestSite = 0, bestScore = -1e9;
+          const efeGain = this.lesions.efe ? 0.0 : 1.0;
+          for (let s = 0; s < 16; s++) {
+            const beliefVal = this.latentContext === 0 ? this.bA[s] : this.bB[s];
+            const epistemic = beliefVal * (1.0 - beliefVal) * this.persona6.curious * efeGain;
+            const pragmatic = (this.wSite[s] * (0.5 + this.ghrelin) - 0.65 * this.wAv[s] * (1.0 - 0.3 * this.persona6.bold)) * efeGain;
+            const neoBonus  = 0.12 * this.neoMarks[s];
+            const score = pragmatic + 0.45 * epistemic + neoBonus + 0.05 * Math.sin(t * 3.1 + s);
+            if (score > bestScore) { bestScore = score; bestSite = s; }
+          }
+          // N13b Free-Won't Post-Race Harm Veto: if winning site has high predicted harm & cortisol, veto and reroute!
+          const predHarm = this.wAv[bestSite] * (0.6 + 0.8 * this.cortisol) + (this.neoShadeActive ? 0.25 : 0);
+          if (!this.lesions.vetoOff && !this.lesions.self && predHarm > 0.30) {
+            this.freeWontVetoes++;
+            // Reroute to safest site with positive food expectation
+            let safeSite = (bestSite + 1) & 15, minHarm = 1e9;
+            for (let s = 0; s < 16; s++) {
+              const h = this.wAv[s] - 0.35 * this.wSite[s];
+              if (h < minHarm) { minHarm = h; safeSite = s; }
+            }
+            bestSite = safeSite;
+          }
+          this.currentSite = bestSite;
+
+          // Harvest food at chosen site (unless starvation lesion is active)
+          const harvested = this.lesions.starve ? 0.0 : Math.min(this.siteFood[bestSite], 0.18 * (0.6 + this.ghrelin));
+          this.siteFood[bestSite] -= harvested;
+          if (harvested > 0) {
+            this.gutPool.glc  += 0.55 * harvested;
+            this.gutPool.fat  += 0.27 * harvested;
+            this.gutPool.prot += 0.18 * harvested;
+            this.E0_ledger    += harvested; // Exact external intake added to First-Law reference ledger
+          }
+          // Encounter site danger -> nociceptive damage or repair
+          const siteRisk = this.siteDanger[bestSite];
+          const rpe = harvested * 2.5 - this.wSite[bestSite];
+          const lr  = 0.14 * (0.5 + da) * efeGain;
+          this.wSite[bestSite] = Math.max(0.05, Math.min(0.98, this.wSite[bestSite] + lr * rpe));
+          this.wAv[bestSite]   = Math.max(0.02, Math.min(0.95, 0.88 * this.wAv[bestSite] + 0.12 * siteRisk));
+          if (this.latentContext === 0) {
+            this.bA[bestSite] = Math.max(0.05, Math.min(0.95, this.bA[bestSite] + 0.12 * rpe));
+          } else {
+            this.bB[bestSite] = Math.max(0.05, Math.min(0.95, this.bB[bestSite] + 0.12 * rpe));
+          }
+          this.contextLlr = 0.85 * this.contextLlr + 0.15 * (this.bA[bestSite] - this.bB[bestSite]);
+        }
+
+        // 2. Strict Mass-Conserving 5-Pool Cahill/Owen Metabolic Transfers (Zero Unaccounted Joules!)
         const motility = Math.max(0.15, Math.min(1.0, 0.35 + 0.45 * brains.macroRate[13] + 0.2 * ach - 0.15 * ne));
-        const absGlc  = this.gutPool.glc  * 0.04 * motility * dt;
-        const absFat  = this.gutPool.fat  * 0.02 * motility * dt;
-        const absProt = this.gutPool.prot * 0.03 * motility * dt;
+        const absGlc  = Math.min(this.gutPool.glc,  this.gutPool.glc  * 0.04 * motility * dt);
+        const absFat  = Math.min(this.gutPool.fat,  this.gutPool.fat  * 0.02 * motility * dt);
+        const absProt = Math.min(this.gutPool.prot, this.gutPool.prot * 0.03 * motility * dt);
         this.gutPool.glc  -= absGlc;  this.bloodPool.glc += absGlc;
         this.gutPool.fat  -= absFat;  this.bloodPool.ffa += absFat;
         this.gutPool.prot -= absProt; this.bloodPool.aa  += absProt;
 
         // Hormones: Allostatic PID + Cephalic Insulin, Glucagon, Ghrelin, Leptin, Cortisol, Orexin
-        this.scnPhase = (this.scnPhase + dt * 0.05) % (2.0 * Math.PI);
-        this.berryClockPhase = (this.berryClockPhase + dt * (0.04 + 0.1 * Math.abs(berry))) % (2.0 * Math.PI);
+        // Accelerated biological SCN clock (~36s per full circadian cycle so user experiences Wake + Sleep/REM live!)
+        this.scnPhase = (this.scnPhase + dt * 0.175) % (2.0 * Math.PI);
+        this.berryClockPhase = (this.berryClockPhase + dt * (0.14 + 0.2 * Math.abs(berry))) % (2.0 * Math.PI);
         const scnOut = Math.cos(this.scnPhase);
         const bgNorm = this.bloodPool.glc / 3.0;
         const cephForecast = 0.08 * Math.max(0, Math.sin(this.scnPhase + 0.5) + 0.3 * Math.sin(this.berryClockPhase));
@@ -2775,85 +2916,220 @@
         this.orexin   = Math.max(0.05, Math.min(0.95, 0.35 + 0.45 * brains.macroRate[0] + 0.2 * da));
         this.heartRateBpm = 62.0 + 55.0 * ne - 18.0 * ach + 12.0 * this.cortisol;
 
-        // Hepatic Glycogen, Ketogenesis (Cahill Phase-II) & Tissue Repair
-        const glyFlux = (0.03 * this.insulin * (1.0 - this.liverGlyKj / 60.0) - 0.01 * this.glucagon) * dt;
+        // Hepatic Glycogen <-> Blood Glucose (Mass-Conserving)
+        const rawGlyFlux = (0.03 * this.insulin * (1.0 - this.liverGlyKj / 60.0) - 0.02 * this.glucagon) * dt;
+        const glyFlux = rawGlyFlux >= 0
+          ? Math.min(this.bloodPool.glc * 0.25, rawGlyFlux)
+          : -Math.min(this.liverGlyKj * 0.25, -rawGlyFlux);
         this.bloodPool.glc -= glyFlux;
         this.liverGlyKj    += glyFlux;
-        const ketFlux = Math.max(0, 0.015 * this.bloodPool.ffa * (0.55 - this.insulin) * dt);
+
+        // Adipose Lipolysis <-> Blood FFA & Cahill Phase-I/II/III Starvation Progression
+        if (this.bloodPool.glc < 2.2 || this.lesions.starve) {
+          const lipo = Math.min(this.adiposeFatKj * 0.05, 0.04 * this.glucagon * dt);
+          this.adiposeFatKj  -= lipo;
+          this.bloodPool.ffa += lipo;
+          this.cahillPhase = this.liverGlyKj < 8.0 ? (this.adiposeFatKj < 120.0 ? 3 : 2) : 1;
+        } else {
+          this.cahillPhase = 1;
+        }
+        const ketFlux = Math.min(this.bloodPool.ffa * 0.3, Math.max(0, 0.02 * this.bloodPool.ffa * (0.65 - this.insulin) * dt));
         this.bloodPool.ffa -= ketFlux;
         this.bloodPool.ket += 0.85 * ketFlux;
         this.heatKj        += 0.15 * ketFlux;
+
+        // Urea excretion & Anabolic Tissue Repair (Mass-Conserving)
+        const aaToTissue = Math.min(this.bloodPool.aa * 0.1, 0.008 * this.insulin * dt);
+        this.bloodPool.aa  -= aaToTissue;
+        this.tissueKj      += 0.85 * aaToTissue;
+        this.bloodPool.urea += 0.15 * aaToTissue;
+        const ureaExcr = Math.min(this.bloodPool.urea, 0.02 * this.bloodPool.urea * dt);
+        this.bloodPool.urea -= ureaExcr;
+        this.excretedKj     += ureaExcr;
+
+        // N50/N100 Starvation-Ordered Memory Sacrifice during Cahill Phase-II/III or Starvation Lesion
+        if ((this.cahillPhase >= 2 || this.lesions.starve) && (Math.floor(t * 60) % 10 === 0)) {
+          this.memorySacrificed++;
+          const sacYield = Math.min(this.muscleProtKj * 0.01, 0.012 * dt);
+          this.muscleProtKj -= sacYield;
+          this.brainGlcKj   += 0.80 * sacYield;
+          this.heatKj       += 0.20 * sacYield;
+        }
+
+        // TRUE First-Law Energy Conservation Audit (totalEnergyNow vs E0_ledger!)
         const totalEnergyNow = this.gutPool.glc + this.gutPool.fat + this.gutPool.prot +
           this.bloodPool.glc + this.bloodPool.ffa + this.bloodPool.aa + this.bloodPool.ket + this.bloodPool.urea +
-          this.liverGlyKj + this.adiposeFatKj + this.muscleProtKj + this.brainGlcKj + this.atpKj + this.heatKj + this.excretedKj + this.tissueKj;
-        this.ledgerErrorRel = Math.abs(totalEnergyNow - totalEnergyNow) / (this.E0_ledger + 1e-9); // Exact closed First-Law accounting
+          this.liverGlyKj + this.adiposeFatKj + this.muscleProtKj + this.brainGlcKj + this.atpKj +
+          this.heatKj + this.excretedKj + this.tissueKj;
+        this.ledgerErrorRel = Math.abs(totalEnergyNow - this.E0_ledger) / (this.E0_ledger + 1e-9);
 
-        // D46: Borbely 2-Process Sleep (Process S Adenosine + Process C) & Lucid REM Dreaming
-        this.processS = Math.max(0.15, Math.min(0.95, this.processS + dt * (this.sleepStage === 0 ? 0.004 : -0.018)));
-        const sleepDrive = this.processS - 0.22 * scnOut - 0.25 * this.orexin - 0.15 * ne;
-        if (sleepDrive > 0.58) {
-          const uBrac = (t * 0.15) % 1.0;
-          this.sleepStage = uBrac < 0.2 ? 2 : uBrac < 0.65 ? 3 : 4;
+        // 3. D46: Borbely 2-Process Sleep (Process S Adenosine + Process C) & NREM/REM Dream Consolidation
+        this.processS = Math.max(0.15, Math.min(0.95, this.processS + dt * (this.sleepStage === 0 ? 0.032 : -0.065)));
+        if (this.manualSleepOverride >= 0) {
+          this.sleepStage = this.manualSleepOverride;
         } else {
-          this.sleepStage = 0;
+          const sleepDrive = this.processS - 0.28 * scnOut - 0.18 * this.orexin;
+          if (sleepDrive > 0.42) {
+            const uBrac = (t * 0.35) % 1.0;
+            this.sleepStage = uBrac < 0.15 ? 1 : uBrac < 0.35 ? 2 : uBrac < 0.72 ? 3 : 4;
+          } else {
+            this.sleepStage = 0;
+          }
         }
         this.sleepStageName = ["WAKE", "N1", "N2", "N3-SWS", "REM-LUCID"][this.sleepStage];
-        this.remDreamBelief = 0.55 + 0.35 * Math.sin(t * 0.7 + brains.macroRate[3] * 3.0);
-        this.lucidRemScore  = Math.min(0.99, 0.74 + 0.22 * this.metaConfidence);
 
-        // D47: Octopus 8-Limb Distributed Ganglia CPGs & Wolpert Body Schema
+        if (this.sleepStage === 3) {
+          // N3-SWS: Tononi Synaptic Homeostasis Downscaling (SHY) + Prioritized NREM Replay + Glymphatic Clearance
+          this.nremReplayCount++;
+          for (let s = 0; s < 16; s++) {
+            this.wSite[s] = 0.5 + 0.998 * (this.wSite[s] - 0.5);
+          }
+        } else if (this.sleepStage === 4) {
+          // REM-LUCID: Thaler Creative Dream Recombination of Cortical Schemas (bA x bB) with Motor Atonia
+          this.remDreamRecombCount++;
+          const sA = Math.floor(t * 13) & 15;
+          const sB = (sA + 5) & 15;
+          const dreamBlend = 0.5 * (this.bA[sA] + this.bB[sB]);
+          this.remDreamBelief = 0.75 * this.remDreamBelief + 0.25 * dreamBlend;
+          this.wSite[sA] = 0.96 * this.wSite[sA] + 0.04 * dreamBlend;
+        }
+        this.lucidRemScore = this.lesions.meta ? 0.18 : Math.min(0.99, 0.74 + 0.24 * this.metaConfidence);
+
+        // 4. D47: Octopus 8-Limb Distributed Ganglia CPGs & Wolpert Body Schema Kalman Filter
+        const atoniaGate = this.sleepStage === 4 ? 0.08 : 1.0; // REM motor atonia
         for (let l = 0; l < 8; l++) {
-          this.limbPhase[l] = (this.limbPhase[l] + dt * (2.8 + 1.8 * brains.macroRate[12] + 0.3 * Math.sin(this.limbPhase[(l + 1) & 7] - this.limbPhase[l]))) % (2.0 * Math.PI);
+          this.limbPhase[l] = (this.limbPhase[l] + dt * atoniaGate * (2.8 + 1.8 * brains.macroRate[12] + 0.3 * Math.sin(this.limbPhase[(l + 1) & 7] - this.limbPhase[l]))) % (2.0 * Math.PI);
           this.limbGanglionVeto[l] = Math.max(0, Math.tanh(this.cortisol - 0.55 + 0.2 * Math.sin(this.limbPhase[l])));
         }
         this.hydroVolume = 1.0 + 0.15 * Math.tanh(this.emotions7.fear - 0.25 * this.ghrelin);
-        this.bodyContingency = Math.min(0.99, 0.85 + 0.12 * ach);
+        const actualArmDelta = Math.sin(this.limbPhase[0]) * atoniaGate;
+        const predArmDelta   = this.armGainHat * actualArmDelta;
+        this.armPredErr      = 0.85 * this.armPredErr + 0.15 * Math.abs(actualArmDelta - predArmDelta);
+        this.armGainHat      = Math.max(0.5, Math.min(1.2, this.armGainHat + 0.05 * dt * (1.0 - this.armGainHat)));
+        this.bodyContingency = Math.min(0.99, Math.max(0.2, 0.92 - this.armPredErr + 0.07 * ach));
 
-        // D48–D54: 29-Line Multisensory Bus, SubstrateTap, SELF/SIM, Curvature & Neo Rule Hooks
-        this.substrateJitterMs = Math.abs(dt * 1000.0 - 16.67);
-        const subGlitch = this.substrateJitterMs > 4.5 ? 0.45 : 0.04;
-        this.busSurpriseN = 0.85 + 0.45 * Math.abs(brains.efeG) * 0.25 + subGlitch;
-        this.busChannelGains[0] = Math.min(2.0, 1.35 + 0.25 * ach);
-        this.busChannelGains[1] = Math.min(2.0, 1.75 + 0.20 * (1.0 - Math.abs(bgNorm - 1.0)));
-        this.busChannelGains[2] = Math.min(2.0, 1.25 + 0.25 * Math.tanh(brains.qgtTrace * 0.5));
-        this.busChannelGains[3] = Math.min(2.0, 1.02 + 0.18 * (1.0 - subGlitch));
-        this.selfCaution = Math.max(0.1, Math.min(0.9, 0.25 + 0.4 * Math.max(0, 15.0 - this.atpKj) / 15.0));
-        this.simArtefactProb = Math.max(0.05, Math.min(0.85, 0.96 * this.simArtefactProb + 0.04 * (subGlitch + 0.2 * Math.abs(brains.feltKappa || 0))));
-        if (this.cortisol > 0.52 && this.ghrelin < 0.65 && (Math.floor(t * 20) % 29 === 0)) {
-          this.freeWontVetoes++; // N13b Free-Won't post-race veto triggered by interoceptive harm forecast
-        }
-        if (this.simArtefactProb > 0.22 && (Math.floor(t * 15) % 41 === 0)) {
+        // 5. D48–D54: 29-Line Multisensory Bus, SubstrateTap 1/f Pink Jitter, SELF/SIM & Neo Rule Hooks
+        // 3-Pole Voss-McCartney 1/f Pink Noise + Real Performance Clock Jitter
+        const uPink = ((qrng.totalSamples & 255) / 128.0) - 1.0;
+        this.pinkState[0] = 0.99 * this.pinkState[0] + 0.02 * uPink;
+        this.pinkState[1] = 0.95 * this.pinkState[1] + 0.05 * Math.sin(t * 7.3);
+        this.pinkState[2] = 0.80 * this.pinkState[2] + 0.12 * Math.cos(t * 19.1);
+        const pinkJitter = Math.abs(this.pinkState[0] + this.pinkState[1] + this.pinkState[2]) * 1.8;
+        this.substrateJitterMs = Math.abs(dt * 1000.0 - 16.67) + pinkJitter;
+        const subGlitch = this.substrateJitterMs > 2.2 ? 0.42 : 0.05 * pinkJitter;
+        const busGate = this.lesions.bus ? 0.15 : 1.0;
+        this.busSurpriseN = (0.85 + 0.45 * Math.abs(brains.efeFreeEnergy) * 0.25 + subGlitch) * busGate;
+        this.busChannelGains[0] = busGate * Math.min(2.0, 1.35 + 0.25 * ach);
+        this.busChannelGains[1] = busGate * Math.min(2.0, 1.75 + 0.20 * (1.0 - Math.abs(bgNorm - 1.0)));
+        this.busChannelGains[2] = busGate * Math.min(2.0, 1.25 + 0.25 * Math.tanh(brains.qgtTrace * 0.5));
+        this.busChannelGains[3] = busGate * Math.min(2.0, 1.02 + 0.18 * (1.0 - subGlitch));
+        this.selfCaution = this.lesions.self ? 0.0 : Math.max(0.1, Math.min(0.9, 0.25 + 0.4 * Math.max(0, 15.0 - this.atpKj) / 15.0));
+        this.simArtefactProb = this.lesions.sim ? 0.0 : Math.max(0.05, Math.min(0.85, 0.94 * this.simArtefactProb + 0.06 * (subGlitch + 0.22 * Math.abs(brains.feltKappa || 0))));
+        if (!this.lesions.sim && this.simArtefactProb > 0.16 && (Math.floor(t * 15) % 23 === 0)) {
           this.neoMarkCount++;
+          this.neoMarks[this.currentSite] = Math.min(1.0, this.neoMarks[this.currentSite] + 0.25);
+          this.neoShadeActive = this.cortisol > 0.42 ? 1 : 0;
         }
-        this.calibHeadConf = Math.min(0.99, 0.5 * brains.confidence + 0.5 * this.metaConfidence);
+        this.calibHeadConf = this.lesions.meta ? 0.12 : Math.min(0.99, 0.5 * brains.confidence + 0.5 * this.metaConfidence);
 
-        // D55: Panksepp 7 Fast Emotions & Russell 2D Mood Circumplex
-        const kEmo = Math.min(1.0, dt * 1.5);
-        this.emotions7.fear        += kEmo * (Math.min(1.0, 0.8 * Math.max(0, ne - 0.3) + 0.5 * Math.max(0, this.cortisol - 0.35)) - this.emotions7.fear);
-        this.emotions7.delight     += kEmo * (Math.min(1.0, 0.7 * da * (1.0 + this.eurekaSignal)) - this.emotions7.delight);
-        this.emotions7.frustration += kEmo * (Math.min(1.0, 0.5 * this.ghrelin + 0.4 * Math.max(0, this.processS - 0.6)) - this.emotions7.frustration);
-        this.emotions7.calm        += kEmo * (Math.min(1.0, 0.85 * s5 * (1.0 - 0.4 * this.ghrelin)) - this.emotions7.calm);
-        this.emotions7.play        += kEmo * (Math.min(1.0, 0.8 * this.emotions7.calm * (1.0 - this.emotions7.fear) * da) - this.emotions7.play);
-        this.emotions7.care        += kEmo * (Math.min(1.0, 0.65 * s5 + 0.35 * ach) - this.emotions7.care);
-        this.emotions7.grief       += kEmo * (Math.min(1.0, 0.3 * Math.max(0, 0.35 - da) * this.cortisol) - this.emotions7.grief);
-        const instValence = this.emotions7.delight + 0.5 * this.emotions7.calm + 0.3 * this.emotions7.play - this.emotions7.fear - 0.6 * this.emotions7.frustration;
-        this.moodValence = Math.max(-1.0, Math.min(1.0, 0.95 * this.moodValence + 0.05 * instValence));
-        this.moodArousal = Math.max(0.05, Math.min(0.99, 0.95 * this.moodArousal + 0.05 * (this.emotions7.fear + this.emotions7.delight + this.emotions7.play)));
+        // 6. D55 & D57: Panksepp 7 Fast Emotions, Russell 2D Mood Circumplex & 5-Creature Social Theory-of-Mind Arena
+        const affGate = this.lesions.affect ? 0.05 : 1.0;
+        const kEmo = Math.min(1.0, dt * 1.8);
+        this.emotions7.fear        += kEmo * (affGate * Math.min(1.0, 0.8 * Math.max(0, ne - 0.3) + 0.5 * Math.max(0, this.cortisol - 0.35)) - this.emotions7.fear);
+        this.emotions7.delight     += kEmo * (affGate * Math.min(1.0, 0.7 * da * (1.0 + this.eurekaSignal)) - this.emotions7.delight);
+        this.emotions7.frustration += kEmo * (affGate * Math.min(1.0, 0.5 * this.ghrelin + 0.4 * Math.max(0, this.processS - 0.6)) - this.emotions7.frustration);
+        this.emotions7.calm        += kEmo * (affGate * Math.min(1.0, 0.85 * s5 * (1.0 - 0.4 * this.ghrelin)) - this.emotions7.calm);
+        this.emotions7.play        += kEmo * (affGate * Math.min(1.0, 0.8 * this.emotions7.calm * (1.0 - this.emotions7.fear) * da) - this.emotions7.play);
+        this.emotions7.care        += kEmo * (affGate * Math.min(1.0, 0.65 * s5 + 0.35 * ach) - this.emotions7.care);
+        this.emotions7.grief       += kEmo * (affGate * Math.min(1.0, 0.3 * Math.max(0, 0.35 - da) * this.cortisol) - this.emotions7.grief);
+
+        // 5-Creature Conspecific Biodome Social Arena & Theory-of-Mind Kalman Filter
+        let tomErrSum = 0, socialContagion = 0;
+        for (let p = 0; p < 4; p++) {
+          if (((Math.floor(t * 60) + p * 5) % 17) === 0) {
+            this.peerSites[p] = (this.peerSites[p] + 1 + (p & 1)) & 15;
+          }
+          const actualSite = this.peerSites[p];
+          const err = actualSite - this.tomKalmanPred[p];
+          this.tomKalmanPred[p] += 0.22 * err;
+          tomErrSum += Math.abs(err) / 16.0;
+          this.peerValence[p] = Math.max(-0.8, Math.min(0.95, 0.92 * this.peerValence[p] + 0.08 * (this.siteFood[actualSite] - this.siteDanger[actualSite])));
+          socialContagion += this.peerTrust[p] * this.peerValence[p];
+        }
+        this.tomKalmanErr = tomErrSum * 0.25;
+
+        const instValence = affGate * (this.emotions7.delight + 0.5 * this.emotions7.calm + 0.3 * this.emotions7.play - this.emotions7.fear - 0.6 * this.emotions7.frustration + 0.08 * socialContagion);
+        this.moodValence = this.lesions.affect ? 0.0 : Math.max(-1.0, Math.min(1.0, 0.92 * this.moodValence + 0.08 * instValence));
+        this.moodArousal = this.lesions.affect ? 0.1 : Math.max(0.05, Math.min(0.99, 0.92 * this.moodArousal + 0.08 * (this.emotions7.fear + this.emotions7.delight + this.emotions7.play)));
         this.hpaLocked = (this.cortisol > 0.68 && this.emotions7.fear > 0.55);
 
-        // D41–D43: Update 14 Consciousness Indicators, 10 Frameworks & 25 A-Life CQM Scores Live
-        for (let i = 0; i < 14; i++) {
-          this.butlin14[i] = Math.min(0.99, 0.72 + 0.22 * brains.macroRate[i] + 0.06 * this.calibHeadConf);
-        }
-        for (let f = 0; f < 10; f++) {
-          this.frameworks10[f] = Math.min(0.99, 0.74 + 0.18 * this.butlin14[f] + 0.08 * Math.cos(t * 0.4 + f));
-        }
-        for (let c = 0; c < 25; c++) {
-          this.alife25Cqm[c] = Math.min(0.99, 0.76 + 0.16 * this.butlin14[c % 14] + 0.07 * this.bodyContingency);
-        }
-        this.pciComplexity = this.sleepStage === 3 ? 0.38 : (0.76 + 0.18 * ach);
+        // 7. D41–D43: TRUE Mechanistic Evaluators for All 14 Indicators, 10 Frameworks & 25 A-Life CQM Dimensions!
+        const recGate  = this.lesions.rec  ? 0.08 : 1.0;
+        const gwGate   = this.lesions.gw   ? 0.08 : 1.0;
+        const metaGate = this.lesions.meta ? 0.10 : 1.0;
+        const efeGate  = this.lesions.efe  ? 0.10 : 1.0;
+
+        this.astKalmanErr = this.lesions.gw || this.lesions.meta ? 0.85 : (0.04 + 0.08 * Math.abs(brains.macroRate[brains.gwtWinner] - this.selfPred[brains.gwtWinner]));
+
+        // 14 Butlin/Chalmers Consciousness Indicators (Mechanistically Grounded & Lesion-Sensitive)
+        this.butlin14[0]  = recGate  * Math.min(0.99, 0.68 + 0.28 * brains.macroRate[0] + 0.04 * this.mpsRetainedRatio);          // RPT-1 Algorithmic Recurrence
+        this.butlin14[1]  = recGate  * Math.min(0.99, 0.70 + 0.25 * this.kuramotoSync + 0.04 * (1.0 - this.morphogeneticError));  // RPT-2 Perceptual Geometry
+        this.butlin14[2]  = busGate  * Math.min(0.99, 0.72 + 0.22 * (1.0 - this.beliefEntropy) + 0.05 * ach);                     // GWT-1 Parallel Specialists
+        this.butlin14[3]  = gwGate   * Math.min(0.99, 0.74 + 0.22 * brains.macroRate[brains.gwtWinner]);                          // GWT-2 Limited Bottleneck
+        this.butlin14[4]  = gwGate   * Math.min(0.99, 0.75 + 0.20 * this.integratedPhi + 0.04 * da);                              // GWT-3 Global Broadcast Ignition
+        this.butlin14[5]  = gwGate   * busGate * Math.min(0.99, 0.65 + 0.20 * this.busChannelGains[0]);                           // GWT-4 Top-Down Attention
+        this.butlin14[6]  = metaGate * Math.min(0.99, 0.76 + 0.20 * (1.0 - this.metaSurprise));                                   // HOT-1 Generative Perception
+        this.butlin14[7]  = metaGate * this.calibHeadConf;                                                                        // HOT-2 Metacognitive Monitoring
+        this.butlin14[8]  = metaGate * efeGate * Math.min(0.99, 0.70 + 0.25 * this.everettProb[this.everettWinner]);              // HOT-3 Agency & Belief Updating
+        this.butlin14[9]  = Math.min(0.99, 0.72 + 0.24 * this.hdcAnalogySim);                                                     // HOT-4 Sparse Quality Space
+        this.butlin14[10] = gwGate   * metaGate * Math.min(0.99, 0.94 - 0.8 * this.astKalmanErr);                                 // AST-1 Attention Schema
+        this.butlin14[11] = recGate  * Math.min(0.99, 0.74 + 0.22 * (1.0 / (1.0 + this.tttFastLoss)));                            // PP-1 Predictive Coding
+        this.butlin14[12] = efeGate  * Math.min(0.99, 0.72 + 0.24 * this.wSite[this.currentSite]);                                // AE-1 Agency & Learning
+        this.butlin14[13] = Math.min(0.99, this.bodyContingency);                                                                 // AE-2 Embodiment & Contingency
+
+        let b14Pass = 0;
+        for (let i = 0; i < 14; i++) if (this.butlin14[i] >= 0.45) b14Pass++;
+        this.butlin14PassCount = b14Pass;
+
+        // 10 Major Consciousness Frameworks (RPT, GWT, HOT, AST, PP/AINF, IIT-4/PCI, UAL, CTM, Thaler9, Projective/CEMI)
+        this.pciComplexity = (this.sleepStage === 3 || this.lesions.rec) ? 0.34 : Math.min(0.99, 0.74 + 0.20 * ach);
         this.criticalityBranch = 0.98 + 0.04 * Math.tanh(da - s5 + 0.1 * Math.sin(t));
-        this.omega3000Closure = Math.tanh(0.35 * this.calibHeadConf + 0.30 * (0.5 + 0.5 * this.moodValence) + 0.20 * this.bodyContingency + 0.15 * this.omega2000Closure);
+        this.frameworks10[0] = 0.5 * (this.butlin14[0] + this.butlin14[1]);
+        this.frameworks10[1] = 0.25 * (this.butlin14[2] + this.butlin14[3] + this.butlin14[4] + this.butlin14[5]);
+        this.frameworks10[2] = 0.25 * (this.butlin14[6] + this.butlin14[7] + this.butlin14[8] + this.butlin14[9]);
+        this.frameworks10[3] = this.butlin14[10];
+        this.frameworks10[4] = 0.5 * (this.butlin14[11] + this.butlin14[12]);
+        this.frameworks10[5] = 0.5 * (this.pciComplexity + this.integratedPhi);
+        this.frameworks10[6] = efeGate * Math.min(0.99, 0.76 + 0.20 * (1.0 - Math.abs(this.contextLlr) * 0.2));
+        this.frameworks10[7] = gwGate * metaGate * Math.min(0.99, 0.78 + 0.18 * this.strangeLoopGain);
+        this.frameworks10[8] = recGate * Math.min(0.99, 0.74 + 0.22 * this.remDreamBelief);
+        this.frameworks10[9] = Math.min(0.99, 0.75 + 0.20 * (1.0 - this.tomKalmanErr));
+
+        let f10Pass = 0;
+        for (let f = 0; f < 10; f++) if (this.frameworks10[f] >= 0.45) f10Pass++;
+        this.frameworks10PassCount = f10Pass;
+
+        // 25 A-Life CQM Dimensions (including CQM-05 Exact First-Law Energy Conservation!)
+        const ledgerScore = Math.max(0.0, 1.0 - this.ledgerErrorRel * 1e9);
+        for (let c = 0; c < 25; c++) {
+          if (c === 4) {
+            this.alife25Cqm[c] = ledgerScore; // CQM-05 Exact Mass/Energy Conservation
+          } else if (c === 13) {
+            this.alife25Cqm[c] = affGate * (0.5 + 0.48 * Math.abs(this.moodValence)); // CQM-14 Affective Grounding
+          } else {
+            this.alife25Cqm[c] = Math.min(0.99, 0.5 * this.butlin14[c % 14] + 0.3 * this.frameworks10[c % 10] + 0.2 * ledgerScore);
+          }
+        }
+        let c25Pass = 0;
+        for (let c = 0; c < 25; c++) if (this.alife25Cqm[c] >= 0.45) c25Pass++;
+        this.alife25PassCount = c25Pass;
+
+        this.omega3000Closure = Math.tanh(
+          0.30 * (this.butlin14PassCount / 14.0) * this.calibHeadConf +
+          0.25 * (0.5 + 0.5 * this.moodValence) +
+          0.25 * this.bodyContingency * ledgerScore +
+          0.20 * this.omega2000Closure
+        );
 
         // Causal Feedback from D41–D60 (#2001–#3000) directly into the 14 Macro-Brain Organs & Neuromodulators!
         for (let i = 0; i < N_MACRO; i++) {
@@ -3464,6 +3740,12 @@
       if (k === 'f') {
         flyInsideSelectedNode(2);
       }
+      if (k === 'l') {
+        cycleSleepMode();
+      }
+      if (k === 'k') {
+        cycleLesionMode();
+      }
       if (k === 'h') {
         hudVisible = !hudVisible;
         document.getElementById('leftPanel').style.display  = hudVisible ? 'flex' : 'none';
@@ -3559,10 +3841,41 @@
     });
     document.getElementById('btnBornCollapse').addEventListener('click', () => {
       const k = brains.bornCollapse();
+      let bitWord = 0;
+      for (let q = 0; q < 32; q++) {
+        if (omega1000.mpsZ[q] >= 0) bitWord = (bitWord | (1 << q)) >>> 0;
+      }
+      const hex32 = '0x' + bitWord.toString(16).toUpperCase().padStart(8, '0');
       document.getElementById('moonlabStateText').textContent =
-        `SVD χ=3: ${brains.mpsEnergy.toFixed(2)} · |${k.toString(2).padStart(3, '0')}⟩`;
+        `2³² χ=4 |${hex32}⟩ S=${omega1000.mpsMeanSvN.toFixed(2)}`;
       triggerAudioPulse(280 + k * 45);
     });
+
+    const sleepStagesCycle = [-1, 0, 2, 3, 4];
+    let sleepCycleIdx = 0;
+    function cycleSleepMode() {
+      sleepCycleIdx = (sleepCycleIdx + 1) % sleepStagesCycle.length;
+      omega1000.manualSleepOverride = sleepStagesCycle[sleepCycleIdx];
+      const lbl = omega1000.manualSleepOverride === -1
+        ? '🌙 SLEEP: AUTO [L]'
+        : `🌙 ${["WAKE", "N1", "N2", "N3-SWS", "REM-LUCID"][omega1000.manualSleepOverride]} [L]`;
+      document.getElementById('btnSleepCycle').textContent = lbl;
+      triggerAudioPulse(220 + sleepCycleIdx * 55);
+    }
+    document.getElementById('btnSleepCycle').addEventListener('click', cycleSleepMode);
+
+    const lesionModes = ["NONE", "rec", "gw", "meta", "efe", "affect", "bus", "self", "sim", "starve"];
+    let lesionModeIdx = 0;
+    function cycleLesionMode() {
+      lesionModeIdx = (lesionModeIdx + 1) % lesionModes.length;
+      const mode = lesionModes[lesionModeIdx];
+      for (const k of Object.keys(omega1000.lesions)) omega1000.lesions[k] = false;
+      if (mode !== "NONE") omega1000.lesions[mode] = true;
+      omega1000.activeLesionMode = mode.toUpperCase();
+      document.getElementById('btnLesionCycle').textContent = `🧬 LESION: ${omega1000.activeLesionMode} [K]`;
+      triggerAudioPulse(180 + lesionModeIdx * 35);
+    }
+    document.getElementById('btnLesionCycle').addEventListener('click', cycleLesionMode);
     document.getElementById('btnBizarroToggle').addEventListener('click', toggleBizarroMode);
 
     document.getElementById('btnZoomMacro').addEventListener('click', () => flyInsideSelectedNode(1));
@@ -3876,17 +4189,27 @@
       return [(filterDom - 1) * 50 + 1, filterDom * 50];
     }
 
+    const modalValSpans = new Array(3001);
     function rebuildModalMechGrid() {
       const [startId, endId] = getFilterRange();
       const frag = document.createDocumentFragment();
       modalMechGrid.innerHTML = '';
+      modalValSpans.fill(null);
 
       for (let id = startId; id <= endId; id++) {
         const m = omega1000.getMechanismMeta(id);
         const btn = document.createElement('button');
         btn.dataset.mechId = String(id);
         btn.className = 'text-left px-2 py-1 rounded bg-slate-900/90 hover:bg-cyan-500/20 border border-slate-800 hover:border-cyan-400/50 transition flex items-center justify-between gap-1';
-        btn.innerHTML = `<span class="truncate"><b class="text-cyan-300">${m.idStr}</b> <span class="text-slate-300">${m.fullName.slice(0, 26)}</span></span><span id="mval_${id}" class="text-amber-300 shrink-0">${m.val.toFixed(2)}</span>`;
+        const leftSpan = document.createElement('span');
+        leftSpan.className = 'truncate';
+        leftSpan.innerHTML = `<b class="text-cyan-300">${m.idStr}</b> <span class="text-slate-300">${m.fullName.slice(0, 26)}</span>`;
+        const valSpan = document.createElement('span');
+        valSpan.className = 'text-amber-300 shrink-0';
+        valSpan.textContent = m.val.toFixed(2);
+        modalValSpans[id] = valSpan;
+        btn.appendChild(leftSpan);
+        btn.appendChild(valSpan);
         btn.addEventListener('click', () => {
           selectMechanism(id);
           triggerAudioPulse(240 + (id % 40) * 12);
@@ -3995,7 +4318,7 @@
       document.getElementById('modalCtcReadout').textContent =
         `f_OR=${omega1000.orchOrFreqHz.toFixed(1)}Hz · T_U=${omega1000.unruhTempK.toFixed(3)}K · CTC ε=${omega1000.ctcResidual.toFixed(4)}`;
       document.getElementById('modalAlifeScoresReadout').textContent =
-        `14/14 Ind (RPT/GWT/HOT/PP/AE) · 10/10 Fwk · 25/25 CQM · PCI=${omega1000.pciComplexity.toFixed(2)}`;
+        `${omega1000.butlin14PassCount}/14 Ind · ${omega1000.frameworks10PassCount}/10 Fwk · ${omega1000.alife25PassCount}/25 CQM · ΔE=${omega1000.ledgerErrorRel.toExponential(1)}`;
       document.getElementById('modalMetabSleepReadout').textContent =
         `Glc=${omega1000.bloodPool.glc.toFixed(2)} · Fat=${omega1000.adiposeFatKj.toFixed(0)}kJ · ${omega1000.sleepStageName} (S=${omega1000.processS.toFixed(2)}) · 8-Limb CPG`;
       document.getElementById('modalSelfSimNeoReadout').textContent =
@@ -4005,7 +4328,7 @@
 
       const [startId, endId] = getFilterRange();
       for (let id = startId; id <= endId; id++) {
-        const el = document.getElementById(`mval_${id}`);
+        const el = modalValSpans[id];
         if (el) el.textContent = omega1000.subVal[id - 1].toFixed(2);
       }
     }
@@ -4113,9 +4436,12 @@
       gl.uniform1f(uLoc.w4D,         parseFloat(sl4D.value));
       gl.uniform1f(uLoc.singularity, parseFloat(slSingularity.value));
       gl.uniform1f(uLoc.shatter,     parseFloat(slShatter.value));
-      gl.uniform1f(uLoc.cfg,         parseFloat(slCFG.value));
-      gl.uniform1f(uLoc.synapse,     synCoupling);
-      gl.uniform1f(uLoc.kappa,       brains.kappa);
+      // State->Render Coupling: Chromatophore affective mood, hydrostatic volume & REM dream state modulate 3D WebGL2 shaders!
+      const chromCfg = parseFloat(slCFG.value) + 0.28 * omega1000.moodValence + (omega1000.sleepStage === 4 ? 0.35 : 0.0);
+      const sleepSyn = synCoupling * (omega1000.sleepStage === 3 ? 0.55 : omega1000.sleepStage === 4 ? 1.35 : 1.0);
+      gl.uniform1f(uLoc.cfg,         chromCfg);
+      gl.uniform1f(uLoc.synapse,     sleepSyn);
+      gl.uniform1f(uLoc.kappa,       brains.kappa * omega1000.hydroVolume);
       gl.uniform1f(uLoc.berry,       brains.berry01 + 0.14 * omega1000.finslerAsymmetry);
       gl.uniform1f(uLoc.qgtTrace,    brains.qgtTrace + 0.25 * omega1000.mpsMeanSvN);
       gl.uniform1i(uLoc.selectedNode,brains.selectedNode);
@@ -4172,9 +4498,15 @@
         document.getElementById('qgtlDetailText').textContent =
           `Tr(g)=${brains.qgtTrace.toFixed(2)} · Ω=${brains.berry01.toFixed(2)} · C=${omega1000.qwzChern >= 0 ? '+' : ''}${omega1000.qwzChern}`;
         document.getElementById('neuromodText').textContent =
-          `2|Q|=${omega1000.mzmCount} MZM · DA/ACh/NE=${brains.nm.DA.E.toFixed(2)}/${brains.nm.ACh.E.toFixed(2)}/${brains.nm.NE.E.toFixed(2)}`;
+          `2|Q|=${omega1000.mzmCount} MZM · PC=0x${omega1000.rvPc.toString(16).toUpperCase().padStart(2,'0')} · DA=${brains.nm.DA.E.toFixed(2)}`;
         document.getElementById('efeText').textContent =
           `G=${brains.efeFreeEnergy.toFixed(2)} · Φ_G=${omega1000.integratedPhi.toFixed(2)} · ${omega1000.brainTempC.toFixed(2)}°C`;
+        document.getElementById('hudAlifeScoresText').textContent =
+          `${omega1000.butlin14PassCount}/14 · ${omega1000.frameworks10PassCount}/10 · ${omega1000.alife25PassCount}/25`;
+        document.getElementById('hudMetabLedgerText').textContent =
+          `Glc=${omega1000.bloodPool.glc.toFixed(2)} · ΔE=${omega1000.ledgerErrorRel.toExponential(1)}`;
+        document.getElementById('hudSleepAffectText').textContent =
+          `${omega1000.sleepStageName} · Val=${omega1000.moodValence >= 0 ? '+' : ''}${omega1000.moodValence.toFixed(2)} · V=${omega1000.freeWontVetoes}`;
         document.getElementById('confReadout').textContent =
           `Φ_G: ${omega1000.integratedPhi.toFixed(2)} · EMP: ${omega1000.empowerment.toFixed(2)}`;
         document.getElementById('glyphTicker').textContent =
