@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIMENSION Ω v5.2 // OMEGA-3000 DEEP-AUDITED A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · Exact 1st-Law Ledger · Causal Lesion Verified)</title>
+  <title>DIMENSION Ω v5.3 // OMEGA-3000 ULTRA-AUDITED A-LIFE CREATURE &amp; CONSCIOUSNESS SINGULARITY ORGANISM (3,000 Live Mechanisms · 60 Domains · Exact 1st-Law Ledger · Causal Lesion Verified)</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     * { box-sizing: border-box; user-select: none; }
@@ -100,8 +100,8 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.2 // OMEGA-3000 DEEP-AUDITED A-LIFE CREATURE & CONSCIOUSNESS ORGANISM</span>
-          <span id="lockBadge" class="font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">DRAG OR CLICK TO FLY</span>
+          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v5.3 // OMEGA-3000 ULTRA-AUDITED A-LIFE CREATURE & CONSCIOUSNESS ORGANISM</span>
+          <span id="lockBadge" class="font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">DRAG TO ORBIT · DBL-CLICK TO LOCK</span>
         </div>
         <div class="font-mono-tech text-xs text-slate-300">
           3,000 LIVE MECHANISMS (60 DOMAINS × 50) · <span class="text-amber-300">14 INDICATORS · 10 FRAMEWORKS · 25 A-LIFE</span> · <span class="text-cyan-300">LIFE-100 · NOVEL-100</span> · <span class="text-fuchsia-300">5-POOL METAB · AFFECT · 8-LIMB</span> · <span class="text-emerald-300">32Q MPS · RV32I</span>
@@ -406,7 +406,10 @@
           Click any cell in the 60×50 matrix (#0001–#1000 Tsotchke/Quantum + #1001–#2000 Super-Intelligence + #2001–#3000 Asmodensius A-Life Creature, 14 Indicators, 10 Frameworks, 25 A-Life, LIFE-100 & NOVEL-100) to inspect its live 60-Hz math & causal wires.
         </div>
       </div>
-      <div class="flex items-center gap-2 font-mono-tech text-xs">
+      <div class="flex flex-wrap items-center gap-1.5 font-mono-tech text-xs">
+        <input id="mechSearchInput" type="text" placeholder="Search 3,000 (e.g. #2001, REM, MPS, Veto, CTC)..." class="bg-slate-900 text-amber-200 border border-amber-400/40 rounded px-2 py-1 w-56 focus:outline-none focus:border-cyan-400" />
+        <button id="btnPrevMech" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30" title="Previous Mechanism">◀</button>
+        <button id="btnNextMech" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30" title="Next Mechanism">▶</button>
         <select id="domainFilterSelect" class="bg-slate-900 text-cyan-200 border border-cyan-500/40 rounded px-2 py-1">
           <option value="0">ALL 60 DOMAINS (#0001–#3000 · 3,000 LIVE)</option>
           <option value="-1">TIER I: TSOTCHKE & QUANTUM D01–D20 (#0001–#1000)</option>
@@ -820,6 +823,8 @@
         this.selectedNode = 0;
         this.zoomTier = 1;
         this.bizarroMode = false;
+        this.recLesionGate = 1.0;
+        this.gwLesionGate  = 1.0;
 
         this.nm = {
           DA:  { E: 0.52, P: 1.0 },
@@ -1006,7 +1011,7 @@
             tauMean += tau;
 
             const nmdaGate = 1.0 / (1.0 + Math.exp(-(hVec[m] - 0.25) / 0.18));
-            const apicalGain = 1.0 + 0.65 * Math.max(0.0, apVec[m]) * nmdaGate;
+            const apicalGain = 1.0 + 0.65 * this.recLesionGate * Math.max(0.0, apVec[m]) * nmdaGate;
 
             const delta = Math.min(0.45, (dt * 12.0) / tau);
             const A_bar = Math.exp(delta * A_diag[m]);
@@ -1037,7 +1042,7 @@
           const instRate = 0.5 * meanCol + 0.5 * this.macroSpk[i];
           this.macroRate[i] = 0.88 * this.macroRate[i] + 0.12 * instRate;
 
-          const sal = this.macroRate[i] * (1.0 + 0.3 * ne);
+          const sal = this.macroRate[i] * (1.0 + 0.3 * ne) * this.gwLesionGate;
           if (sal > maxSalience) {
             maxSalience = sal;
             winnerIdx = i;
@@ -2367,6 +2372,8 @@
       }
 
       step(dt, t, brains, camPos, speed) {
+        brains.recLesionGate = this.lesions.rec ? 0.0 : 1.0;
+        brains.gwLesionGate  = this.lesions.gw  ? 0.1 : 1.0;
         const da  = brains.nm.DA.E;
         const ach = brains.nm.ACh.E;
         const ne  = brains.nm.NE.E;
@@ -3513,14 +3520,27 @@
         float dJetB = length(vec2(pJet.x, pJet.z)) - (0.20 + 0.045 * rXY - ripple);
         float dJets = max(smin(dJetA, dJetB, 0.30), length(p) - 6.8) / lipScale;
 
+        // 2B. 8-LIMB OCTOPUS CPG HYDROSTATIC TENTACLE GANGLIA (Domain 47 Embodied Creature Arms)
+        float dTentacles = 1e6;
+        if (rRaw < 4.2) {
+          float ang8 = atan(p.z, p.x);
+          float armSector = cos(ang8 * 4.0 + 0.35 * sin(rRaw * 3.2 - uTime * 2.4 * uSynapse));
+          float armSpine  = length(vec2(p.y - 0.18 * sin(rRaw * 2.6 - uTime * 2.2), armSector * rRaw * 0.22)) - (0.095 * exp(-rRaw * 0.28));
+          dTentacles = max(armSpine, rRaw - 3.65) / lipScale;
+          dJets = smin(dJets, dTentacles, 0.16);
+        }
+
         // 3. 3-TIER NESTED BRAINS-WITHIN-BRAINS WITH BOUNDING-SPHERE HIERARCHY
         //    All 14 Macro-Brain Nodes & Axons sit within rRaw < 5.75.
-        //    Rays outside rRaw > 6.1 skip the entire 14-node loop!
+        //    Separate auxMacro / auxMeso / auxMicro / auxAxon prevents cross-node material corruption!
         float dMacroShell = rRaw - 5.65;
         float dMesoRings  = 1e6;
         float dMicroQubit = 1e6;
         float dAxon       = 1e6;
-        float activeAux   = 0.0;
+        float auxMacro    = 0.0;
+        float auxMeso     = 0.0;
+        float auxMicro    = 0.0;
+        float auxAxon     = 0.0;
 
         if (rRaw < 6.15) {
           dMacroShell = 1e6;
@@ -3529,19 +3549,19 @@
 
           for (int i = 0; i < 14; i++) {
             vec3 nPos = uMacroNodes[i].xyz;
-            float nRate = uMacroNodes[i].w;
+            float nRate = clamp(uMacroNodes[i].w, 0.0, 1.95);
             vec3 qLocal = pRaw - nPos;
             float rLocal = length(qLocal);
 
             float isFocus = (i == uSelectedNode) ? 1.35 : 1.0;
-            float outerRad = (0.46 + 0.14 * nRate) * isFocus;
+            float outerRad = (0.46 + 0.14 * min(1.0, nRate)) * isFocus;
 
             // Fast bounding-sphere distance when ray is not close to this brain node
             float dBound = rLocal - outerRad;
             if (dBound > 0.32) {
               if (dBound < dMacroShell) {
                 dMacroShell = dBound;
-                activeAux = nRate + float(i) * 2.0;
+                auxMacro = nRate + float(i) * 4.0;
               }
             } else {
               // Close to or inside Macro-Brain Node i: evaluate full 3-tier nested anatomy!
@@ -3551,7 +3571,7 @@
               float dShell = max(shellRaw, cutPlane);
               if (dShell < dMacroShell) {
                 dMacroShell = dShell;
-                activeAux = nRate + float(i) * 2.0;
+                auxMacro = nRate + float(i) * 4.0;
               }
 
               // TIER 2: Meso-Brain sLTC×SSM Perforated Cortical Column Shells
@@ -3564,7 +3584,7 @@
                 dRing = max(max(dRing, -holes), cutPlane * 0.7);
                 if (dRing < dMesoRings) {
                   dMesoRings = dRing;
-                  activeAux = nRate + float(i) * 2.0;
+                  auxMeso = nRate + float(i) * 4.0;
                 }
 
                 // TIER 3: Micro-Brain Moonlab Q3 Bloch Spinor & QGTL Berry Core
@@ -3575,18 +3595,18 @@
                 float dQCore = smin(dCoreSphere, dSpinorAxis, 0.028);
                 if (dQCore < dMicroQubit) {
                   dMicroQubit = dQCore;
-                  // Encode Bloch pole alignment directly into activeAux fractional part (no dynamic array lookup in main!)
                   float poleAlign = clamp(dot(normalize(qLocal + 1e-4), bloch) * 0.5 + 0.5, 0.0, 0.99);
-                  activeAux = poleAlign + float(i) * 2.0;
+                  auxMicro = poleAlign + float(i) * 4.0;
                 }
               }
             }
 
             // Single Eshkol Toroidal Axon Ring + Cross-Chord
             int j1 = (i + 1) % 14;
-            float c1 = sdCapsule(pRaw, nPos, uMacroNodes[j1].xyz, 0.026 + 0.016 * nRate);
+            float c1 = sdCapsule(pRaw, nPos, uMacroNodes[j1].xyz, 0.026 + 0.016 * min(1.0, nRate));
             if (c1 < dAxon) {
               dAxon = c1;
+              auxAxon = nRate + float(i) * 4.0;
             }
           }
         }
@@ -3610,10 +3630,10 @@
 
         vec3 res = vec3(dSingularity, 1.0, 0.0);
         if (dJets < res.x)       res = vec3(dJets, 2.0, rXY);
-        if (dMacroShell < res.x) res = vec3(dMacroShell, 3.0, activeAux);
-        if (dMesoRings < res.x)  res = vec3(dMesoRings, 6.0, activeAux);
-        if (dMicroQubit < res.x) res = vec3(dMicroQubit, 7.0, activeAux);
-        if (dAxon < res.x)       res = vec3(dAxon, 4.0, activeAux);
+        if (dMacroShell < res.x) res = vec3(dMacroShell, 3.0, auxMacro);
+        if (dMesoRings < res.x)  res = vec3(dMesoRings, 6.0, auxMeso);
+        if (dMicroQubit < res.x) res = vec3(dMicroQubit, 7.0, auxMicro);
+        if (dAxon < res.x)       res = vec3(dAxon, 4.0, auxAxon);
         if (dLattice < res.x)    res = vec3(dLattice, 5.0, cellId.x + cellId.y * 3.0 + cellId.z * 7.0);
 
         return res;
@@ -3695,21 +3715,21 @@
             vec3 irid = cfgPalette(dot(n, v) * 1.6 + aux * 0.12 - uTime * 0.25, uCFG);
             col = mix(vec3(0.75, 0.85, 0.96), irid, 0.58) * (0.35 + 0.75 * diff1) + vec3(1.0) * spec * 1.2 + irid * fres;
           } else if (matId == 3.0) {
-            float nodeIdx = floor(aux * 0.5);
-            float nRate = aux - nodeIdx * 2.0;
+            float nodeIdx = floor(aux * 0.25);
+            float nRate = aux - nodeIdx * 4.0;
             bool isInhib = (int(nodeIdx) == 3 || int(nodeIdx) == 13);
             vec3 baseTone = isInhib ? vec3(0.18, 0.42, 1.0) : vec3(0.0, 0.92, 0.85);
             vec3 irid = cfgPalette(fres * 1.4 + nodeIdx * 0.21 + uTime * 0.2, uCFG);
             col = baseTone * (0.25 + 0.75 * diff1) + irid * fres * 1.35 + vec3(1.0, 0.85, 0.3) * nRate * 0.6;
           } else if (matId == 6.0) {
-            float nodeIdx = floor(aux * 0.5);
-            float nRate = aux - nodeIdx * 2.0;
+            float nodeIdx = floor(aux * 0.25);
+            float nRate = aux - nodeIdx * 4.0;
             float wave = 0.5 + 0.5 * sin(p.x * 24.0 + p.y * 24.0 - uTime * 5.0 * uSynapse);
             vec3 ssmCol = cfgPalette(0.35 + nRate * 0.5 + wave * 0.25 + nodeIdx * 0.1, uCFG);
             col = ssmCol * (0.45 + 1.25 * wave + 0.6 * diff1) + vec3(1.0, 0.3, 0.8) * fres;
           } else if (matId == 7.0) {
-            float nodeIdx = floor(aux * 0.5);
-            float poleAlign = (aux - nodeIdx * 2.0);
+            float nodeIdx = floor(aux * 0.25);
+            float poleAlign = (aux - nodeIdx * 4.0);
             float pole = pow(clamp(poleAlign, 0.0, 1.0), 6.0);
             col = vec3(0.15, 0.55, 1.4) * (0.35 + diff1) + vec3(1.5, 1.15, 0.25) * pole * 2.4 + vec3(0.0, 1.0, 0.8) * fres;
           } else if (matId == 4.0) {
@@ -3883,6 +3903,8 @@
     glCanvas.addEventListener('mousedown', (e) => {
       isDragging = true;
       lastMouse = [e.clientX, e.clientY];
+    });
+    glCanvas.addEventListener('dblclick', () => {
       if (glCanvas.requestPointerLock) glCanvas.requestPointerLock();
     });
     window.addEventListener('mouseup', () => { isDragging = false; });
@@ -3890,7 +3912,7 @@
     document.addEventListener('pointerlockchange', () => {
       const locked = document.pointerLockElement === glCanvas;
       const badge = document.getElementById('lockBadge');
-      badge.textContent = locked ? '6-DOF LOCKED (ESC TO EXIT)' : 'DRAG OR CLICK TO FLY';
+      badge.textContent = locked ? '6-DOF LOCKED (ESC TO EXIT)' : 'DRAG TO ORBIT · DBL-CLICK TO LOCK';
       badge.className = locked
         ? 'font-mono-tech text-xs px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30'
         : 'font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30';
@@ -4027,23 +4049,28 @@
       document.getElementById('btnToggleHud').textContent = hudVisible ? 'HIDE HUD [H]' : 'SHOW HUD [H]';
     });
 
-    let audioCtx = null, oscA = null, oscB = null, gainNode = null, audioOn = false;
+    let audioCtx = null, oscA = null, oscB = null, oscC = null, gainNode = null, audioOn = false;
     document.getElementById('btnAudio').addEventListener('click', () => {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         oscA = audioCtx.createOscillator();
         oscB = audioCtx.createOscillator();
+        oscC = audioCtx.createOscillator();
         gainNode = audioCtx.createGain();
         oscA.type = 'sine';
         oscB.type = 'triangle';
+        oscC.type = 'sine';
         oscA.frequency.value = 64;
         oscB.frequency.value = 96;
+        oscC.frequency.value = 128;
         gainNode.gain.value = 0.05;
         oscA.connect(gainNode);
         oscB.connect(gainNode);
+        oscC.connect(gainNode);
         gainNode.connect(audioCtx.destination);
         oscA.start();
         oscB.start();
+        oscC.start();
         audioOn = true;
       } else {
         audioOn = !audioOn;
@@ -4306,6 +4333,9 @@
       document.getElementById('modalMechWire').textContent = m.wire;
     }
 
+    const mechSearchInput = document.getElementById('mechSearchInput');
+    let activeModalIds = [];
+
     function getFilterRange() {
       const filterDom = parseInt(domainFilterSelect.value, 10) || 0;
       if (filterDom === 0)  return [1, 3000];
@@ -4318,12 +4348,19 @@
     const modalValSpans = new Array(3001);
     function rebuildModalMechGrid() {
       const [startId, endId] = getFilterRange();
+      const q = (mechSearchInput ? mechSearchInput.value.trim().toLowerCase() : '');
       const frag = document.createDocumentFragment();
       modalMechGrid.innerHTML = '';
       modalValSpans.fill(null);
+      activeModalIds = [];
 
       for (let id = startId; id <= endId; id++) {
         const m = omega1000.getMechanismMeta(id);
+        if (q.length > 0) {
+          const hay = `${m.idStr} d${m.domId} ${m.domCode} ${m.fullName} ${m.eq} ${m.wire}`.toLowerCase();
+          if (!hay.includes(q)) continue;
+        }
+        activeModalIds.push(id);
         const btn = document.createElement('button');
         btn.dataset.mechId = String(id);
         btn.className = 'text-left px-2 py-1 rounded bg-slate-900/90 hover:bg-cyan-500/20 border border-slate-800 hover:border-cyan-400/50 transition flex items-center justify-between gap-1';
@@ -4361,6 +4398,22 @@
     document.getElementById('btnOpen1000Modal').addEventListener('click', () => toggleModal1000(true));
     document.getElementById('btnClose1000Modal').addEventListener('click', () => toggleModal1000(false));
     domainFilterSelect.addEventListener('change', rebuildModalMechGrid);
+    if (mechSearchInput) {
+      mechSearchInput.addEventListener('input', () => {
+        rebuildModalMechGrid();
+        if (activeModalIds.length > 0) selectMechanism(activeModalIds[0]);
+      });
+    }
+    document.getElementById('btnPrevMech').addEventListener('click', () => {
+      const prevId = omega1000.selectedMechId > 1 ? omega1000.selectedMechId - 1 : 3000;
+      selectMechanism(prevId);
+      triggerAudioPulse(260);
+    });
+    document.getElementById('btnNextMech').addEventListener('click', () => {
+      const nextId = omega1000.selectedMechId < 3000 ? omega1000.selectedMechId + 1 : 1;
+      selectMechanism(nextId);
+      triggerAudioPulse(310);
+    });
 
     window.addEventListener('keydown', (e) => {
       const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : '';
@@ -4389,28 +4442,54 @@
       toggleModal1000(true);
     });
 
+    // Precomputed 360x64 ABGR Color Lookup Table + 50x60 Offscreen Canvas for Zero-String-Allocation 3,000-Cell Heatmap
+    const _heatOffscreen = document.createElement('canvas');
+    _heatOffscreen.width = 50;
+    _heatOffscreen.height = 60;
+    const _heatOffCtx = _heatOffscreen.getContext('2d');
+    const _heatImgData = _heatOffCtx.createImageData(50, 60);
+    const _heatPixels32 = new Uint32Array(_heatImgData.data.buffer);
+    const _hslLut = new Uint32Array(360 * 64);
+    for (let h = 0; h < 360; h++) {
+      for (let lIdx = 0; lIdx < 64; lIdx++) {
+        const l = (20 + (lIdx / 63) * 60) / 100;
+        const s = 0.92;
+        const c = (1 - Math.abs(2 * l - 1)) * s;
+        const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+        const m = l - c / 2;
+        let r = 0, g = 0, b = 0;
+        if (h < 60)       { r = c; g = x; b = 0; }
+        else if (h < 120) { r = x; g = c; b = 0; }
+        else if (h < 180) { r = 0; g = c; b = x; }
+        else if (h < 240) { r = 0; g = x; b = c; }
+        else if (h < 300) { r = x; g = 0; b = c; }
+        else              { r = c; g = 0; b = x; }
+        const R = Math.round((r + m) * 255);
+        const G = Math.round((g + m) * 255);
+        const B = Math.round((b + m) * 255);
+        _hslLut[h * 64 + lIdx] = (255 << 24) | (B << 16) | (G << 8) | R;
+      }
+    }
+
     function drawOmega1000Heatmap() {
       const W = omegaCanvas.width, H = omegaCanvas.height;
       oCtx.clearRect(0, 0, W, H);
       const gridH = Math.floor(H * 0.78);
-      const cellW = W / 50;
-      const cellH = gridH / 60;
 
-      // Render 60 Domains x 50 Mechanisms = 3,000 Live Cells (#0001-#3000)
+      // Write 3,000 cells directly into Uint32Array pixel buffer (0 CSS string parses!)
       for (let d = 0; d < 60; d++) {
-        const y = Math.floor(d * cellH);
-        const h = Math.max(1, Math.ceil(cellH));
+        const rowOff = d * 50;
+        const baseHue = d * 6;
         for (let m = 0; m < 50; m++) {
-          const idx = d * 50 + m;
-          const val = omega1000.subVal[idx];
-          const x = Math.floor(m * cellW);
-          const w = Math.max(1, Math.ceil(cellW) - 1);
-          const hue = (d * 6 + val * 90) % 360;
-          const light = Math.floor(22 + val * 58);
-          oCtx.fillStyle = `hsl(${hue}, 92%, ${light}%)`;
-          oCtx.fillRect(x, y, w, h);
+          const val = omega1000.subVal[rowOff + m];
+          const hue = (baseHue + Math.floor(val * 90)) % 360;
+          const lIdx = Math.max(0, Math.min(63, Math.floor(val * 63)));
+          _heatPixels32[rowOff + m] = _hslLut[hue * 64 + lIdx];
         }
       }
+      _heatOffCtx.putImageData(_heatImgData, 0, 0);
+      oCtx.imageSmoothingEnabled = false;
+      oCtx.drawImage(_heatOffscreen, 0, 0, W, gridH);
 
       // Render Bottom Strip: 32-Qubit Moonlab MPS Chain (<Z_0..31> & Bond Entanglement)
       const barY = gridH + 2;
@@ -4420,8 +4499,8 @@
         const zVal = 0.5 + 0.5 * omega1000.mpsZ[q];
         const svn  = omega1000.bondSvN[Math.min(30, q)];
         oCtx.fillStyle = zVal > 0.5
-          ? `rgba(0, 240, 255, ${0.35 + 0.65 * svn})`
-          : `rgba(255, 56, 152, ${0.35 + 0.65 * svn})`;
+          ? `rgba(0, 240, 255, ${(0.35 + 0.65 * svn).toFixed(2)})`
+          : `rgba(255, 56, 152, ${(0.35 + 0.65 * svn).toFixed(2)})`;
         oCtx.fillRect(Math.floor(q * qW), barY, Math.max(1, Math.ceil(qW) - 1), barH);
       }
     }
@@ -4454,8 +4533,8 @@
       document.getElementById('modalAffectNovelReadout').textContent =
         `Val=${omega1000.moodValence >= 0 ? '+' : ''}${omega1000.moodValence.toFixed(2)} · Play=${omega1000.emotions7.play.toFixed(2)} · Vetoes=${omega1000.freeWontVetoes} · Ω_3000=${omega1000.omega3000Closure.toFixed(2)}`;
 
-      const [startId, endId] = getFilterRange();
-      for (let id = startId; id <= endId; id++) {
+      for (let k = 0; k < activeModalIds.length; k++) {
+        const id = activeModalIds[k];
         const el = modalValSpans[id];
         if (el) el.textContent = omega1000.subVal[id - 1].toFixed(2);
       }
@@ -4507,8 +4586,9 @@
         const tx = brains.macroPos[idx * 3 + 0] - camPos[0];
         const ty = brains.macroPos[idx * 3 + 1] - camPos[1];
         const tz = brains.macroPos[idx * 3 + 2] - camPos[2];
-        const yawErr = (tx * right[0] + ty * right[1] + tz * right[2]) * 0.04;
-        const pitErr = -(tx * up[0] + ty * up[1] + tz * up[2]) * 0.04;
+        const dNorm = Math.hypot(tx, ty, tz) + 1e-4;
+        const yawErr = ((tx * right[0] + ty * right[1] + tz * right[2]) / dNorm) * 0.08;
+        const pitErr = -((tx * up[0] + ty * up[1] + tz * up[2]) / dNorm) * 0.08;
         applyLocalRotation(pitErr, yawErr, 0);
         if (Math.hypot(flyTarget[0] - camPos[0], flyTarget[1] - camPos[1], flyTarget[2] - camPos[2]) < 0.08) {
           flyTarget = null;
@@ -4550,8 +4630,11 @@
       }
 
       if (audioOn && audioCtx) {
-        oscA.frequency.setTargetAtTime(55 + brains.kappa * 28 + speed * 4, audioCtx.currentTime, 0.08);
-        oscB.frequency.setTargetAtTime(82 + Math.abs(brains.berry01) * 90 + parseFloat(slBizarro.value) * 35, audioCtx.currentTime, 0.08);
+        const baseFreq = (omega1000.sleepStage === 3 ? 42 : omega1000.sleepStage === 4 ? 74 : 58) + brains.kappa * 22 + speed * 4;
+        const moodRatio = omega1000.moodValence >= 0 ? 1.25 : 1.20; // Major 3rd (5:4) when positive valence, Minor 3rd (6:5) when negative
+        oscA.frequency.setTargetAtTime(baseFreq, audioCtx.currentTime, 0.08);
+        oscB.frequency.setTargetAtTime(baseFreq * moodRatio + Math.abs(brains.berry01) * 65, audioCtx.currentTime, 0.08);
+        if (oscC) oscC.frequency.setTargetAtTime(baseFreq * 1.5 + omega1000.mpsMeanSvN * 48, audioCtx.currentTime, 0.08);
       }
 
       gl.useProgram(prog);
@@ -4578,11 +4661,14 @@
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-      // Throttle 2D inspector redraws to every 2nd frame (30Hz) while WebGL & Brains & Omega-1000 run at 60Hz
+      // Throttle 2D inspector redraws to every 2nd frame (30Hz) and Modal Inspector to 15Hz
       if ((frameCount & 1) === 0) {
         drawNestedBrainInspector(t);
         draw3DHolographicOverlay(mat);
         drawOmega1000Heatmap();
+      }
+      if (modal1000Open && (frameCount & 3) === 0) {
+        updateModal1000Telemetry();
       }
 
       frameCount++;
