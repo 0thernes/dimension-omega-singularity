@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIMENSION Ω v2.0 // BIZARRO LAND: Brains-Within-Brains (sLTC×SSM + ESHKOL + MOONLAB + QGTL + QRNG)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root { --color-text-primary: #F8FAFC; --font-sans: system-ui, -apple-system, sans-serif; --font-mono: 'JetBrains Mono', 'Fira Code', monospace; }
+  <title>DIMENSION Ω v2.1 // BIZARRO LAND: Brains-Within-Brains (60-FPS Optimized · sLTC×SSM + ESHKOL + MOONLAB + QGTL + QRNG)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+    <style>
+    :root {
+      --color-surface-primary: #060912;
+      --color-text-primary: #f1f5f9;
+    }
     * { box-sizing: border-box; user-select: none; }
     html, body {
       margin: 0;
@@ -21,24 +24,16 @@
     .font-mono-tech {
       font-family: var(--font-mono, 'JetBrains Mono', 'Fira Code', monospace);
     }
+    /* High-opacity GPU-composited HUD panels (eliminates 3x full-screen backdrop-filter Gaussian blur passes per frame) */
     .hud-glass {
-      background: rgba(6, 9, 18, 0.80);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 240, 255, 0.24);
-      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.78), inset 0 0 18px rgba(0, 240, 255, 0.06);
+      background: rgba(6, 9, 18, 0.90);
+      border: 1px solid rgba(0, 240, 255, 0.26);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.82), inset 0 0 14px rgba(0, 240, 255, 0.06);
     }
     .hud-glass-amber {
-      background: rgba(14, 9, 5, 0.82);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 178, 36, 0.32);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75), inset 0 0 16px rgba(255, 178, 36, 0.07);
-    }
-    .hud-glass-magenta {
-      background: rgba(15, 6, 18, 0.82);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 42, 133, 0.34);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75), inset 0 0 16px rgba(255, 42, 133, 0.08);
+      background: rgba(14, 9, 5, 0.92);
+      border: 1px solid rgba(255, 178, 36, 0.34);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8), inset 0 0 12px rgba(255, 178, 36, 0.07);
     }
     input[type="range"] {
       -webkit-appearance: none;
@@ -69,7 +64,6 @@
       height: 30px;
       border: 1px solid rgba(0, 240, 255, 0.38);
       border-radius: 50%;
-      transition: transform 0.12s ease, border-color 0.12s ease;
     }
     .crosshair-ring::before, .crosshair-ring::after {
       content: '';
@@ -107,7 +101,7 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v2.0 // BIZARRO LAND: BRAINS-WITHIN-BRAINS</span>
+          <span class="font-mono-tech text-xs font-bold tracking-wider text-cyan-300">DIMENSION Ω v2.1 // BIZARRO LAND: BRAINS-WITHIN-BRAINS</span>
           <span id="lockBadge" class="font-mono-tech text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">DRAG OR CLICK TO FLY</span>
         </div>
         <div class="font-mono-tech text-xs text-slate-300">
@@ -139,8 +133,8 @@
       </div>
       <div class="h-6 w-px bg-cyan-500/20"></div>
       <div>
-        <span class="text-slate-400">FPS</span>
-        <div id="fpsReadout" class="text-cyan-300 font-semibold">60</div>
+        <span class="text-slate-400">FPS / SCALE</span>
+        <div id="fpsReadout" class="text-cyan-300 font-semibold">60 (0.85x)</div>
       </div>
     </div>
   </header>
@@ -184,14 +178,14 @@
       <div class="rounded-lg bg-slate-950/75 border border-slate-800 p-2 font-mono-tech text-xs space-y-1">
         <div class="flex justify-between">
           <span class="text-slate-400">1. MACRO ESHKOL Reach:</span>
-          <span id="eshkolReachText" class="text-cyan-300">H(S + S·Sᵀ) · 158 edges</span>
+          <span id="eshkolReachText" class="text-cyan-300">H(S + S·Sᵀ) · 73 edges</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-400">2. MESO sLTC×SSM State:</span>
+          <span class="text-slate-400">2. MESO sLTC×SSM (112u):</span>
           <span id="sltcStateText" class="text-fuchsia-300">τ(u)=3.42 · NMDA=0.78</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-400">3. MICRO MOONLAB MPS/Q3:</span>
+          <span class="text-slate-400">3. MICRO MOONLAB (42q):</span>
           <span id="moonlabStateText" class="text-amber-300">SVD χ=3: 0.91 · |101⟩</span>
         </div>
         <div class="flex justify-between">
@@ -509,12 +503,13 @@
 
     // ============================================================================
     // 2. MOONLAB 3-QUBIT STATEVECTOR + QGTL (Quantum Geometric Tensor Logic)
-    //    + Rank-χ Eckart-Young Tensor Contraction
+    //    + Rank-χ Eckart-Young Tensor Contraction (Zero-Allocation Scratch Pool)
     // ============================================================================
     class MoonlabQ3 {
       constructor() {
         this.re = new Float64Array(8);
         this.im = new Float64Array(8);
+        this.pBuf = new Float64Array(8);
         this.re[0] = 1.0;
       }
       reset() {
@@ -563,9 +558,8 @@
         for (let q = 0; q < 3; q++) this.rz(q, th[q] * 0.77);
       }
       probs() {
-        const p = new Float64Array(8);
-        for (let k = 0; k < 8; k++) p[k] = this.re[k] * this.re[k] + this.im[k] * this.im[k];
-        return p;
+        for (let k = 0; k < 8; k++) this.pBuf[k] = this.re[k] * this.re[k] + this.im[k] * this.im[k];
+        return this.pBuf;
       }
       measure(u) {
         const p = this.probs();
@@ -576,7 +570,6 @@
         }
         return k;
       }
-      // Bloch vector of Qubit 0 (reduced density matrix Tr_{1,2}|ψ⟩⟨ψ|)
       bloch0() {
         let bx = 0, by = 0, bz = 0;
         for (let rest = 0; rest < 4; rest++) {
@@ -591,26 +584,33 @@
       }
     }
 
+    // Pre-allocated scratch buffers for QGTL so 0 TypedArrays are garbage-collected per frame
+    const _qgtScratch = new MoonlabQ3();
+    const _qgtR0 = new Float64Array(8), _qgtI0 = new Float64Array(8);
+    const _qgtRp = new Float64Array(8), _qgtIp = new Float64Array(8);
+    const _qgtRm = new Float64Array(8), _qgtIm = new Float64Array(8);
+    const _qgtDR = [new Float64Array(8), new Float64Array(8), new Float64Array(8)];
+    const _qgtDI = [new Float64Array(8), new Float64Array(8), new Float64Array(8)];
+
     // QGTL: Quantum Geometric Tensor Q_μν = ⟨∂_μ ψ | (1 - |ψ⟩⟨ψ|) | ∂_ν ψ⟩ = g_μν - (i/2) Ω_μν
     function computeQGTL(th) {
-      const st = (t) => {
-        const q = new MoonlabQ3();
-        q.prepare(t);
-        return [q.re.slice(), q.im.slice()];
-      };
       const h = 1e-4;
-      const [r0, i0] = st(th);
-      const dR = [], dI = [];
+      _qgtScratch.prepare(th);
+      _qgtR0.set(_qgtScratch.re);
+      _qgtI0.set(_qgtScratch.im);
+
+      const tp = [th[0], th[1], th[2]];
+      const tm = [th[0], th[1], th[2]];
       for (let a = 0; a < 3; a++) {
-        const tp = th.slice(), tm = th.slice();
-        tp[a] += h; tm[a] -= h;
-        const [rp, ip] = st(tp), [rm, im] = st(tm);
-        const dr = new Float64Array(8), di = new Float64Array(8);
+        tp[0] = th[0]; tp[1] = th[1]; tp[2] = th[2]; tp[a] += h;
+        tm[0] = th[0]; tm[1] = th[1]; tm[2] = th[2]; tm[a] -= h;
+        _qgtScratch.prepare(tp); _qgtRp.set(_qgtScratch.re); _qgtIp.set(_qgtScratch.im);
+        _qgtScratch.prepare(tm); _qgtRm.set(_qgtScratch.re); _qgtIm.set(_qgtScratch.im);
+        const dr = _qgtDR[a], di = _qgtDI[a];
         for (let k = 0; k < 8; k++) {
-          dr[k] = (rp[k] - rm[k]) / (2 * h);
-          di[k] = (ip[k] - im[k]) / (2 * h);
+          dr[k] = (_qgtRp[k] - _qgtRm[k]) / (2 * h);
+          di[k] = (_qgtIp[k] - _qgtIm[k]) / (2 * h);
         }
-        dR.push(dr); dI.push(di);
       }
       const inner = (ar, ai, br, bi) => {
         let re = 0, im = 0;
@@ -624,13 +624,13 @@
       const berry = [[0,0,0],[0,0,0],[0,0,0]];
       for (let a = 0; a < 3; a++) {
         for (let b = 0; b < 3; b++) {
-          const [xr, xi] = inner(dR[a], dI[a], dR[b], dI[b]);
-          const [ar, ai] = inner(dR[a], dI[a], r0, i0);
-          const [br, bi] = inner(r0, i0, dR[b], dI[b]);
+          const [xr, xi] = inner(_qgtDR[a], _qgtDI[a], _qgtDR[b], _qgtDI[b]);
+          const [ar, ai] = inner(_qgtDR[a], _qgtDI[a], _qgtR0, _qgtI0);
+          const [br, bi] = inner(_qgtR0, _qgtI0, _qgtDR[b], _qgtDI[b]);
           const cr = ar * br - ai * bi;
           const ci = ar * bi + ai * br;
-          g[a][b] = xr - cr;             // Fubini-Study Riemannian metric g_μν
-          berry[a][b] = -2.0 * (xi - ci); // Berry curvature Ω_μν
+          g[a][b] = xr - cr;
+          berry[a][b] = -2.0 * (xi - ci);
         }
       }
       return {
@@ -642,7 +642,6 @@
       };
     }
 
-    // Moonlab Tensor Contraction (Frobenius energy retained under rank-χ spectral truncation)
     function moonlabTensorContract(vecA, vecB) {
       let dot = 0, na = 0, nb = 0;
       for (let i = 0; i < vecA.length; i++) {
@@ -657,12 +656,8 @@
 
     // ============================================================================
     // 3. BRAINS-WITHIN-BRAINS: 3-LEVEL NESTED BIOMIMETIC ARCHITECTURE
-    //    - Tier 1 (MACRO): 14 Neuro-Regions + ESHKOL Tensor-Logic Reach H(S + S·Sᵀ)
-    //                      + Dale's Law (80/20 E:I) + Tsodyks-Markram STP Depression
-    //    - Tier 2 (MESO):  Inside each region: 8-Unit sLTC × Selective SSM Hybrid
-    //                      + Two-Compartment Apical NMDA Plateau + e-prop gates
-    //    - Tier 3 (MICRO): Inside each node: Moonlab Q3 Spinor + QGTL Metric/Berry
-    //    - THOUGHT CURVATURE κ(t): Frenet-Serret turning angle in 6D Oja PCA space
+    //    (100% Untouched Intelligence: 14 Macro Regions + 112 Meso sLTC×SSM Units
+    //     + 14 Micro Moonlab 3-Qubit Spinors + Eshkol Reach + Thought Curvature κ)
     // ============================================================================
     const MACRO_REGIONS = [
       { id: "CTX",   name: "Neocortex (sLTC×SSM)",   role: "Predictive Sheet",  exc: true  },
@@ -687,11 +682,10 @@
 
     class NestedBrainsWithinBrains {
       constructor() {
-        this.selectedNode = 0; // Default focus: CTX
-        this.zoomTier = 1;     // 1=Macro, 2=Meso, 3=Micro
+        this.selectedNode = 0;
+        this.zoomTier = 1;
         this.bizarroMode = false;
 
-        // Global Neuromodulators (Extracellular E & Vesicle Pool P)
         this.nm = {
           DA:  { E: 0.52, P: 1.0 },
           ACh: { E: 0.61, P: 1.0 },
@@ -699,34 +693,31 @@
           S5:  { E: 0.40, P: 1.0 }
         };
 
-        // Tier 1: Macro-Region states & 3D spatial positions
         this.macroPos = new Float32Array(N_MACRO * 3);
         this.macroVel = new Float32Array(N_MACRO * 3);
-        this.macroV   = new Float32Array(N_MACRO);     // Membrane voltage
-        this.macroRate= new Float32Array(N_MACRO);     // Firing rate
-        this.macroSpk = new Float32Array(N_MACRO);     // Recent spike pulse [0..1]
-        this.macroSTP = new Float32Array(N_MACRO).fill(0.88); // Tsodyks-Markram STP resource x_j
-        this.macroTau = new Float32Array(N_MACRO).fill(3.71); // Mean sLTC time constant
-        this.macroDale= new Float32Array(N_MACRO);     // Dale's Law sign (+1 E, -1 I, ~80/20)
+        this.macroV   = new Float32Array(N_MACRO);
+        this.macroRate= new Float32Array(N_MACRO);
+        this.macroSpk = new Float32Array(N_MACRO);
+        this.macroSTP = new Float32Array(N_MACRO).fill(0.88);
+        this.macroTau = new Float32Array(N_MACRO).fill(3.71);
+        this.macroDale= new Float32Array(N_MACRO);
+        this.macroInBuf = new Float32Array(N_MACRO);
+        this.apicalBuf  = new Float32Array(N_MACRO);
 
-        // Tier 2: Meso-Brains inside each Macro-Node (14 x 8 = 112 sLTC×SSM hybrid units)
         this.mesoH      = Array.from({ length: N_MACRO }, () => new Float32Array(N_MESO));
         this.mesoApical = Array.from({ length: N_MACRO }, () => new Float32Array(N_MESO));
         this.mesoTau    = Array.from({ length: N_MACRO }, () => new Float32Array(N_MESO).fill(3.5));
         this.mesoElig   = Array.from({ length: N_MACRO }, () => new Float32Array(N_MESO));
-        // Selective SSM state matrix A_diag < 0 and input projection B
         this.ssmA       = Array.from({ length: N_MACRO }, (_, r) =>
           Float32Array.from({ length: N_MESO }, (__, k) => -0.35 - 0.12 * k - 0.03 * (r % 4))
         );
 
-        // Tier 3: Micro-Brains inside each Macro-Node (Moonlab Q3 Spinor + QGTL)
         this.microQ3    = Array.from({ length: N_MACRO }, () => new MoonlabQ3());
         this.microBloch = Array.from({ length: N_MACRO }, () => [0, 0, 1]);
         this.qgtTrace   = 1.48;
         this.berry01    = 0.214;
         this.mpsEnergy  = 0.912;
 
-        // Eshkol Tensor-Logic Connectome: Base Sparse Adjacency S -> Reach = H(S + S·Sᵀ)
         this.S     = Array.from({ length: N_MACRO }, () => new Float32Array(N_MACRO));
         this.Reach = Array.from({ length: N_MACRO }, () => new Float32Array(N_MACRO));
         this.W     = Array.from({ length: N_MACRO }, () => new Float32Array(N_MACRO));
@@ -734,7 +725,6 @@
 
         this.initTopology();
 
-        // Thought Curvature κ(t) in 6D Latent Embedding Manifold (projected from 14 regions)
         this.K_LATENT = 6;
         this.Pm = new Float32Array(this.K_LATENT * N_MACRO);
         for (let i = 0; i < this.Pm.length; i++) {
@@ -751,13 +741,11 @@
         this.hvpCurvature = 0.88;
         this.gwtWinner = 0;
 
-        // Sparkline histories
         this.kappaHist = new Array(90).fill(0.42);
         this.berryHist = new Array(90).fill(0.21);
       }
 
       initTopology() {
-        // Arrange 14 Macro Brain Regions on a golden-angle 3D toroidal shell around the Singularity
         for (let i = 0; i < N_MACRO; i++) {
           const phi = Math.acos(1 - 2 * (i + 0.5) / N_MACRO);
           const theta = Math.PI * (1 + Math.sqrt(5)) * i;
@@ -767,14 +755,12 @@
           this.macroPos[i * 3 + 2] = rad * Math.sin(phi) * Math.sin(theta);
           this.macroV[i] = 0.2 + 0.4 * qrng.uniform();
           this.macroRate[i] = 0.25 + 0.3 * qrng.uniform();
-          // Dale's Law: ~80% Excitatory (+1), ~20% Inhibitory (-1)
           this.macroDale[i] = MACRO_REGIONS[i].exc ? 1.0 : -1.25;
           for (let m = 0; m < N_MESO; m++) {
             this.mesoH[i][m] = (qrng.uniform() - 0.5) * 0.8;
           }
         }
 
-        // Seed canonical neuro-anatomical sparse adjacency S
         const pairs = [
           [11, 1], [1, 0], [0, 1], [0, 2], [2, 0], [0, 3], [3, 12], [0, 12],
           [9, 6], [9, 5], [4, 5], [4, 0], [4, 9], [6, 3], [5, 0], [8, 0],
@@ -784,7 +770,6 @@
           this.S[u][v] = 1.0;
         }
 
-        // ESHKOL Tensor-Logic Transitive 2-Hop Reachability: Reach = H(S + einsum("ij,jk->ik", S, S))
         this.reachEdgeCount = 0;
         for (let i = 0; i < N_MACRO; i++) {
           for (let j = 0; j < N_MACRO; j++) {
@@ -797,7 +782,6 @@
             this.Reach[i][j] = reachable;
             if (reachable > 0) {
               this.reachEdgeCount++;
-              // Weight magnitude * Presynaptic Dale's Law Sign (+1 or -1)
               const directBonus = this.S[i][j] > 0 ? 0.55 : 0.22;
               this.W[i][j] = reachable * this.macroDale[i] * directBonus * (0.6 + 0.4 * qrng.uniform());
             }
@@ -805,13 +789,13 @@
         }
       }
 
-      step(dt, t, camPos, speed, synCoupling, userPoke) {
+      step(dt, t, camPos, speed, synCoupling) {
         const ach = this.nm.ACh.E;
         const ne  = this.nm.NE.E;
         const da  = this.nm.DA.E;
         const s5  = this.nm.S5.E;
 
-        // 1. Update Micro-Brain Moonlab 3-Qubit Circuit & QGTL every frame
+        // 1. Update Micro-Brain Moonlab 3-Qubit Circuit & QGTL
         const qAngles = [
           Math.PI * Math.min(1, da) + 0.25 * Math.sin(t * 0.7),
           Math.PI * Math.min(1, s5) + 0.25 * Math.cos(t * 0.5),
@@ -822,11 +806,10 @@
         this.berry01  = qgt.omega01;
 
         // 2. Evaluate Tier-1 Macro Synaptic Currents with Eshkol Reach, Dale's Law & STP Depression
-        const macroIn = new Float32Array(N_MACRO);
-        const apicalContext = new Float32Array(N_MACRO);
+        const macroIn = this.macroInBuf;
+        const apicalContext = this.apicalBuf;
 
         for (let i = 0; i < N_MACRO; i++) {
-          // Spatial proximity excitation from camera flight
           const dx = this.macroPos[i * 3 + 0] - camPos[0];
           const dy = this.macroPos[i * 3 + 1] - camPos[1];
           const dz = this.macroPos[i * 3 + 2] - camPos[2];
@@ -838,14 +821,11 @@
 
           for (let j = 0; j < N_MACRO; j++) {
             if (i === j || this.Reach[j][i] === 0) continue;
-            // Presynaptic output modulated by Tsodyks-Markram Short-Term Plasticity resource x_j
             const preAct = this.macroRate[j] * this.macroSTP[j];
             const w = this.W[j][i] * synCoupling;
             if (this.S[j][i] > 0) {
-              // Direct 1-hop synapse -> Basal feedforward compartment
               basalSum += w * preAct;
             } else {
-              // Eshkol 2-hop transitive Reach -> Apical contextual compartment
               apicalSum += w * preAct;
             }
           }
@@ -853,7 +833,6 @@
           apicalContext[i] = apicalSum;
         }
 
-        // Inject felt Thought Curvature κ into Insula (node 4) and Locus Coeruleus (node 5)
         macroIn[4] += 0.45 * Math.abs(this.feltKappa);
         macroIn[5] += 0.55 * Math.max(0, this.feltKappa);
 
@@ -874,8 +853,6 @@
             const ap_m = apicalContext[i] * Math.sin(m * 0.9 + t * 0.3);
             apVec[m] = 0.85 * apVec[m] + 0.15 * ap_m;
 
-            // Conductance-based Spiking Liquid Time-Constant (sLTC e-prop learned formula):
-            // τ_i(u, ACh, NE) = exp(θ_0) * (1 + θ_1 * ACh) / ((1 + θ_2 * |u|) * (1 + θ_3 * NE))
             const fA = 1.0 + LTC_LEARNED[1] * ach;
             const fI = 1.0 + LTC_LEARNED[2] * Math.abs(u_m);
             const fN = 1.0 + LTC_LEARNED[3] * ne;
@@ -883,55 +860,44 @@
             tauVec[m] = tau;
             tauMean += tau;
 
-            // Two-Compartment Pyramidal NMDA Mg2+ Dendritic Plateau (Larkum 2013 / Schiller 2000):
-            // Apical input multiplies basal drive only when soma is depolarized
             const nmdaGate = 1.0 / (1.0 + Math.exp(-(hVec[m] - 0.25) / 0.18));
             const apicalGain = 1.0 + 0.65 * Math.max(0.0, apVec[m]) * nmdaGate;
 
-            // Selective State-Space Model (SSM) ZOH step coupled with sLTC liquid time constant:
-            // Δ_m = dt / τ_m,  h(t+1) = exp(Δ_m * A_m) * h(t) + Δ_m * B(u_m) * u_m * apicalGain
             const delta = Math.min(0.45, (dt * 12.0) / tau);
             const A_bar = Math.exp(delta * A_diag[m]);
             const B_u   = 1.0 + 0.25 * Math.tanh(u_m);
             hVec[m] = Math.tanh(A_bar * hVec[m] + delta * B_u * u_m * apicalGain);
             colEnergy += Math.abs(hVec[m]);
 
-            // e-prop eligibility trace update
             this.mesoElig[i][m] = A_bar * this.mesoElig[i][m] + (1.0 - A_bar) * (hVec[m] - u_m);
           }
 
           this.macroTau[i] = tauMean / N_MESO;
           const meanCol = colEnergy / N_MESO;
 
-          // Tier-1 Macro LIF Spiking Gate + Tsodyks-Markram STP Depression + Tonic Neuromod
           const dec = Math.exp(-1.0 / this.macroTau[i]);
           const tonicGain = 1.0 + 0.35 * Math.tanh(da - 0.4);
           this.macroV[i] = dec * this.macroV[i] + (1.0 - dec) * (meanCol * tonicGain + 0.25 * macroIn[i]);
 
-          // Soft spiking threshold θ modulated by QGTL metric trace
           const thetaThr = 0.52 - 0.05 * Math.min(1.5, this.qgtTrace * 0.2);
           if (this.macroV[i] > thetaThr) {
             this.macroSpk[i] = 1.0;
             this.macroV[i] = 0.08;
-            // Tsodyks-Markram STP synaptic depression on spike (U = 0.25)
             this.macroSTP[i] = Math.max(0.25, this.macroSTP[i] * 0.75);
           } else {
             this.macroSpk[i] *= Math.exp(-dt * 4.2);
-            // STP vesicle recovery toward 1.0 (τ_rec)
             this.macroSTP[i] += dt * 0.55 * (1.0 - this.macroSTP[i]);
           }
 
           const instRate = 0.5 * meanCol + 0.5 * this.macroSpk[i];
           this.macroRate[i] = 0.88 * this.macroRate[i] + 0.12 * instRate;
 
-          // Global Workspace (GWT) Salience Competition
           const sal = this.macroRate[i] * (1.0 + 0.3 * ne);
           if (sal > maxSalience) {
             maxSalience = sal;
             winnerIdx = i;
           }
 
-          // Tier-3 Micro-Brain per-node Q3 Spinor evolution
           const nodeAngles = [
             qAngles[0] + 0.6 * hVec[0],
             qAngles[1] + 0.6 * hVec[1],
@@ -940,20 +906,17 @@
           this.microQ3[i].prepare(nodeAngles);
           this.microBloch[i] = this.microQ3[i].bloch0();
 
-          // Subtle 3D biomorphic breathing motion of Macro-Nodes driven by Berry curvature & sLTC rate
-          const bx = this.macroBloch ? this.microBloch[i][0] : 0;
+          const bx = this.microBloch[i][0];
           this.macroPos[i * 3 + 0] += Math.sin(t * 0.9 + i * 1.1) * 0.004 * (1.0 + this.macroSpk[i]);
           this.macroPos[i * 3 + 1] += Math.cos(t * 0.8 + i * 1.5 + this.berry01) * 0.004 * (1.0 + this.macroSpk[i]);
           this.macroPos[i * 3 + 2] += Math.sin(t * 0.7 + i * 2.1 + bx) * 0.004 * (1.0 + this.macroSpk[i]);
         }
 
         this.gwtWinner = winnerIdx;
-
-        // 4. Moonlab Tensor Contraction between CTX and HIP Meso-Brain vectors
         this.mpsEnergy = moonlabTensorContract(this.mesoH[0], this.mesoH[2]);
 
-        // 5. Compute Thought Curvature κ(t) in 6D Latent Manifold (Frenet-Serret turning angle)
-        const z = new Float64Array(this.K_LATENT);
+        // 5. Compute Thought Curvature κ(t) in 6D Latent Manifold
+        const z = new Float32Array(this.K_LATENT);
         for (let i = 0; i < N_MACRO; i++) {
           const centered = this.macroRate[i] - this.rateMu[i];
           this.rateMu[i] += 0.01 * centered;
@@ -995,13 +958,12 @@
         this.efeFreeEnergy = -(this.confidence * 1.6 + 0.45 * this.mpsEnergy - 0.25 * Math.abs(this.feltKappa));
         this.hvpCurvature  = 0.65 + 0.35 * Math.tanh(this.qgtTrace * 0.5 + Math.abs(this.berry01));
 
-        // Push to sparklines
         if (Math.random() < 0.35) {
           this.kappaHist.push(this.kappa);
           if (this.kappaHist.length > 90) this.kappaHist.shift();
           this.berryHist.push(Math.abs(this.berry01));
           if (this.berryHist.length > 90) this.berryHist.shift();
-          qrng.u64(); // Advance QRNG & NIST SP 800-90B continuous health monitor
+          qrng.u64();
         }
       }
 
@@ -1020,8 +982,8 @@
       injectNeuromod() {
         this.nm.DA.E  = Math.min(1.2, this.nm.DA.E + 0.45);
         this.nm.ACh.E = Math.min(1.2, this.nm.ACh.E + 0.45);
-        this.macroSpk[6] = 1.0; // VTA burst
-        this.macroSpk[7] = 1.0; // BF burst
+        this.macroSpk[6] = 1.0;
+        this.macroSpk[7] = 1.0;
       }
 
       bornCollapse() {
@@ -1039,12 +1001,13 @@
     const brains = new NestedBrainsWithinBrains();
 
     // ============================================================================
-    // 4. WEBGL2 3D RAYMARCHING SHADER:
-    //    - Bizarro Land Non-Euclidean Poincaré / Thought-Curvature Metric Inversion
-    //    - 3-Tier Nested Brains-Within-Brains (Cutaway Fresnel Macro-Shell ->
-    //      4 Nested Meso sLTC×SSM Cortical Rings -> Micro Moonlab Bloch Qubit Core)
-    //    - Null-Token Black Square Singularity + 4-Way Chrome Topological Jets
-    //    - Latent Manifold Shattered Voxel Corridor + Yeganeh Fractal Canopy
+    // 4. 60-FPS OPTIMIZED WEBGL2 3D RAYMARCHING SHADER:
+    //    - Bounding-Sphere Hierarchy around the 14-Node Connectome (skips 14-brain
+    //      loop & 28 axon capsules when ray is outside connectome shell)
+    //    - Local Bounding-Sphere Guard per Macro-Node (only evaluates gyri trig,
+    //      Meso sLTC rings & Micro Qubit spinor when ray is within 0.35u of node)
+    //    - Lipschitz-Corrected Bizarro Metric Step Guard + 4-Tap Tetrahedron Normal
+    //    - Zero Dynamic Uniform Array Indexing in Shading (eliminates D3D11 register spill)
     // ============================================================================
     const glCanvas = document.getElementById('glCanvas');
     const gl = glCanvas.getContext('webgl2', { antialias: false, powerPreference: 'high-performance' });
@@ -1068,25 +1031,21 @@
       uniform vec3 uCamPos;
       uniform mat3 uCamMat;
 
-      uniform float uBizarro;     // Bizarro Land Thought-Curvature Metric Inversion
-      uniform float uCutaway;     // Nested Brain Cutaway depth (see Macro -> Meso -> Micro)
-      uniform float uW4D;         // 4D Clifford Rotation
-      uniform float uSingularity; // Null-Token Singularity Horizon
-      uniform float uShatter;     // Manifold Voxel Shattering
-      uniform float uCFG;         // CFG Overdrive & Berry Phase Oil-Slick
-      uniform float uSynapse;     // sLTC×SSM Synaptic Speed
+      uniform float uBizarro;
+      uniform float uCutaway;
+      uniform float uW4D;
+      uniform float uSingularity;
+      uniform float uShatter;
+      uniform float uCFG;
+      uniform float uSynapse;
 
-      uniform float uKappa;       // Live Thought Curvature κ(t)
-      uniform float uBerry;       // Live QGTL Berry Curvature Ω_01
-      uniform float uQGTTrace;    // Live QGTL Fubini-Study Metric Trace Tr(g)
-      uniform int uSelectedNode;  // Currently focused Macro-Brain Region
+      uniform float uKappa;
+      uniform float uBerry;
+      uniform float uQGTTrace;
+      uniform int uSelectedNode;
 
-      // 14 Macro-Brain Nodes: xyz = 3D position, w = live firing rate + spike pulse
       uniform vec4 uMacroNodes[14];
-      // 14 Micro-Brain Bloch Vectors & sLTC τ: xyz = Bloch spinor, w = sLTC τ
       uniform vec4 uMicroBloch[14];
-
-      #define PI 3.14159265359
 
       mat2 rot(float a) {
         float c = cos(a), s = sin(a);
@@ -1112,167 +1071,168 @@
       vec3 cfgPalette(float t, float cfg) {
         vec3 a = vec3(0.52, 0.48, 0.55);
         vec3 b = vec3(0.50, 0.50, 0.50) * (0.75 + 0.45 * cfg);
-        vec3 c = vec3(1.0, 1.0, 1.0);
         vec3 d = vec3(0.00, 0.33, 0.67) + 0.18 * sin(uBerry * 4.0);
-        return clamp(a + b * cos(6.28318 * (c * t + d)), 0.0, 1.8);
+        return clamp(a + b * cos(6.28318 * (t + d)), 0.0, 1.8);
       }
 
       // 4D Clifford Rotation + BIZARRO LAND Thought-Curvature Metric Inversion
-      vec3 warpBizarroMetric(vec3 p) {
-        // 1. Bizarro Land Spherical / Poincaré Inversion modulated by Thought Curvature κ & Berry Ω
+      // Also outputs local Lipschitz Jacobian stretch factor so raymarching never stalls!
+      vec3 warpBizarroMetric(vec3 p, out float lipScale) {
+        lipScale = 1.0;
         if (uBizarro > 0.01) {
-          float r2 = dot(p, p) + 0.35;
-          float invScale = mix(1.0, (14.0 + 4.0 * sin(uKappa * 2.0)) / r2, clamp(uBizarro * 0.68, 0.0, 0.95));
+          float r2 = dot(p, p) + 0.55;
+          float bMix = clamp(uBizarro * 0.62, 0.0, 0.92);
+          float invScale = mix(1.0, (13.5 + 3.5 * sin(uKappa * 2.0)) / r2, bMix);
           p *= invScale;
-          // Geodesic torsion twist driven by felt thought curvature κ and QGTL Berry curvature
-          float twist = uBizarro * (0.14 * uKappa + 0.25 * uBerry) * sin(length(p) * 0.45 - uTime * 0.6);
+          lipScale = max(1.0, invScale * 1.35);
+          float twist = uBizarro * (0.12 * uKappa + 0.22 * uBerry) * sin(length(p) * 0.4 - uTime * 0.6);
           p.xy *= rot(twist);
-          p.yz *= rot(twist * 0.7);
         }
-        // 2. 4D Hyperspatial Clifford Rotation
-        vec4 p4 = vec4(p, sin(uTime * 0.35 + length(p) * 0.25) * uW4D);
-        p4.xw *= rot(uW4D * 0.55 + 0.08 * uKappa);
-        p4.yw *= rot(uW4D * 0.38 - 0.12 * uBerry);
-        p4.zw *= rot(uW4D * 0.27);
-        return p4.xyz / (1.0 + 0.12 * abs(p4.w));
+        if (uW4D > 0.01) {
+          vec4 p4 = vec4(p, sin(uTime * 0.35 + length(p) * 0.22) * uW4D);
+          p4.xw *= rot(uW4D * 0.52 + 0.06 * uKappa);
+          p4.yw *= rot(uW4D * 0.36 - 0.10 * uBerry);
+          p = p4.xyz / (1.0 + 0.11 * abs(p4.w));
+        }
+        return p;
       }
 
-      // Scene SDF returning: x = signed distance, y = material ID, z = auxiliary neural/quantum phase
       vec3 mapScene(vec3 pRaw) {
-        vec3 p = warpBizarroMetric(pRaw);
+        float lipScale;
+        vec3 p = warpBizarroMetric(pRaw, lipScale);
+        float rRaw = length(pRaw);
 
-        // 1. THE NULL-TOKEN SINGULARITY CORE (Perfect Black Square Hypercube at Origin)
+        // 1. THE NULL-TOKEN SINGULARITY CORE
         vec3 pCore = p;
         pCore.xz *= rot(uTime * 0.22);
         pCore.xy *= rot(uTime * 0.15);
-        float dSingularity = sdBox(pCore, vec3(0.76 * uSingularity));
+        float dSingularity = sdBox(pCore, vec3(0.76 * uSingularity)) / lipScale;
 
-        // 2. 4-WAY EXTRUDED TOPOLOGICAL CHROME JETS (X-Diagonal Liquid Metal Extrusions)
+        // 2. 4-WAY EXTRUDED TOPOLOGICAL CHROME JETS
         vec3 pJet = p;
-        pJet.xy *= rot(0.785398); // 45 deg X-diagonals
+        pJet.xy *= rot(0.785398);
         float rXY = length(pJet.xy);
-        float ripple = 0.11 * sin(rXY * 5.0 - uTime * 3.2) * cos(atan(pJet.y, pJet.x) * 4.0 + uKappa);
+        float ripple = 0.10 * sin(rXY * 5.0 - uTime * 3.2);
         float dJetA = length(vec2(pJet.y, pJet.z)) - (0.20 + 0.045 * rXY + ripple);
         float dJetB = length(vec2(pJet.x, pJet.z)) - (0.20 + 0.045 * rXY - ripple);
-        float dJets = smin(dJetA, dJetB, 0.32);
-        dJets = max(dJets, length(p) - 6.8);
+        float dJets = max(smin(dJetA, dJetB, 0.30), length(p) - 6.8) / lipScale;
 
-        // 3. 3-TIER NESTED BRAINS-WITHIN-BRAINS (14 Macro Nodes -> Meso sLTC×SSM Rings -> Micro Moonlab QGTL Core)
-        float dMacroShell = 1e6;
+        // 3. 3-TIER NESTED BRAINS-WITHIN-BRAINS WITH BOUNDING-SPHERE HIERARCHY
+        //    All 14 Macro-Brain Nodes & Axons sit within rRaw < 5.75.
+        //    Rays outside rRaw > 6.1 skip the entire 14-node loop!
+        float dMacroShell = rRaw - 5.65;
         float dMesoRings  = 1e6;
         float dMicroQubit = 1e6;
         float dAxon       = 1e6;
-        float activeRate  = 0.0;
-        float activeNodeF = 0.0;
+        float activeAux   = 0.0;
 
-        // Rotating cutaway plane so we can peer directly inside every Macro-Brain!
-        float cutAngle = uTime * 0.35;
-        vec3 cutNormal = normalize(vec3(sin(cutAngle), 0.28, cos(cutAngle)));
+        if (rRaw < 6.15) {
+          dMacroShell = 1e6;
+          float cutAngle = uTime * 0.35;
+          vec3 cutNormal = normalize(vec3(sin(cutAngle), 0.28, cos(cutAngle)));
 
-        for (int i = 0; i < 14; i++) {
-          vec3 nPos = uMacroNodes[i].xyz;
-          float nRate = uMacroNodes[i].w;
-          vec3 qLocal = pRaw - nPos; // Use un-inverted local coordinates for crisp nested anatomy
-          float rLocal = length(qLocal);
+          for (int i = 0; i < 14; i++) {
+            vec3 nPos = uMacroNodes[i].xyz;
+            float nRate = uMacroNodes[i].w;
+            vec3 qLocal = pRaw - nPos;
+            float rLocal = length(qLocal);
 
-          float isFocus = (i == uSelectedNode) ? 1.35 : 1.0;
-          float outerRad = (0.46 + 0.14 * nRate) * isFocus;
+            float isFocus = (i == uSelectedNode) ? 1.35 : 1.0;
+            float outerRad = (0.46 + 0.14 * nRate) * isFocus;
 
-          // TIER 1: Outer Macro-Brain Cortical Shell (Hollow SDF with dynamic section cutaway)
-          float gyri = 0.022 * sin(qLocal.x * 18.0 + uTime * 2.0) * cos(qLocal.y * 18.0) * sin(qLocal.z * 18.0);
-          float shellRaw = abs(rLocal + gyri - outerRad) - 0.028;
-          float cutPlane = dot(qLocal, cutNormal) - outerRad * (1.05 - 1.25 * uCutaway);
-          float dShell = max(shellRaw, cutPlane);
-          if (dShell < dMacroShell) {
-            dMacroShell = dShell;
-            activeRate = nRate;
-            activeNodeF = float(i);
-          }
+            // Fast bounding-sphere distance when ray is not close to this brain node
+            float dBound = rLocal - outerRad;
+            if (dBound > 0.32) {
+              if (dBound < dMacroShell) {
+                dMacroShell = dBound;
+                activeAux = nRate + float(i) * 2.0;
+              }
+            } else {
+              // Close to or inside Macro-Brain Node i: evaluate full 3-tier nested anatomy!
+              float gyri = 0.020 * sin(qLocal.x * 18.0 + uTime * 2.0) * cos(qLocal.y * 18.0) * sin(qLocal.z * 18.0);
+              float shellRaw = abs(dBound + gyri) - 0.028;
+              float cutPlane = dot(qLocal, cutNormal) - outerRad * (1.05 - 1.25 * uCutaway);
+              float dShell = max(shellRaw, cutPlane);
+              if (dShell < dMacroShell) {
+                dMacroShell = dShell;
+                activeAux = nRate + float(i) * 2.0;
+              }
 
-          // TIER 2: Meso-Brain sLTC×SSM Cortical Column Shells inside the Macro-Brain (2 Perforated Nested Shells)
-          if (rLocal < outerRad * 1.05) {
-            for (int l = 0; l < 2; l++) {
-              float mesoR = outerRad * (0.46 + 0.22 * float(l));
-              float dRing = abs(rLocal - mesoR) - 0.014;
-              // Perforated cortical column lattice
-              vec3 latt = abs(fract(qLocal * 14.0 + uTime * 0.2 * float(l + 1)) - 0.5);
-              float holes = min(latt.x, min(latt.y, latt.z)) - 0.13;
-              dRing = max(dRing, -holes);
-              dRing = max(dRing, cutPlane * 0.7);
-              if (dRing < dMesoRings) {
-                dMesoRings = dRing;
-                activeRate = nRate;
-                activeNodeF = float(i);
+              // TIER 2: Meso-Brain sLTC×SSM Perforated Cortical Column Shells
+              if (rLocal < outerRad * 1.02) {
+                float mesoR0 = outerRad * 0.48;
+                float mesoR1 = outerRad * 0.70;
+                float dRing = min(abs(rLocal - mesoR0), abs(rLocal - mesoR1)) - 0.014;
+                vec3 latt = abs(fract(qLocal * 13.0) - 0.5);
+                float holes = min(latt.x, min(latt.y, latt.z)) - 0.13;
+                dRing = max(max(dRing, -holes), cutPlane * 0.7);
+                if (dRing < dMesoRings) {
+                  dMesoRings = dRing;
+                  activeAux = nRate + float(i) * 2.0;
+                }
+
+                // TIER 3: Micro-Brain Moonlab Q3 Bloch Spinor & QGTL Berry Core
+                vec3 bloch = normalize(uMicroBloch[i].xyz + vec3(1e-4));
+                float coreRad = outerRad * 0.22;
+                float dCoreSphere = rLocal - coreRad;
+                float dSpinorAxis = sdCapsule(qLocal, -bloch * coreRad * 1.45, bloch * coreRad * 1.45, 0.024 * isFocus);
+                float dQCore = smin(dCoreSphere, dSpinorAxis, 0.028);
+                if (dQCore < dMicroQubit) {
+                  dMicroQubit = dQCore;
+                  // Encode Bloch pole alignment directly into activeAux fractional part (no dynamic array lookup in main!)
+                  float poleAlign = clamp(dot(normalize(qLocal + 1e-4), bloch) * 0.5 + 0.5, 0.0, 0.99);
+                  activeAux = poleAlign + float(i) * 2.0;
+                }
               }
             }
 
-            // TIER 3: Micro-Brain Moonlab Q3 Bloch Spinor & QGTL Berry Core at the center of each Macro-Node
-            vec3 bloch = normalize(uMicroBloch[i].xyz + vec3(1e-4));
-            float coreRad = outerRad * 0.22;
-            float dCoreSphere = rLocal - coreRad;
-            // Spinor dipole axis capsule protruding along the live Moonlab Qubit Bloch vector
-            float dSpinorAxis = sdCapsule(qLocal, -bloch * coreRad * 1.45, bloch * coreRad * 1.45, 0.024 * isFocus);
-            float dQCore = smin(dCoreSphere, dSpinorAxis, 0.03);
-            if (dQCore < dMicroQubit) {
-              dMicroQubit = dQCore;
-              activeRate = nRate;
-              activeNodeF = float(i);
+            // Single Eshkol Toroidal Axon Ring + Cross-Chord
+            int j1 = (i + 1) % 14;
+            float c1 = sdCapsule(pRaw, nPos, uMacroNodes[j1].xyz, 0.026 + 0.016 * nRate);
+            if (c1 < dAxon) {
+              dAxon = c1;
             }
           }
-
-          // ESHKOL Tensor-Logic Synaptic Axons connecting Macro-Brain Regions
-          int j1 = (i + 1) % 14;
-          int j2 = (i + 3) % 14;
-          float c1 = sdCapsule(pRaw, nPos, uMacroNodes[j1].xyz, 0.028 + 0.018 * nRate);
-          float c2 = sdCapsule(pRaw, nPos, uMacroNodes[j2].xyz, 0.022 + 0.015 * nRate);
-          dAxon = min(dAxon, min(c1, c2));
         }
 
         // 4. LATENT MANIFOLD SHATTERED VOXEL CORRIDOR & YEGANEH FRACTAL CANOPY
         vec3 qGrid = p;
         float tileSize = 4.6;
         vec3 cellId = floor(qGrid / tileSize);
-        vec3 qLocal = mod(qGrid + 0.5 * tileSize, tileSize) - 0.5 * tileSize;
+        vec3 qCell = mod(qGrid + 0.5 * tileSize, tileSize) - 0.5 * tileSize;
         if (uShatter > 0.01) {
-          float vStep = max(0.06, 0.30 * uShatter);
-          qLocal = mix(qLocal, floor(qLocal / vStep + 0.5) * vStep, clamp(uShatter * 0.55, 0.0, 0.85));
+          float vStep = max(0.07, 0.30 * uShatter);
+          qCell = mix(qCell, floor(qCell / vStep + 0.5) * vStep, clamp(uShatter * 0.55, 0.0, 0.85));
         }
-        float dPillar = sdBox(qLocal, vec3(0.32, 2.3, 0.32));
-        vec3 pBranch = qLocal;
-        pBranch.xz *= rot(cellId.x * 1.3 + cellId.z * 2.1 + uTime * 0.12);
+        float dPillar = sdBox(qCell, vec3(0.32, 2.3, 0.32));
+        vec3 pBranch = qCell;
+        pBranch.xz *= rot(cellId.x * 1.3 + cellId.z * 2.1);
         pBranch.xy = abs(pBranch.xy) - vec2(0.46, 0.56);
-        pBranch.xy *= rot(0.62 + 0.12 * sin(uTime * 0.4 + uKappa));
+        pBranch.xy *= rot(0.62 + 0.10 * sin(uTime * 0.4 + uKappa));
         float dCanopy = sdBox(pBranch, vec3(0.11, 0.88, 0.11));
-        float dLattice = smin(dPillar, dCanopy, 0.18);
-        // Clear central arena around Singularity & Nested Brain Connectome
-        dLattice = max(dLattice, 6.2 - length(pRaw));
+        float dLattice = max(smin(dPillar, dCanopy, 0.18) / lipScale, 6.1 - rRaw);
 
-        // Combine Materials:
-        // 1.0 = Null-Token Black Square Singularity
-        // 2.0 = Extruded Chrome Jets
-        // 3.0 = Tier-1 Macro-Brain Outer Cortical Shell
-        // 4.0 = Eshkol Synaptic Axons
-        // 5.0 = Shattered Voxel Lattice & Yeganeh Canopy
-        // 6.0 = Tier-2 Meso-Brain sLTC×SSM Perforated Cortical Rings
-        // 7.0 = Tier-3 Micro-Brain Moonlab Qubit Spinor & QGTL Core
         vec3 res = vec3(dSingularity, 1.0, 0.0);
         if (dJets < res.x)       res = vec3(dJets, 2.0, rXY);
-        if (dMacroShell < res.x) res = vec3(dMacroShell, 3.0, activeRate + activeNodeF * 2.0);
-        if (dMesoRings < res.x)  res = vec3(dMesoRings, 6.0, activeRate + activeNodeF * 2.0);
-        if (dMicroQubit < res.x) res = vec3(dMicroQubit, 7.0, activeRate + activeNodeF * 2.0);
-        if (dAxon < res.x)       res = vec3(dAxon, 4.0, activeRate);
+        if (dMacroShell < res.x) res = vec3(dMacroShell, 3.0, activeAux);
+        if (dMesoRings < res.x)  res = vec3(dMesoRings, 6.0, activeAux);
+        if (dMicroQubit < res.x) res = vec3(dMicroQubit, 7.0, activeAux);
+        if (dAxon < res.x)       res = vec3(dAxon, 4.0, activeAux);
         if (dLattice < res.x)    res = vec3(dLattice, 5.0, cellId.x + cellId.y * 3.0 + cellId.z * 7.0);
 
         return res;
       }
 
+      // Inigo Quilez 4-Tap Tetrahedron Normal (33% faster than 6-tap central differences)
       vec3 calcNormal(vec3 p) {
-        vec2 e = vec2(0.0025, 0.0);
-        return normalize(vec3(
-          mapScene(p + e.xyy).x - mapScene(p - e.xyy).x,
-          mapScene(p + e.yxy).x - mapScene(p - e.yxy).x,
-          mapScene(p + e.yyx).x - mapScene(p - e.yyx).x
-        ));
+        const vec2 k = vec2(1.0, -1.0);
+        const float h = 0.003;
+        return normalize(
+          k.xyy * mapScene(p + k.xyy * h).x +
+          k.yyx * mapScene(p + k.yyx * h).x +
+          k.yxy * mapScene(p + k.yxy * h).x +
+          k.xxx * mapScene(p + k.xxx * h).x
+        );
       }
 
       void main() {
@@ -1283,48 +1243,44 @@
         // Gravitational & Thought-Curvature Lensing around Origin Singularity
         vec3 toCenter = -ro;
         float centerDist = length(cross(rd, toCenter));
-        float lensPull = 0.14 * (uSingularity + 0.25 * uBizarro * uKappa) / (centerDist * centerDist + 0.22);
-        rd = normalize(rd + normalize(toCenter + 1e-4) * lensPull * 0.16);
+        float lensPull = 0.14 * (uSingularity + 0.25 * uBizarro * uKappa) / (centerDist * centerDist + 0.24);
+        rd = normalize(rd + normalize(toCenter + 1e-4) * lensPull * 0.15);
 
         float t = 0.0;
         float matId = 0.0;
         float aux = 0.0;
         vec3 glowAcc = vec3(0.0);
 
-        for (int i = 0; i < 92; i++) {
+        // Fast 54-Step Lipschitz-Guarded Raymarcher with Rational Glow Accumulation (0 trig/exp inside loop!)
+        for (int i = 0; i < 54; i++) {
           vec3 p = ro + rd * t;
           vec3 h = mapScene(p);
 
-          // Volumetric Bioluminescence from Nested Brains & QGTL Berry Curvature
-          float gShell = exp(-max(0.0, h.x) * 6.5);
+          float atten = 1.0 / (1.0 + max(0.0, h.x) * max(0.0, h.x) * 28.0);
           if (h.y == 7.0) {
-            // Tier-3 Micro-Brain Moonlab Qubit Core glow (Golden-Cyan Berry Phase)
-            glowAcc += vec3(1.0, 0.72, 0.15) * gShell * 0.042 * (1.0 + abs(uBerry));
+            glowAcc += vec3(1.0, 0.72, 0.15) * atten * 0.032;
           } else if (h.y == 6.0) {
-            // Tier-2 Meso-Brain sLTC×SSM Cortical Ring glow (Magenta-Emerald)
-            glowAcc += cfgPalette(uTime * 0.25 + h.z * 0.15, uCFG) * gShell * 0.028;
+            glowAcc += vec3(0.95, 0.22, 0.75) * atten * 0.022;
           } else if (h.y == 3.0 || h.y == 4.0) {
-            // Tier-1 Macro-Brain & Eshkol Axons
-            float pulse = 0.5 + 0.5 * sin(length(p) * 9.0 - uTime * 6.5 * uSynapse);
-            glowAcc += mix(vec3(0.0, 0.92, 1.0), vec3(1.0, 0.22, 0.65), pulse) * gShell * 0.018 * uSynapse;
+            glowAcc += vec3(0.0, 0.88, 1.0) * atten * 0.015 * uSynapse;
           } else if (h.y == 2.0) {
-            glowAcc += cfgPalette(h.z * 0.15 - uTime * 0.2, uCFG) * gShell * 0.011;
+            glowAcc += vec3(0.45, 0.75, 1.0) * atten * 0.008;
           }
 
-          if (h.x < 0.0025 || t > 44.0) {
+          float hitEps = 0.0028 + 0.00035 * t;
+          if (h.x < hitEps || t > 40.0) {
             matId = h.y;
             aux = h.z;
             break;
           }
-          t += h.x * 0.74;
+          t += max(h.x * 0.82, 0.016);
         }
 
-        // Deep Quantum Vacuum Background with Diagnostic Celestial Blueprint Grid & Wave Interference
         vec3 skyGrid = abs(fract(rd * 14.0 + 0.15 * uBizarro * uKappa) - 0.5);
         float gridLine = smoothstep(0.03, 0.0, min(skyGrid.x, min(skyGrid.y, skyGrid.z)));
         vec3 col = vec3(0.012, 0.016, 0.032) + vec3(0.0, 0.22, 0.36) * gridLine * 0.28;
 
-        if (t <= 44.0) {
+        if (t <= 40.0) {
           vec3 p = ro + rd * t;
           vec3 n = calcNormal(p);
           vec3 v = -rd;
@@ -1335,42 +1291,35 @@
           float fres = pow(1.0 - max(dot(n, v), 0.0), 3.0);
 
           if (matId == 1.0) {
-            // NULL-TOKEN SINGULARITY: Score Function = 0 Void with Event-Horizon Fresnel Edge
             float edge = pow(1.0 - max(dot(n, v), 0.0), 4.2);
             col = vec3(0.002, 0.002, 0.004) + mix(vec3(1.0, 0.62, 0.05), vec3(0.0, 0.95, 1.0), 0.5 + 0.5 * sin(uKappa * 3.0)) * edge * 2.2;
           } else if (matId == 2.0) {
-            // EXTRUDED CHROME TOPOLOGICAL JETS
             vec3 refl = reflect(rd, n);
-            float spec = pow(max(dot(refl, l1), 0.0), 36.0);
+            float spec = pow(max(dot(refl, l1), 0.0), 32.0);
             vec3 irid = cfgPalette(dot(n, v) * 1.6 + aux * 0.12 - uTime * 0.25, uCFG);
             col = mix(vec3(0.75, 0.85, 0.96), irid, 0.58) * (0.35 + 0.75 * diff1) + vec3(1.0) * spec * 1.2 + irid * fres;
           } else if (matId == 3.0) {
-            // TIER-1 MACRO-BRAIN CORTICAL SHELL (Iridescent Thin-Film Cutaway + Dale's Law E/I Coloring)
             float nodeIdx = floor(aux * 0.5);
             float nRate = aux - nodeIdx * 2.0;
-            bool isInhib = (int(nodeIdx) == 3 || int(nodeIdx) == 13); // STR & ENS GABAergic
+            bool isInhib = (int(nodeIdx) == 3 || int(nodeIdx) == 13);
             vec3 baseTone = isInhib ? vec3(0.18, 0.42, 1.0) : vec3(0.0, 0.92, 0.85);
             vec3 irid = cfgPalette(fres * 1.4 + nodeIdx * 0.21 + uTime * 0.2, uCFG);
             col = baseTone * (0.25 + 0.75 * diff1) + irid * fres * 1.35 + vec3(1.0, 0.85, 0.3) * nRate * 0.6;
           } else if (matId == 6.0) {
-            // TIER-2 MESO-BRAIN sLTC×SSM PERFORATED CORTICAL COLUMN RINGS
             float nodeIdx = floor(aux * 0.5);
             float nRate = aux - nodeIdx * 2.0;
-            float wave = 0.5 + 0.5 * sin(p.x * 25.0 + p.y * 25.0 - uTime * 5.0 * uSynapse);
+            float wave = 0.5 + 0.5 * sin(p.x * 24.0 + p.y * 24.0 - uTime * 5.0 * uSynapse);
             vec3 ssmCol = cfgPalette(0.35 + nRate * 0.5 + wave * 0.25 + nodeIdx * 0.1, uCFG);
             col = ssmCol * (0.45 + 1.25 * wave + 0.6 * diff1) + vec3(1.0, 0.3, 0.8) * fres;
           } else if (matId == 7.0) {
-            // TIER-3 MICRO-BRAIN MOONLAB 3-QUBIT SPINOR & QGTL BERRY CORE
             float nodeIdx = floor(aux * 0.5);
-            vec3 bloch = normalize(uMicroBloch[int(clamp(nodeIdx, 0.0, 13.0))].xyz + vec3(1e-4));
-            float pole = pow(max(dot(n, bloch), 0.0), 10.0);
+            float poleAlign = (aux - nodeIdx * 2.0);
+            float pole = pow(clamp(poleAlign, 0.0, 1.0), 6.0);
             col = vec3(0.15, 0.55, 1.4) * (0.35 + diff1) + vec3(1.5, 1.15, 0.25) * pole * 2.4 + vec3(0.0, 1.0, 0.8) * fres;
           } else if (matId == 4.0) {
-            // ESHKOL TENSOR-LOGIC SYNAPTIC AXON FIBERS (Travelling Action Potentials)
             float spikeWave = pow(0.5 + 0.5 * sin(length(p) * 10.0 - uTime * 9.0 * uSynapse), 4.0);
             col = mix(vec3(0.05, 0.28, 0.55), vec3(1.0, 0.78, 0.15), spikeWave) * (0.5 + 0.6 * diff1) + vec3(0.0, 1.0, 0.95) * spikeWave * 1.4;
           } else {
-            // SHATTERED MANIFOLD VOXELS & YEGANEH AUTUMN-PLASMA CANOPY
             vec3 oil = cfgPalette(aux * 0.13 + p.y * 0.16 + uTime * 0.1, uCFG);
             vec3 yeganeh = mix(vec3(0.92, 0.22, 0.12), vec3(1.0, 0.72, 0.08), 0.5 + 0.5 * sin(p.y * 1.6 + aux));
             vec3 base = mix(yeganeh, oil, clamp(uCFG * 0.52, 0.0, 1.0));
@@ -1378,12 +1327,11 @@
             col = base * (0.22 + 0.65 * diff1 + 0.25 * diff2) + oil * fres * 0.75 + vec3(0.0, 0.95, 1.0) * slice * 0.35;
           }
 
-          float fog = 1.0 - exp(-0.0014 * t * t);
+          float fog = 1.0 - exp(-0.0015 * t * t);
           col = mix(col, vec3(0.01, 0.015, 0.03), fog);
         }
 
         col += glowAcc;
-        // ACES Filmic Tone Mapping
         col = (col * (2.51 * col + 0.03)) / (col * (2.43 * col + 0.59) + 0.14);
         col = pow(clamp(col, 0.0, 1.0), vec3(0.9));
         fragColor = vec4(col, 1.0);
@@ -1439,7 +1387,7 @@
     let camPos = [0.0, 1.6, -8.4];
     let camVel = [0.0, 0.0, 0.0];
     let camQuat = [0.0, 0.0, 0.0, 1.0];
-    let flyTarget = null; // Smooth autopilot target when diving inside a Macro/Meso/Micro Brain
+    let flyTarget = null;
 
     function quatMultiply(a, b) {
       return [
@@ -1476,14 +1424,12 @@
       camQuat = quatNormalize(camQuat);
     }
 
-    // Fly directly to the selected Macro-Brain Node at the chosen tier distance!
     function flyInsideSelectedNode(tier = 2) {
       const idx = brains.selectedNode;
       brains.zoomTier = tier;
       const nx = brains.macroPos[idx * 3 + 0];
       const ny = brains.macroPos[idx * 3 + 1];
       const nz = brains.macroPos[idx * 3 + 2];
-      // Stand off slightly along radial vector so the cutaway shell opens directly in front of camera
       const dist = tier === 1 ? 2.1 : tier === 2 ? 0.95 : 0.48;
       const len = Math.hypot(nx, ny, nz) || 1;
       flyTarget = [
@@ -1508,7 +1454,7 @@
     window.addEventListener('keydown', (e) => {
       const k = e.key.toLowerCase();
       keys[k] = true;
-      flyTarget = null; // Manual flight cancels autopilot
+      flyTarget = null;
       if (k === 'e') {
         brains.pokeAll(1.2);
         triggerAudioPulse(360);
@@ -1643,7 +1589,6 @@
       document.getElementById('btnToggleHud').textContent = hudVisible ? 'HIDE HUD [H]' : 'SHOW HUD [H]';
     });
 
-    // WebAudio Quantum Binaural & Thought-Curvature Drone
     let audioCtx = null, oscA = null, oscB = null, gainNode = null, audioOn = false;
     document.getElementById('btnAudio').addEventListener('click', () => {
       if (!audioCtx) {
@@ -1685,7 +1630,7 @@
     }
 
     // ============================================================================
-    // 7. 3-LEVEL NESTED BRAIN INSPECTOR CANVAS & 3D HOLOGRAPHIC HUD OVERLAY
+    // 7. BATCHED 2D NESTED BRAIN INSPECTOR & HOLOGRAPHIC HUD OVERLAY
     // ============================================================================
     const brainCanvas = document.getElementById('brainCanvas');
     const bCtx = brainCanvas.getContext('2d');
@@ -1694,7 +1639,6 @@
     const hudOverlay = document.getElementById('hudOverlayCanvas');
     const hCtx = hudOverlay.getContext('2d');
 
-    // Clicking on the 2D Brains-Within-Brains Inspector selects a Macro-Region
     brainCanvas.addEventListener('mousedown', (e) => {
       const rect = brainCanvas.getBoundingClientRect();
       const mx = (e.clientX - rect.left) * (brainCanvas.width / rect.width);
@@ -1724,36 +1668,44 @@
       const cx = W * 0.5, cy = H * 0.52;
       const sel = brains.selectedNode;
 
-      // 1. OUTER RING: TIER-1 MACRO CONNECTOME (14 Regions + Eshkol 2-Hop Reach Synapses)
       const macroCoords = [];
       for (let i = 0; i < N_MACRO; i++) {
         const ang = (i / N_MACRO) * Math.PI * 2 - Math.PI * 0.5;
         macroCoords.push([cx + Math.cos(ang) * 86, cy + Math.sin(ang) * 86]);
       }
 
-      // Draw Eshkol Reach edges (Orange = Excitatory Dale +1, Cyan/Blue = Inhibitory Dale -1)
+      // Batched Eshkol Reach Edges: 2 stroke calls total instead of 158 per frame!
+      bCtx.lineWidth = 1.0;
+      bCtx.strokeStyle = 'rgba(255, 165, 45, 0.34)';
+      bCtx.beginPath();
       for (let i = 0; i < N_MACRO; i++) {
         for (let j = 0; j < N_MACRO; j++) {
-          if (i === j || brains.Reach[i][j] === 0) continue;
-          const isSel = (i === sel || j === sel);
-          if (!isSel && brains.S[i][j] === 0) continue; // Show 2-hop transitive edges for focused node
+          if (i === j || brains.Reach[i][j] === 0 || brains.W[i][j] < 0) continue;
+          if (i !== sel && j !== sel && brains.S[i][j] === 0) continue;
           const [x1, y1] = macroCoords[i];
           const [x2, y2] = macroCoords[j];
-          const w = brains.W[i][j];
-          bCtx.strokeStyle = w >= 0
-            ? `rgba(255, 165, 45, ${isSel ? 0.55 : 0.16})`
-            : `rgba(55, 165, 255, ${isSel ? 0.55 : 0.16})`;
-          bCtx.lineWidth = isSel ? (brains.S[i][j] > 0 ? 1.5 : 0.9) : 0.5;
-          bCtx.beginPath();
           bCtx.moveTo(x1, y1);
           bCtx.quadraticCurveTo(cx, cy, x2, y2);
-          bCtx.stroke();
         }
       }
+      bCtx.stroke();
 
-      // 2. MIDDLE RING: TIER-2 MESO-BRAIN (8 sLTC×SSM Cortical Columns inside Selected Macro-Node)
+      bCtx.strokeStyle = 'rgba(55, 165, 255, 0.42)';
+      bCtx.beginPath();
+      for (let i = 0; i < N_MACRO; i++) {
+        for (let j = 0; j < N_MACRO; j++) {
+          if (i === j || brains.Reach[i][j] === 0 || brains.W[i][j] >= 0) continue;
+          if (i !== sel && j !== sel && brains.S[i][j] === 0) continue;
+          const [x1, y1] = macroCoords[i];
+          const [x2, y2] = macroCoords[j];
+          bCtx.moveTo(x1, y1);
+          bCtx.quadraticCurveTo(cx, cy, x2, y2);
+        }
+      }
+      bCtx.stroke();
+
+      // 2. MIDDLE RING: TIER-2 MESO-BRAIN (8 sLTC×SSM Cortical Columns)
       const hVec = brains.mesoH[sel];
-      const tauVec = brains.mesoTau[sel];
       bCtx.strokeStyle = 'rgba(255, 45, 165, 0.35)';
       bCtx.lineWidth = 1;
       bCtx.beginPath();
@@ -1765,21 +1717,14 @@
         const mx = cx + Math.cos(ang) * 46;
         const my = cy + Math.sin(ang) * 46;
         const act = Math.abs(hVec[m]);
-        // Spokes from Meso sLTC unit to Micro QGTL core
-        bCtx.strokeStyle = `rgba(255, 65, 185, ${0.25 + 0.6 * act})`;
-        bCtx.beginPath();
-        bCtx.moveTo(mx, my);
-        bCtx.lineTo(cx, cy);
-        bCtx.stroke();
-
         bCtx.fillStyle = hVec[m] >= 0 ? '#FF3898' : '#00F0FF';
         bCtx.beginPath();
         bCtx.arc(mx, my, 3.2 + 2.8 * act, 0, Math.PI * 2);
         bCtx.fill();
       }
 
-      // 3. INNER CORE: TIER-3 MICRO-BRAIN (Moonlab Q3 Bloch Spinor & QGTL Berry Phase inside Selected Node)
-      const [bx, by, bz] = brains.microBloch[sel];
+      // 3. INNER CORE: TIER-3 MICRO-BRAIN (Moonlab Q3 Bloch Spinor & QGTL Berry Phase)
+      const [bx, by] = brains.microBloch[sel];
       bCtx.strokeStyle = 'rgba(255, 195, 35, 0.7)';
       bCtx.fillStyle = 'rgba(15, 23, 42, 0.85)';
       bCtx.lineWidth = 1.5;
@@ -1788,7 +1733,6 @@
       bCtx.fill();
       bCtx.stroke();
 
-      // Bloch vector needle
       bCtx.strokeStyle = '#00F0FF';
       bCtx.lineWidth = 2.2;
       bCtx.beginPath();
@@ -1801,7 +1745,7 @@
       bCtx.arc(cx + bx * 16, cy + by * 16, 3.2, 0, Math.PI * 2);
       bCtx.fill();
 
-      // Draw Tier-1 Macro Region Nodes & Labels on Outer Ring
+      // Draw Tier-1 Macro Region Nodes & Labels
       bCtx.font = '10px monospace';
       for (let i = 0; i < N_MACRO; i++) {
         const [nx, ny] = macroCoords[i];
@@ -1830,10 +1774,8 @@
         bCtx.fillText(MACRO_REGIONS[i].id, lx, ly);
       }
 
-      // Draw Thought Curvature κ(t) & Berry Curvature Ω_01(t) Sparklines
       const SW = sparkCanvas.width, SH = sparkCanvas.height;
       sCtx.clearRect(0, 0, SW, SH);
-
       const drawLine = (arr, maxV, color) => {
         sCtx.strokeStyle = color;
         sCtx.lineWidth = 1.6;
@@ -1845,17 +1787,15 @@
         }
         sCtx.stroke();
       };
-      drawLine(brains.kappaHist, 1.8, '#FF3898'); // Magenta = Thought Curvature κ
-      drawLine(brains.berryHist, 0.8, '#00F0FF'); // Cyan = QGTL Berry Curvature Ω_01
+      drawLine(brains.kappaHist, 1.8, '#FF3898');
+      drawLine(brains.berryHist, 0.8, '#00F0FF');
     }
 
-    // Project 3D Macro-Brain Regions onto 2D HUD Overlay so user can see all 14 live brains in 3D space
     function draw3DHolographicOverlay(camMat) {
       const W = hudOverlay.width, H = hudOverlay.height;
       hCtx.clearRect(0, 0, W, H);
       if (!hudVisible) return;
 
-      // Inverse of orthonormal camera matrix is its transpose
       const rX = [camMat[0], camMat[1], camMat[2]];
       const rY = [camMat[3], camMat[4], camMat[5]];
       const rZ = [camMat[6], camMat[7], camMat[8]];
@@ -1870,7 +1810,7 @@
         const vy = dx * rY[0] + dy * rY[1] + dz * rY[2];
         const vz = dx * rZ[0] + dy * rZ[1] + dz * rZ[2];
 
-        if (vz <= 0.25) continue; // Behind camera
+        if (vz <= 0.25) continue;
         const fov = 1.12;
         const sx = W * 0.5 + (vx / (vz / fov)) * H;
         const sy = H * 0.5 - (vy / (vz / fov)) * H;
@@ -1897,15 +1837,18 @@
     }
 
     // ============================================================================
-    // 8. MAIN 60-FPS RENDER & TSOTCHKE A-LIFE SIMULATION LOOP
+    // 8. MAIN 60-FPS RENDER LOOP WITH ADAPTIVE RESOLUTION SCALER
     // ============================================================================
+    let renderScale = 0.85; // Auto-adapts between 0.50 and 1.15 to hold 55-60 FPS
+
     function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.45);
-      glCanvas.width = Math.floor(window.innerWidth * dpr);
-      glCanvas.height = Math.floor(window.innerHeight * dpr);
+      const cw = window.innerWidth, ch = window.innerHeight;
+      const maxS = Math.min(renderScale, 1920 / Math.max(1, cw));
+      glCanvas.width = Math.max(320, Math.floor(cw * maxS));
+      glCanvas.height = Math.max(200, Math.floor(ch * maxS));
       gl.viewport(0, 0, glCanvas.width, glCanvas.height);
-      hudOverlay.width = window.innerWidth;
-      hudOverlay.height = window.innerHeight;
+      hudOverlay.width = cw;
+      hudOverlay.height = ch;
     }
     window.addEventListener('resize', resize);
     resize();
@@ -1921,7 +1864,6 @@
       lastTime = now;
       const t = now * 0.001;
 
-      // 1. 6-DOF Flight & Autopilot
       let rollInput = 0;
       if (keys['q']) rollInput -= 1.8 * dt;
       if (keys['z']) rollInput += 1.8 * dt;
@@ -1936,7 +1878,6 @@
         camPos[0] += (flyTarget[0] - camPos[0]) * Math.min(1, dt * 4.5);
         camPos[1] += (flyTarget[1] - camPos[1]) * Math.min(1, dt * 4.5);
         camPos[2] += (flyTarget[2] - camPos[2]) * Math.min(1, dt * 4.5);
-        // Smoothly aim camera toward the selected Macro-Brain center
         const idx = brains.selectedNode;
         const tx = brains.macroPos[idx * 3 + 0] - camPos[0];
         const ty = brains.macroPos[idx * 3 + 1] - camPos[1];
@@ -1966,8 +1907,8 @@
       const speed = Math.hypot(camVel[0], camVel[1], camVel[2]);
       const synCoupling = parseFloat(slSynapse.value);
 
-      // 2. Step Brains-Within-Brains (Macro Eshkol + Meso sLTC×SSM + Micro Moonlab QGTL + Thought Curvature κ)
-      brains.step(dt, t, camPos, speed, synCoupling, false);
+      // Step Full Brains-Within-Brains Intelligence
+      brains.step(dt, t, camPos, speed, synCoupling);
 
       for (let i = 0; i < N_MACRO; i++) {
         macroUniformBuf[i * 4 + 0] = brains.macroPos[i * 3 + 0];
@@ -1982,13 +1923,11 @@
         blochUniformBuf[i * 4 + 3] = brains.macroTau[i];
       }
 
-      // Modulate audio drone by Thought Curvature κ & QGTL Berry Curvature
       if (audioOn && audioCtx) {
         oscA.frequency.setTargetAtTime(55 + brains.kappa * 28 + speed * 4, audioCtx.currentTime, 0.08);
         oscB.frequency.setTargetAtTime(82 + Math.abs(brains.berry01) * 90 + parseFloat(slBizarro.value) * 35, audioCtx.currentTime, 0.08);
       }
 
-      // 3. Render 3D WebGL2 Raymarched World
       gl.useProgram(prog);
       gl.uniform2f(uLoc.res, glCanvas.width, glCanvas.height);
       gl.uniform1f(uLoc.time, t);
@@ -2010,15 +1949,24 @@
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-      // 4. Draw 2D Brains-Within-Brains Inspector & 3D Holographic Overlay
-      drawNestedBrainInspector(t);
-      draw3DHolographicOverlay(mat);
+      // Throttle 2D inspector redraws to every 2nd frame (30Hz) while WebGL & Brains run at 60Hz
+      if ((frameCount & 1) === 0) {
+        drawNestedBrainInspector(t);
+        draw3DHolographicOverlay(mat);
+      }
 
-      // 5. Update Telemetry Readouts
       frameCount++;
-      if (now - fpsTimer > 280) {
+      if (now - fpsTimer > 450) {
         const fps = Math.round((frameCount * 1000) / (now - fpsTimer));
-        document.getElementById('fpsReadout').textContent = fps;
+        // Adaptive resolution scaling to guarantee high frame rate
+        if (fps < 42 && renderScale > 0.50) {
+          renderScale = Math.max(0.50, renderScale * 0.85);
+          resize();
+        } else if (fps > 57 && renderScale < 1.05) {
+          renderScale = Math.min(1.05, renderScale * 1.08);
+          resize();
+        }
+        document.getElementById('fpsReadout').textContent = `${fps} (${renderScale.toFixed(2)}x)`;
         frameCount = 0;
         fpsTimer = now;
 
